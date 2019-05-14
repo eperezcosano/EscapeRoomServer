@@ -1,0 +1,97 @@
+package edu.upc.dsa;
+
+import edu.upc.dsa.models.*;
+import edu.upc.dsa.to.*;
+import edu.upc.dsa.mysql.*;
+import org.apache.log4j.Logger;
+
+import java.util.List;
+
+public class GameManagerImpl implements GameManager {
+
+    private Logger log = Logger.getLogger(GameManagerImpl.class.getName());
+
+    @Override
+    public UserTO login(UserTO user) throws Exception {
+
+        Session session = null;
+        UserTO res = null;
+
+        try {
+            session = Factory.getSession();
+            User dataUser = session.getByUsername(user.getUsername());
+
+            log.info("User request: " + user);
+            log.info("DB User" + dataUser);
+
+            if (dataUser.getUsername().equals(user.getUsername()) &&
+                    dataUser.getPassword().equals(user.getPassword()))
+                res = new UserTO(dataUser.getId(), dataUser.getUsername(), dataUser.getPassword());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) session.close();
+        }
+
+        log.info("Login response: " + res);
+        return res;
+    }
+
+    @Override
+    public void register(UserTO user) throws Exception {
+
+        Session session = null;
+
+        try {
+            session = Factory.getSession();
+            User insertUser = new User(0, user.getUsername(), user.getPassword(), "", 0, 0);
+            session.save(insertUser);
+
+            log.info("User insert: " + insertUser);
+
+        } catch (UserAlreadyExistsException e) {
+            log.info("User already exists");
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (session != null) session.close();
+        }
+    }
+
+    @Override
+    public void deleteUser(UserTO user) {
+
+    }
+
+    @Override
+    public List<Object> getObjects(UserTO user) {
+        return null;
+    }
+
+    @Override
+    public User getUser(int idUser) {
+        return null;
+    }
+
+    @Override
+    public void buy(int idObject, int idUser) {
+
+    }
+
+    @Override
+    public void deleteObject(int idObject, int idUser) {
+
+    }
+
+    @Override
+    public void addObjectStore(Object object) {
+
+    }
+
+    @Override
+    public void deleteObjectStore(int idObject) {
+
+    }
+}
