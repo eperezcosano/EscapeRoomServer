@@ -1,23 +1,25 @@
 package edu.upc.dsa.models;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class User {
 
     //Attributes
     private int id;
+    private int idPartida;
     private String username;
     private String password;
-    private String objects;
+    private String objects; // esto será una lista de objetos.
     private int cash;
     private int level;
 
-    //Constructors
-    public User() {}
 
-    public User(int id, String username, String password, String objects, int cash, int level) {
+    //Constructors
+    public User() {
+
+}
+
+    public User(int id, int idPartida, String username, String password, String objects, int cash, int level) {
         this.id = id;
+        this.idPartida = idPartida;
         this.username = username;
         this.password = password;
         this.objects = objects;

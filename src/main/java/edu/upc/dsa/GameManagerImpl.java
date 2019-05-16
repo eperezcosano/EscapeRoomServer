@@ -44,7 +44,7 @@ public class GameManagerImpl implements GameManager {
 
         try {
             session = Factory.getSession();
-            User insertUser = new User(0, user.getUsername(), user.getPassword(), "", 0, 0);
+            User insertUser = new User(0, idPartida, user.getUsername(), user.getPassword(), "", 0, 0);
             session.save(insertUser);
 
             log.info("User insert: " + insertUser);
