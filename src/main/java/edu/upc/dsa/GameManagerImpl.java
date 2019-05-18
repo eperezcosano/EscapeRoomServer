@@ -79,7 +79,7 @@ public class GameManagerImpl implements GameManager {
         try{
             session = Factory.getSession();
             user = (UserInventario)session.get(UserInventario.class,idUser);
-
+            objetos = user.getObjectos();
 
         }
         catch(Exception e){

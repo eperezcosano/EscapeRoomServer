@@ -13,10 +13,7 @@ import io.swagger.annotations.ApiResponses;
 import io.swagger.jaxrs.PATCH;
 import org.apache.log4j.Logger;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -38,7 +35,7 @@ public class UserService {
     })
     @Path("/getInventario")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response getUserInventario(@PathParam("idUser") int idUser) {
+    public Response getUserInventario(@PathParam("idUser") int idUser) throws Exception {
         List<String> objetos = this.users.getUserInventario(idUser);
         GenericEntity<List<String>> entity = new GenericEntity<List<String>>(objetos) {};
         return Response.status(201).entity(entity).build()  ;
