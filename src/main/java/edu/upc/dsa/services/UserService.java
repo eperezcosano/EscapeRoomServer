@@ -2,6 +2,7 @@ package edu.upc.dsa.services;
 
 import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
+import edu.upc.dsa.UserNotFoundException;
 import edu.upc.dsa.models.*;
 import edu.upc.dsa.mysql.UserAlreadyExistsException;
 import edu.upc.dsa.to.*;
@@ -33,14 +34,21 @@ public class UserService {
             @ApiResponse(code = 201, message = "Successful"),
             @ApiResponse(code = 404, message = "User doesn't exist")
     })
-    @Path("/getInventario")
+    @Path("/inventario")
     @Consumes(MediaType.APPLICATION_JSON)
     public Response getUserInventario(@PathParam("idUser") int idUser) throws Exception {
-        List<String> objetos = this.users.getUserInventario(idUser);
-        GenericEntity<List<String>> entity = new GenericEntity<List<String>>(objetos) {};
-        return Response.status(201).entity(entity).build()  ;
+        try{
+            List<String> objetos = this.users.getUserInventario(idUser);
+            GenericEntity<List<String>> entity = new GenericEntity<List<String>>(objetos) {};
+            return Response.status(201).entity(entity).build();
+
+        }catch (UserNotFoundException e){
+            e.printStackTrace();
+            return Response.status(404).build();
+        }
+
+
+
     }
-
-
 
 }
