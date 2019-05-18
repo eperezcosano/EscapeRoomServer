@@ -4,16 +4,27 @@ public class Objeto {
     private int id;
     private String type;
     private String nombre;
+    private int coste;
     private  String atributo; //para cada tipo de objeto este valor será diferente : color, mensaje, ...
 
     public Objeto(){
 
     }
-    public Objeto(int id, String type, String nombre, String atributo) {
+    public Objeto(int id, String type, String nombre, String atributo,int coste) {
         this.id = id;
         this.type = type;
         this.nombre = nombre;
         this.atributo = atributo;
+        this.coste = coste;
+
+    }
+
+    public int getCoste() {
+        return coste;
+    }
+
+    public void setCoste(int coste) {
+        this.coste = coste;
     }
 
     public int getId() {
