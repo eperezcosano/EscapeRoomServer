@@ -152,9 +152,9 @@ public class SessionImpl implements Session {
                         String stringValue = rs.getString(i);
                         theClass.getMethod("set" + columnName, String.class).invoke(object, stringValue);
                         break;
-                    case DATE:
-                        Date dateValue = rs.getDate(i);
-                        theClass.getMethod("set" + columnName, Date.class).invoke(object, dateValue);
+                    case TIMESTAMP:
+                        Timestamp dateValue = rs.getTimestamp(i);
+                        theClass.getMethod("set" + columnName, Timestamp.class).invoke(object, dateValue);
                         break;
                     case BOOLEAN:
                         Boolean booleanValue = rs.getBoolean(i);
