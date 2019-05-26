@@ -12,9 +12,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.log4j.Logger;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
+import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -78,6 +76,17 @@ public class AuthService {
             e.printStackTrace();
             return Response.status(404).build();
         }
+    }
+
+    @GET
+    @ApiOperation(value = "get string")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful"),
+    })
+    @Path("/test")
+    @Produces(MediaType.TEXT_PLAIN)
+    public String getTracks() {
+        return "Yay!";
     }
 
 }

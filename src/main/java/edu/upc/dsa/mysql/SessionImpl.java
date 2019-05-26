@@ -19,7 +19,7 @@ public class SessionImpl implements Session {
     SessionImpl() {
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
-            this.connection = DriverManager.getConnection("jdbc:mysql://localhost/escapeRoom", "root", "root");
+            this.connection = DriverManager.getConnection("jdbc:mysql://localhost/escapeRoom", "root", "Mazinger72");
             log.info("Connected to db");
         } catch (Exception e) {
             log.error("Error exception");

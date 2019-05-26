@@ -1,7 +1,6 @@
 package edu.upc.dsa.models;
 
-import java.util.LinkedList;
-import java.util.List;
+import org.joda.time.DateTime;
 
 public class User {
 
@@ -9,23 +8,31 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private String objects;
     private int cash;
-    private int level;
+    private DateTime currentTime;
+    private int currentLife;
+    private int currentEnemiesKilled;
+    private int currentLevel;
 
     //Constructors
     public User() {}
 
-    public User(int id, String username, String password, String objects, int cash, int level) {
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(int id, String username, String password, int cash, DateTime currentTime, int currentLife, int currentEnemiesKilled, int currentLevel) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.objects = objects;
         this.cash = cash;
-        this.level = level;
+        this.currentTime = currentTime;
+        this.currentLife = currentLife;
+        this.currentEnemiesKilled = currentEnemiesKilled;
+        this.currentLevel = currentLevel;
     }
 
-    //Methods
     public int getId() {
         return id;
     }
@@ -50,14 +57,6 @@ public class User {
         this.password = password;
     }
 
-    public String getObjects() {
-        return objects;
-    }
-
-    public void setObjects(String objects) {
-        this.objects = objects;
-    }
-
     public int getCash() {
         return cash;
     }
@@ -66,12 +65,36 @@ public class User {
         this.cash = cash;
     }
 
-    public int getLevel() {
-        return level;
+    public DateTime getCurrentTime() {
+        return currentTime;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
+    public void setCurrentTime(DateTime currentTime) {
+        this.currentTime = currentTime;
+    }
+
+    public int getCurrentLife() {
+        return currentLife;
+    }
+
+    public void setCurrentLife(int currentLife) {
+        this.currentLife = currentLife;
+    }
+
+    public int getCurrentEnemiesKilled() {
+        return currentEnemiesKilled;
+    }
+
+    public void setCurrentEnemiesKilled(int currentEnemiesKilled) {
+        this.currentEnemiesKilled = currentEnemiesKilled;
+    }
+
+    public int getCurrentLevel() {
+        return currentLevel;
+    }
+
+    public void setCurrentLevel(int currentLevel) {
+        this.currentLevel = currentLevel;
     }
 
     @Override
@@ -80,9 +103,11 @@ public class User {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", objects='" + objects + '\'' +
                 ", cash=" + cash +
-                ", level=" + level +
+                ", currentTime=" + currentTime +
+                ", currentLife=" + currentLife +
+                ", currentEnemiesKilled=" + currentEnemiesKilled +
+                ", currentLevel=" + currentLevel +
                 '}';
     }
 }
