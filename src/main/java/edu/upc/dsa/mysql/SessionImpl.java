@@ -44,6 +44,8 @@ public class SessionImpl implements Session {
         query += sb.deleteCharAt(sb.length() - 1).toString();
         query += ")";
 
+        log.info("query: " + query);
+
         PreparedStatement prep = this.connection.prepareStatement(query);
         for (int i = 1; i < fields.length + 1; i++) {
             if (int.class.equals(fields[i - 1].getType())) {
@@ -52,13 +54,15 @@ public class SessionImpl implements Session {
                 prep.setInt(i, intValue);
             } else if (String.class.equals(fields[i - 1].getType())) {
                 prep.setString(i, new PropertyDescriptor(fields[i - 1].getName(), entity.getClass()).getReadMethod().invoke(entity).toString());
+            } else {
+                String labelName = fields[i - 1].getName().substring(0, 1).toUpperCase() + fields[i - 1].getName().substring(1);
+                Timestamp timestampValue = (Timestamp) entity.getClass().getMethod("get" + labelName).invoke(entity);
+                prep.setTimestamp(i, timestampValue);
             }
         }
 
         prep.execute();
         prep.close();
-
-        log.info("query: " + query);
     }
 
     public User getByUsername(String username) throws Exception {
@@ -171,7 +175,7 @@ public class SessionImpl implements Session {
                 }
             }
 
-            log.info("Objecto founded: " + object);
+            log.info("Object founded: " + object);
             res.add(object);
         }
 
