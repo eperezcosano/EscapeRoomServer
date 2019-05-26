@@ -142,6 +142,7 @@ public class SessionImpl implements Session {
                 String columnName = rs.getMetaData().getColumnName(i);
                 columnName = columnName.substring(0, 1).toUpperCase() + columnName.substring(1);
 
+                log.info("Column name: " + columnName);
                 switch (rs.getMetaData().getColumnType(i))
                 {
                     case INTEGER:
