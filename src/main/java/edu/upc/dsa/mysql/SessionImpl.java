@@ -161,6 +161,7 @@ public class SessionImpl implements Session {
                         theClass.getMethod("set" + columnName, Boolean.class).invoke(object, booleanValue);
                         break;
                     default:
+                        log.info("Missing type: " + rs.getMetaData().getColumnType(i));
                         break;
                 }
             }
