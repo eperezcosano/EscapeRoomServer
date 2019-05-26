@@ -45,11 +45,7 @@ public class GameManagerImpl implements GameManager {
 
         try {
             session = Factory.getSession();
-<<<<<<< HEAD
             User insertUser = new User(user.getUsername(), user.getPassword());
-=======
-            User insertUser = new User(0, idPartida, user.getUsername(), user.getPassword(), "", 0, 0);
->>>>>>> 6b23a1affc4198a602e280c9feaa9cf747d4c675
             session.save(insertUser);
 
             log.info("User insert: " + insertUser);
@@ -87,7 +83,7 @@ public class GameManagerImpl implements GameManager {
 
         }
         catch(Exception e){
-            log.error("Error al abrir la sesion:" +e.getMessage()),
+            log.error("Error al abrir la sesion:" +e.getMessage());
             throw new UserNotFoundException();
         }
         finally {
