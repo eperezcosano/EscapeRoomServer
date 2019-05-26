@@ -107,7 +107,7 @@ public class SessionImpl implements Session {
 
     private List<Object> find(Class theClass, int id, String username) throws Exception {
 
-        List<Object> res = new ArrayList<Object>();
+        List<Object> res = new ArrayList<>();
         ResultSet rs;
         Object object;
         String query;
@@ -131,11 +131,13 @@ public class SessionImpl implements Session {
             rs = prep.getResultSet();
         }
 
-        log.info("query: " + query);
+        log.info("query (find): " + query);
 
         while (rs.next()) {
 
+            log.info("Creating object...");
             object = theClass.newInstance();
+            log.info("Object created");
 
             for (int i = 1; i <=rs.getMetaData().getColumnCount(); i++)
             {
@@ -143,6 +145,7 @@ public class SessionImpl implements Session {
                 columnName = columnName.substring(0, 1).toUpperCase() + columnName.substring(1);
 
                 log.info("Column name: " + columnName);
+
                 switch (rs.getMetaData().getColumnType(i))
                 {
                     case INTEGER:
