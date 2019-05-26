@@ -30,7 +30,7 @@ public class Main {
 
         BeanConfig beanConfig = new BeanConfig();
 
-        beanConfig.setHost("147.83.7.205:8080");
+        beanConfig.setHost("localhost:8080");
         beanConfig.setBasePath("/dsaApp");
         beanConfig.setContact("support@example.com");
         beanConfig.setDescription("REST API for EscapeRoom");
