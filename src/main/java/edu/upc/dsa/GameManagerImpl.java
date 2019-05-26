@@ -5,6 +5,7 @@ import edu.upc.dsa.to.*;
 import edu.upc.dsa.mysql.*;
 import org.apache.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GameManagerImpl implements GameManager {
@@ -44,7 +45,11 @@ public class GameManagerImpl implements GameManager {
 
         try {
             session = Factory.getSession();
+<<<<<<< HEAD
             User insertUser = new User(user.getUsername(), user.getPassword());
+=======
+            User insertUser = new User(0, idPartida, user.getUsername(), user.getPassword(), "", 0, 0);
+>>>>>>> 6b23a1affc4198a602e280c9feaa9cf747d4c675
             session.save(insertUser);
 
             log.info("User insert: " + insertUser);
@@ -71,8 +76,26 @@ public class GameManagerImpl implements GameManager {
     }
 
     @Override
-    public User getUser(int idUser) {
-        return null;
+    public List<String> getUserInventario(int idUser) throws Exception {
+        Session session = null;
+        UserInventario user;
+        List<String> objetos = new ArrayList<>();
+        try{
+            session = Factory.getSession();
+            user = (UserInventario)session.get(UserInventario.class,idUser);
+            objetos = user.getObjectos();
+
+        }
+        catch(Exception e){
+            log.error("Error al abrir la sesion:" +e.getMessage()),
+            throw new UserNotFoundException();
+        }
+        finally {
+            if (session != null) session.close();
+        }
+
+        return objetos;
+
     }
 
     @Override

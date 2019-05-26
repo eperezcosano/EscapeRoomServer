@@ -165,7 +165,7 @@ public class SessionImpl implements Session {
                 }
             }
 
-            log.info("Object founded: " + object);
+            log.info("Objecto founded: " + object);
             res.add(object);
         }
 
