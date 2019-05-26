@@ -124,6 +124,7 @@ public class SessionImpl implements Session {
             statement.execute(query);
             rs = statement.getResultSet();
         } else { //id == -1
+            log.info("Username: " + username);
             query = "SELECT * FROM " + theClass.getSimpleName() + " WHERE username = ?";
             PreparedStatement prep = this.connection.prepareStatement(query);
             prep.setString(1, username);
