@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Theme Made By www.w3schools.com -->
+    <title>EscapeRoom</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="CSS/Style.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="JS/Home.js"></script>
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#myPage">Username</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#about">PROFILE</a></li>
+                <li><a href="#store">STORE</a></li>
+                <li><a href="#inventory">INVENTORY</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div id="titulo" class="jumbotron text-center">
+</div>
+<div id="about" class="container-fluid">
+    <div class="row">
+        <div class="col-sm-2">
+            <img class="centrado" src="https://images.vexels.com/media/users/3/143914/isolated/preview/4845c65e036c40f674eba5f1501df4ab-silueta-de-fantasma-blanco-13-by-vexels.png" alt="Guerrera" width="200" height="180">
+        </div>
+        <div class="col-sm-3 bg-grey">
+            <h2 class="text-white">PROFILE</h2>
+            <table id ="mytabla" class="table table-hover">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-2">
+        </div>
+        <div class="col-sm-3 bg-grey">
+            <h2 class="text-white">Game Statistics</h2>
+            <table id= "statistics_tabla"class="table table-hover ">
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+        <div class="col-sm-2">
+            <img class="centrado" src="https://images.vexels.com/media/users/3/143914/isolated/preview/4845c65e036c40f674eba5f1501df4ab-silueta-de-fantasma-blanco-13-by-vexels.png" alt="Guerrera" width="200" height="180">
+        </div>
+    </div>
+</div>
+
+<div id="store" class="container-fluid text-center ">
+    <h2>STORE</h2>
+    <h4>WEAPONS</h4>
+    <br>
+    <div class="row slideanim">
+        <div class="col-sm-4">
+            <h4><strong>Fusil de Tambor</strong></h4>
+        </div>
+        <div class="col-sm-4">
+            <h4><strong>Corredera</strong></h4>
+        </div>
+        <div class="col-sm-4">
+            <h4><strong>Katana</strong></h4>
+        </div>
+    </div>
+    <div class="row slideanim">
+        <div class="col-sm-4">
+            <img src="https://3.bp.blogspot.com/-_7onQnAUhjk/W0Zgdxl1YTI/AAAAAAAADHk/-DUkca9CbAguymTgJ64cY-uen7JTZ88ngCLcBGAs/s1600/THOMPSON.png" alt="Guerrera" width="300" height="225">
+        </div>
+        <div class="col-sm-4">
+            <img src="https://fortniteestadisticas.com/assets/img//weapons/double-barrel-shotgun.png" alt="Guerrera" width="250" height="200">
+        </div>
+        <div class="col-sm-4">
+            <img src="https://puregaming.es/wp-content/uploads/2019/01/Dw8klLOWkAEhrTX.png" alt="Guerrera" width="300" height="225">
+        </div>
+    </div>
+    <div class="row slideanim">
+        <div class="col-sm-4 center">
+            <button type="button" class="btn btn-primary" data-toggle="popover1" data-placement="bottom" title="Coste: 125$" data-content="Daño: 50">INFO</button>
+            <button id="fusil" type="button" class="btn btn-buya" onclick="buy(this.id);myfunction(id)">BUY</button>
+        </div>
+        <div class="col-sm-4 center">
+            <button type="button" class="btn btn-primary" data-toggle="popover1" data-placement="bottom" title="Coste: 125$" data-content="Daño: 50">INFO</button>
+            <button id="corredera" type="button" class="btn btn-buya" onclick="buy(this.id);myfunction(id)">BUY</button>
+        </div>
+        <div class= "col-sm-4 center">
+            <button type="button" class="btn btn-primary" data-toggle="popover1" data-placement="bottom" title="Coste: 125$" data-content="Daño: 50">INFO</button>
+            <button id="katana" type="button" class="btn btn-buya" onclick="buy(this.id);myfunction(id)">BUY</button>
+        </div>
+    </div>
+    <div class="row slideanim">
+        <p></p>
+    </div>
+    <div class="row slideanim">
+        <p></p>
+
+    </div>
+    <h4>CLUES</h4>
+    <div class="row slideanim">
+        <div class="col-sm-4">
+            <h4><strong>Intimidación</strong></h4>
+        </div>
+        <div class="col-sm-4">
+            <h4><strong>Temor</strong></h4>
+        </div>
+        <div class="col-sm-4">
+            <h4><strong>Desesperación</strong></h4>
+        </div>
+    </div>
+    <div class="row slideanim">
+        <div class="col-sm-4">
+            <img src="https://i.pinimg.com/originals/d3/c8/60/d3c860c48ad9f9bb48346528f74d3f48.png" alt="Guerrera" width="225" height="225">
+        </div>
+        <div class="col-sm-4">
+            <img src="https://4.bp.blogspot.com/-w6rNRWPnMFU/UmFae6uZLyI/AAAAAAAABBM/-R1T3m-Pm2I/s640/preguntas.png" alt="Guerrera" width="250" height="250">
+        </div>
+        <div class="col-sm-4">
+            <img src="https://pngimage.net/wp-content/uploads/2018/06/interrogantes-png-6.png" alt="Guerrera" width="300" height="225">
+        </div>
+    </div>
+    <div class="row slideanim">
+        <div class="col-sm-4 center">
+            <button type="button" class="btn btn-primary" data-toggle="popover1" data-placement="bottom" title="Pista EASY" data-content="Dato historico">INFO</button>
+            <button #id="clueyellow" type="button" class="btn btn-buya" onclick="buy(this.id)">BUY</button>
+        </div>
+
+        <div class="col-sm-4 center">
+            <button type="button" class="btn btn-primary" data-toggle="popover1" data-placement="bottom" title="Pista MEDIUM" data-content="Primera letra">INFO</button>
+            <button #id="buy_clueblue"type="button" class="btn btn-buya" onclick="buy(this.id)">BUY</button>
+        </div>
+
+        <div class="col-sm-4 center">
+            <button type="button" class="btn btn-primary" data-toggle="popover1" data-placement="bottom" title="Pista HARD" data-content="Te dice el nombre">INFO</button>
+            <button #id="buy_cluered"type="button" class="btn btn-buya" onclick="buy(this.id)">BUY</button>
+        </div>
+    </div>
+    <h4>KEYS</h4>
+    <div class="row slideanim">
+        <div class="col-sm-4">
+            <h4><strong>Easy</strong></h4>
+        </div>
+        <div class="col-sm-4">
+            <h4><strong>Medium</strong></h4>
+        </div>
+        <div class="col-sm-4">
+            <h4><strong>Hard</strong></h4>
+        </div>
+    </div>
+    <div class="row slideanim">
+        <div class="col-sm-4">
+            <img src="https://scontent-mad1-1.xx.fbcdn.net/v/t1.0-9/59627072_2381151755270864_7056317532851929088_n.jpg?_nc_cat=111&_nc_ht=scontent-mad1-1.xx&oh=2b3a0a634a078c0fdd3e487fccfac39d&oe=5D5EBFF3" alt="Guerrera" width="350" height="125">
+        </div>
+        <div class="col-sm-4">
+            <img src="https://scontent-mad1-1.xx.fbcdn.net/v/t1.0-9/59904610_2381158021936904_3630824489995993088_n.jpg?_nc_cat=105&_nc_ht=scontent-mad1-1.xx&oh=b09ac4773b91ee855ae246c60469be4e&oe=5D2FAC40" alt="Guerrera" width="350" height="125">
+        </div>
+        <div class="col-sm-4">
+            <img src="https://scontent-mad1-1.xx.fbcdn.net/v/t1.0-9/60104433_2381144115271628_7427805772727189504_n.jpg?_nc_cat=103&_nc_ht=scontent-mad1-1.xx&oh=ea2c6e453da7810df10e08054d6b06f3&oe=5D68709D" alt="Guerrera" width="350" height="125">
+        </div>
+    </div>
+    <div class="row slideanim">
+        <div class="col-sm-4 center">
+            <button type="button" class="btn btn-primary" data-toggle="popover1" data-placement="bottom" title="Abre la puerta... " data-content="AMARILLA">INFO</button>
+            <button #id="buy_keyyellow" type="button" class="btn btn-buya" onclick="buy(this.id)">BUY</button>
+        </div>
+        <div class="col-sm-4 center">
+            <button type="button" class="btn btn-primary" data-toggle="popover1" data-placement="bottom" title="Abre la puerta... " data-content="AZUL">INFO</button>
+            <button #id="buy_keyblue" type="button" class="btn btn-buya" onclick="buy(this.id)">BUY</button>
+        </div>
+        <div class="col-sm-4 center">
+            <button type="button" class="btn btn-primary" data-toggle="popover1" data-placement="bottom" title="Abre la puerta... " data-content="ROJA">INFO</button>
+            <button #id="buy_keyred" type="button" class="btn btn-buya" onclick="buy(this.id)">BUY</button>
+        </div>
+    </div>
+    <br><br>
+</div>
+<div id="inventory" class="container-fluid text-center ">
+    <div class="col-sm-4 center">
+        <img src="https://cdn.pixabay.com/photo/2012/04/05/02/02/arrow-25894_960_720.png" alt="Guerrera" width="300" height="125">
+    </div>
+    <div class="col-sm-4 center">
+        <h1>INVENTORY</h1>
+        <button class="btn btn-default" id="inventory_button">Accede</button>
+    </div>
+    <div class="col-sm-4 center">
+        <img src="https://scontent-mad1-1.xx.fbcdn.net/v/t1.0-9/60838078_2396244560428250_7852943999579979776_n.jpg?_nc_cat=105&_nc_ht=scontent-mad1-1.xx&oh=46ad35d2b5918c5b28fea01318033118&oe=5D677533" alt="Guerrera" width="150" height="175">
+
+    </div>
+
+</div>
+
+<footer class="container-fluid text-center">
+    <a href="#myPage" title="To Top">
+        <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+</footer>
+
+</body>
+</html>

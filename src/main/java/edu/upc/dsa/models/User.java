@@ -1,6 +1,6 @@
 package edu.upc.dsa.models;
 
-import org.joda.time.DateTime;
+import java.sql.Timestamp;
 
 public class User {
 
@@ -9,7 +9,7 @@ public class User {
     private String username;
     private String password;
     private int cash;
-    private DateTime currentTime;
+    private Timestamp currentTime;
     private int currentLife;
     private int currentEnemiesKilled;
     private int currentLevel;
@@ -22,7 +22,7 @@ public class User {
         this.password = password;
     }
 
-    public User(int id, String username, String password, int cash, DateTime currentTime, int currentLife, int currentEnemiesKilled, int currentLevel) {
+    public User(int id, String username, String password, int cash, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -65,11 +65,11 @@ public class User {
         this.cash = cash;
     }
 
-    public DateTime getCurrentTime() {
+    public Timestamp getCurrentTime() {
         return currentTime;
     }
 
-    public void setCurrentTime(DateTime currentTime) {
+    public void setCurrentTime(Timestamp currentTime) {
         this.currentTime = currentTime;
     }
 
