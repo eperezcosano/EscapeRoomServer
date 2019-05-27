@@ -2,8 +2,8 @@ package edu.upc.dsa.services;
 
 import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
-import edu.upc.dsa.models.*;
-import edu.upc.dsa.mysql.UserAlreadyExistsException;
+import edu.upc.dsa.exceptions.UserAlreadyExistsException;
+import edu.upc.dsa.exceptions.UserNotFoundException;
 import edu.upc.dsa.to.*;
 
 import io.swagger.annotations.Api;
@@ -67,7 +67,7 @@ public class AuthService {
             if (res != null) {
                 GenericEntity<UserTO> entity = new GenericEntity<UserTO>(res) {};
                 log.info("User logged in " + res);
-                return Response.status(201).entity(entity).build();
+                return Response.status(200).entity(entity).build();
             } else {
                 log.info("Incorrect user");
                 return Response.status(404).build();
@@ -78,15 +78,25 @@ public class AuthService {
         }
     }
 
-    @GET
-    @ApiOperation(value = "get string")
+    @DELETE
+    @ApiOperation(value = "delete an user")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful"),
+            @ApiResponse(code = 404, message = "UserNotFound"),
+            @ApiResponse(code = 405, message = "Impossible to delete")
     })
-    @Path("/test")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getTracks() {
-        return "Yay!";
+    @Path("/delete/{userId}")
+    public Response deleteUser(@PathParam("userId") int id) {
+        log.info("DELETE /auth/delete/" + id);
+        try {
+            this.auth.deleteUser(id);
+            return Response.status(200).build();
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+            return Response.status(404).build();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return Response.status(405).build();
+        }
     }
-
 }

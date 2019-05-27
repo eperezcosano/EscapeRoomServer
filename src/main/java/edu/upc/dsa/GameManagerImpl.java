@@ -1,5 +1,7 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.exceptions.UserAlreadyExistsException;
+import edu.upc.dsa.exceptions.UserNotFoundException;
 import edu.upc.dsa.models.*;
 import edu.upc.dsa.to.*;
 import edu.upc.dsa.mysql.*;
@@ -62,8 +64,24 @@ public class GameManagerImpl implements GameManager {
     }
 
     @Override
-    public void deleteUser(UserTO user) {
+    public void deleteUser(int userId) throws Exception {
 
+        Session session = null;
+
+        try {
+            session = Factory.getSession();
+            session.delete(User.class, userId);
+            log.info("User deleted ID: " + userId);
+
+        } catch (UserNotFoundException e) {
+            log.info("User not found");
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (session != null) session.close();
+        }
     }
 
     @Override

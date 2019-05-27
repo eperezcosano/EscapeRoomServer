@@ -1,24 +1,8 @@
 package edu.upc.dsa.services;
 
-import edu.upc.dsa.GameManager;
-import edu.upc.dsa.GameManagerImpl;
-import edu.upc.dsa.UserNotFoundException;
-import edu.upc.dsa.models.*;
-import edu.upc.dsa.mysql.UserAlreadyExistsException;
-import edu.upc.dsa.to.*;
-
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
-import io.swagger.jaxrs.PATCH;
-import org.apache.log4j.Logger;
 
 import javax.ws.rs.*;
-import javax.ws.rs.core.GenericEntity;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
-import java.util.List;
 
 @Api(value = "/users")
 @Path("/users")
