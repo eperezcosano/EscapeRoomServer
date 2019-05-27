@@ -41,6 +41,7 @@
       // Build a system
       const ui = SwaggerUIBundle({
         url: "http://localhost:8080/dsaApp/swagger.json",
+        enableCORS: false,
         dom_id: '#swagger-ui',
         deepLinking: true,
         presets: [
