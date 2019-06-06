@@ -26,14 +26,15 @@ public class User {
 
 
     //Constructors
-    public User() {}
+    public User() {
+    }
 
     public User(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public User(String username, String password, String name, String surname, String mail, int age){
+    public User(String username, String password, String name, String surname, String mail, int age) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -41,6 +42,7 @@ public class User {
         this.mail = mail;
         this.age = age;
     }
+
     public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, Timestamp minutostotales, int monedasconseguidas, int partidasjugadas) {
         this.username = username;
         this.password = password;
@@ -53,6 +55,7 @@ public class User {
         this.currentTime = minutostotales;
         this.playedGames = partidasjugadas;
     }
+
     public User(int id, String username, String password, int cash, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age) {
         this.id = id;
         this.username = username;
@@ -69,7 +72,6 @@ public class User {
         this.age = age;
 
     }
-
 
     public int getId() {
         return id;
