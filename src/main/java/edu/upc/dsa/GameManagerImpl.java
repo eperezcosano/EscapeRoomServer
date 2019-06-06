@@ -132,19 +132,36 @@ public class GameManagerImpl implements GameManager {
     }
 
     @Override
-    public UserInventary getInventary(String username) throws UserNotFoundException {
+    public Inventario getInventary(String username) throws Exception {
         User user = this.userHashMap.get(username);
-        if(user==null) throw new UserNotFoundException();
-      //  UserInventary userInventary = this.passUserToUserInvetary(user);
-        return null;    }
+        if (user == null) throw new UserNotFoundException();
+        Session session = null;
+        Inventario inventario = new Inventario(username);
 
+        try {
+            session = Factory.getSession();
+            List<ObjetoInventario> lista = session.getInventario(username);
+
+            log.info("User request: " + user);
+
+            if (lista.size() != 0)
+                inventario.setLista(lista);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) session.close();
+        }
+
+        log.info("Login response: " + inventario);
+        return inventario;
+    }
     @Override
     public UserStatistics getStatistics(String username) throws UserNotFoundException {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
         logger.info("Logged in: "+user.toString());
         UserStatistics userStatistics = this.passUserToUserStatistics(user);
-        return userStatistics;        }
+        return userStatistics;}
 
     @Override
     public User addUser(String username, String password, String name, String surname, String mail, int age) throws UserAlreadyExistsException {

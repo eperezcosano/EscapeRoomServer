@@ -43,7 +43,7 @@ public interface GameManager {
     public UserLogin getUserLogin(String username, String password) throws Exception;
     public User getUser (String username,String password) throws UserNotFoundException;
     public UserProfile getProfile (String username) throws UserNotFoundException;
-    public UserInventary getInventary (String username) throws  UserNotFoundException;
+    public Inventario getInventary (String username) throws  Exception;
     public UserStatistics getStatistics(String username) throws UserNotFoundException;
     public UserLogin passUserToUserLogin (User user);
     public UserProfile passUserToUserProfile (User user);

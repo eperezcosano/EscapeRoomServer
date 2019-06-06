@@ -1,31 +1,34 @@
 package edu.upc.dsa.models;
 
+import java.util.List;
+
 public class Inventario {
-    private int userId;
-    private int objectId;
+
+    private String username;
+    private List<ObjetoInventario> lista;
 
     public Inventario(){
 
     }
 
-    public Inventario(int userId, int objectId) {
-        this.userId = userId;
-        this.objectId = objectId;
+    public Inventario(String userId) {
+        this.username = userId;
     }
 
-    public int getUserId() {
-        return userId;
+    public String getUserId() {
+        return username;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(String userId) {
+        this.username = userId;
     }
 
-    public int getObjectId() {
-        return objectId;
+    public List<ObjetoInventario> getLista() {
+        return lista;
     }
 
-    public void setObjectId(int objectId) {
-        this.objectId = objectId;
+    public void setLista(List<ObjetoInventario> lista) {
+        this.lista = lista;
     }
+
 }

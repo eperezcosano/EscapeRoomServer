@@ -1,26 +1,25 @@
 package edu.upc.dsa.to.User;
 
-
-import edu.upc.dsa.to.ObjTO;
+import edu.upc.dsa.models.ObjetoInventario;
 
 import java.util.List;
 
 public class UserInventary {
 
-    private List<ObjTO> lista;
+    private List<ObjetoInventario> lista;
 
-    public UserInventary(List<ObjTO> lista) {
+    public UserInventary(List<ObjetoInventario> lista) {
         this.lista = lista;
     }
 
     public UserInventary() {
     }
 
-    public List<ObjTO> getLista() {
+    public List<ObjetoInventario> getLista() {
         return lista;
     }
 
-    public void setLista(List<ObjTO> lista) {
+    public void setLista(List<ObjetoInventario> lista) {
         this.lista = lista;
     }
 }

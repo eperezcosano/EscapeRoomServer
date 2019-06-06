@@ -131,9 +131,12 @@ public class UserService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response inventory(@PathParam("username") String username){
         try {
-            UserInventary userInventary = this.ma.getInventary(username);
+            Inventario userInventary = this.ma.getInventary(username);
             return Response.status(201).entity(userInventary).build();
         }catch (UserNotFoundException e1){
+            return Response.status(404).build();
+        }catch (Exception e)
+        {
             return Response.status(404).build();
         }
     }

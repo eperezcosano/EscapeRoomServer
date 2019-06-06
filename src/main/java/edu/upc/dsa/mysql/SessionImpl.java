@@ -2,7 +2,10 @@ package edu.upc.dsa.mysql;
 
 import edu.upc.dsa.exceptions.BDException;
 import edu.upc.dsa.exceptions.UserAlreadyExistsException;
+import edu.upc.dsa.models.Inventario;
+import edu.upc.dsa.models.ObjetoInventario;
 import edu.upc.dsa.models.User;
+import edu.upc.dsa.to.User.UserInventary;
 import org.apache.log4j.Logger;
 import org.eclipse.persistence.exceptions.DBWSException;
 
@@ -10,6 +13,7 @@ import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import static java.sql.Types.*;
@@ -78,6 +82,27 @@ public class SessionImpl implements Session {
 
     public List<Object> findAll(Class theClass) throws Exception {
         return find(theClass, 0, null);
+    }
+
+    @Override
+    public List<ObjetoInventario> getInventario(String username) throws Exception {
+        List<Object> res = new ArrayList<>();
+        ResultSet rs;
+        String query;
+        List<ObjetoInventario> objetos = new LinkedList<>();
+        query = "SELECT Inventario.amount, Objeto.* FROM User, Objeto, Inventario WHERE User.username = ? AND User.id=Inventario.userId AND Inventario.objetoId=Objeto.id ";
+        PreparedStatement prep = this.connection.prepareStatement(query);
+        prep.setString(1, username);
+        prep.execute();
+        rs = prep.getResultSet();
+
+        while (rs.next()) {
+
+            log.info("Creating object...");
+            log.info("Object created");
+            objetos.add(new ObjetoInventario(rs.getInt(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6),rs.getInt(1)));
+        }
+        return objetos;
     }
 
     public void update(Object entity, int id) throws Exception {
