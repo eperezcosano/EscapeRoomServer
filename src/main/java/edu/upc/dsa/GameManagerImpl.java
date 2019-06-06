@@ -135,8 +135,8 @@ public class GameManagerImpl implements GameManager {
     public UserInventary getInventary(String username) throws UserNotFoundException {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
-        UserInventary userInventary = this.passUserToUserInvetary(user);
-        return userInventary;    }
+      //  UserInventary userInventary = this.passUserToUserInvetary(user);
+        return null;    }
 
     @Override
     public UserStatistics getStatistics(String username) throws UserNotFoundException {
@@ -202,7 +202,7 @@ public class GameManagerImpl implements GameManager {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
         logger.info("User: "+ user.toString());
-        user.addObject(object);
+       // user.addObject(object);
         logger.info("Objeto añadido: " + object.toString());
     }
 
@@ -241,9 +241,10 @@ public class GameManagerImpl implements GameManager {
         return userStatistics;
     }
 
-    @Override
-    public UserInventary passUserToUserInvetary(User user) {
+   // @Override
+  /*  public UserInventary passUserToUserInvetary(User user) {
         UserInventary userInventary = new UserInventary(user.getListObjetos());
         return userInventary;
     }
+    */
 }

@@ -48,7 +48,7 @@ public interface GameManager {
     public UserLogin passUserToUserLogin (User user);
     public UserProfile passUserToUserProfile (User user);
     public UserStatistics passUserToUserStatistics (User user);
-    public UserInventary passUserToUserInvetary (User user);
+   // public UserInventary passUserToUserInvetary (User user);
     public int sizeUsers();
 
     //OBJECTS

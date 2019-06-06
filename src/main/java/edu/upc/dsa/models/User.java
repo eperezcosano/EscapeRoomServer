@@ -31,7 +31,6 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.listObjetos = new ArrayList<>();
     }
 
     public User(String username, String password, String name, String surname, String mail, int age){
@@ -41,7 +40,6 @@ public class User {
         this.surname = surname;
         this.mail = mail;
         this.age = age;
-        this.listObjetos = new ArrayList<>();
     }
     public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, Timestamp minutostotales, int monedasconseguidas, int partidasjugadas) {
         this.username = username;
@@ -50,12 +48,12 @@ public class User {
         this.surname = surname;
         this.mail = mail;
         this.age = age;
-        this.listObjetos = new ArrayList<ObjTO>();
+
         this.currentEnemiesKilled = enemigosmatados;
         this.currentTime = minutostotales;
         this.playedGames = partidasjugadas;
     }
-    public User(int id, String username, String password, int cash, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age, List<ObjTO> listObjetos) {
+    public User(int id, String username, String password, int cash, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -69,7 +67,7 @@ public class User {
         this.surname = surname;
         this.mail = mail;
         this.age = age;
-        this.listObjetos = listObjetos;
+
     }
 
 
