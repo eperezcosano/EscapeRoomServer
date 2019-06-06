@@ -164,7 +164,7 @@ public class GameManagerImpl implements GameManager {
 
             try {
                 session = Factory.getSession();
-                User dataUser = session.getByUsername(user.getUsername());
+                User dataUser = session.getByUsername(username);
 
                 log.info("User request: " + user);
                 log.info("DB User" + dataUser);
