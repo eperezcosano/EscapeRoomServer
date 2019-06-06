@@ -169,8 +169,8 @@ public class GameManagerImpl implements GameManager {
                 log.info("User request: " + user);
                 log.info("DB User" + dataUser);
 
-                if (dataUser.getUsername().equals(user.getUsername()) &&
-                        dataUser.getPassword().equals(user.getPassword()))
+                if (dataUser.getUsername().equals(dataUser.getUsername()) &&
+                        dataUser.getPassword().equals(dataUser.getPassword()))
                     res = new UserLogin(dataUser.getUsername(), dataUser.getPassword());
             } catch (Exception e) {
                 e.printStackTrace();
