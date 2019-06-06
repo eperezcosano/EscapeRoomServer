@@ -159,10 +159,12 @@ public class SessionImpl implements Session {
                     case INTEGER:
                         int intValue = rs.getInt(i);
                         theClass.getMethod("set" + columnName, int.class).invoke(object, intValue);
+                        log.info("set"+columnName);
                         break;
                     case VARCHAR:
                         String stringValue = rs.getString(i);
                         theClass.getMethod("set" + columnName, String.class).invoke(object, stringValue);
+                        log.info("set"+columnName);
                         break;
                     case TIMESTAMP:
                         Timestamp dateValue = rs.getTimestamp(i);
