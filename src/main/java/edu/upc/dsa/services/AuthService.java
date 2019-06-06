@@ -2,10 +2,12 @@ package edu.upc.dsa.services;
 
 import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
+import edu.upc.dsa.exceptions.PasswordNotMatchException;
 import edu.upc.dsa.exceptions.UserAlreadyExistsException;
 import edu.upc.dsa.exceptions.UserNotFoundException;
 import edu.upc.dsa.to.*;
 
+import edu.upc.dsa.to.User.UserLogin;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -25,7 +27,7 @@ public class AuthService {
     private Logger log = Logger.getLogger(AuthService.class.getName());
 
     public AuthService() {
-        this.auth = new GameManagerImpl();
+        this.auth = GameManagerImpl.getInstance();
     }
 
     @POST
@@ -37,7 +39,7 @@ public class AuthService {
     })
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response register(UserTO user) {
+    public Response register(UserLogin user) {
         log.info("POST /auth/register, User: " + user);
         try {
             this.auth.register(user);
@@ -55,23 +57,26 @@ public class AuthService {
     @POST
     @ApiOperation(value = "login user")
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successful", response = UserTO.class),
-            @ApiResponse(code = 404, message = "Incorrect user")
+            @ApiResponse(code = 200, message = "Successful", response = UserLogin.class),
+            @ApiResponse(code = 404, message = "Incorrect user"),
+            @ApiResponse(code = 500, message = "Password not match", responseContainer="List")
     })
     @Path("/login")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response login(UserTO user) {
+    public Response login(UserLogin user) {
         log.info("POST /auth/login, User: " + user);
         try {
-            UserTO res = this.auth.login(user);
+            UserLogin res = this.auth.getUserLogin(user.getUsername(),user.getPassword());
             if (res != null) {
-                GenericEntity<UserTO> entity = new GenericEntity<UserTO>(res) {};
+                GenericEntity<UserLogin> entity = new GenericEntity<UserLogin>(res) {};
                 log.info("User logged in " + res);
                 return Response.status(200).entity(entity).build();
             } else {
                 log.info("Incorrect user");
                 return Response.status(404).build();
             }
+        } catch(PasswordNotMatchException e2) {
+            return Response.status(500).build();
         } catch (Exception e) {
             e.printStackTrace();
             return Response.status(404).build();

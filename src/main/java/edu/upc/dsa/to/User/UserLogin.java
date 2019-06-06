@@ -1,25 +1,16 @@
-package edu.upc.dsa.to;
+package edu.upc.dsa.to.User;
 
-public class UserTO {
+public class UserLogin {
 
-    private int id;
     private String username;
     private String password;
 
-    public UserTO() {}
-
-    public UserTO(int id, String username, String password) {
-        this.id = id;
+    public UserLogin(String username, String password) {
         this.username = username;
         this.password = password;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public UserLogin() {
     }
 
     public String getUsername() {
@@ -38,10 +29,10 @@ public class UserTO {
         this.password = password;
     }
 
+
     @Override
     public String toString() {
-        return "UserTO{" +
-                "id=" + id +
+        return "UserLogin{" +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 '}';

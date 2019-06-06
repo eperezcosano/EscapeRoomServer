@@ -1,4 +1,5 @@
 var BASE_URI = "http://localhost:8080/dsaApp";
+var username = "Carlo";
 
 function myfunction(id) {
     var btn = document.getElementById(id);
@@ -13,7 +14,7 @@ function buy(id){
         console.log(myObj,": Me cago en dios");
         $.ajax({
             type: 'POST',
-            url: '/dsaApp/user/buy',
+            url: '/dsaApp/user/buy/'+ username,
             data: JSON.stringify(myObj),
             success: function(data) {
                 location.href = "http://localhost:8080/Inventory.html";
@@ -75,7 +76,7 @@ $(document).ready(function(){
         location.href = "http://localhost:8080/Inventory.html";
     })
     titulo();
-    $.get("http://localhost:8080/dsaApp/user/profile", function (data) {
+    $.get("http://localhost:8080/dsaApp/user/profile/"+username, function (data) {
         var username = data.username;
         var password = data.password;
         var name = data.name;
@@ -92,7 +93,7 @@ $(document).ready(function(){
         var insertion = "<tr><td>" + username_text + "</td><td>" + username + "</td></tr><tr><td>" + password_text + "</td><td>" + password + "</td></tr><tr><td>" + name_text+"</td>><td>" + name + "</td></tr><tr><td>" + surname_text + "</td><td>" + surname + "</td></tr><tr><td>" + mail_text + "</td><td>" + mail + "</td></tr><tr><td>" + age_text + "</td><td>" + age + "</td></tr>";
         $("#mytabla tbody").append(insertion);
 }, "json");
-    $.get("http://localhost:8080/dsaApp/user/statistics", function (data) {
+    $.get("http://localhost:8080/dsaApp/user/statistics/"+username, function (data) {
         var partidasjugadas = data.partidasjugadas;
         var enemigosmatados = data.enemigosmatados;
         var monedasconseguidas = data.monedasconseguidas;
@@ -105,11 +106,13 @@ $(document).ready(function(){
         var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + partidasjugadas + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + tiempototal + "</td></tr><tr><td>" + enemigosmatados_text +"</td>><td>" + enemigosmatados + "</td></tr><tr><td>" + monedasconseguidas_text + "</td><td>" + monedasconseguidas + "</td></tr>";
         $("#statistics_tabla tbody").append(insertion);
     }, "json");
-    $.get("http://localhost:8080/dsaApp/user/inventoryHome", function (data) {
-        console.log("Data:",data);
+    $.get("http://localhost:8080/dsaApp/user/inventory/"+username, function (data) {
+        console.log("Data:",data.lista[0].nombre);
         for (let i = 0; i<data.lista.length; i++)
         {
-            myfunction(data.lista[i]);
+            if(data.lista[i].nombre=="fusildetambor"||data.lista[i].nombre=="corredera"||data.lista[i].nombre=="katana") {
+                myfunction(data.lista[i].nombre);
+            }
         }
     }, "json");
 })

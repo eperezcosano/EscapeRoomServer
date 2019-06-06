@@ -1,6 +1,9 @@
+var username = "Carlo";
+
 $(document).ready(function(){
     console.log("Va cojones");
     $('#login').on('submit', function(e){
+        user = $("#loginUsername").val();
         var myObj = {
             username: $("#loginUsername").val(),
             password: $("#loginPassword").val()

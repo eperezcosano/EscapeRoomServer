@@ -1,7 +1,11 @@
 package edu.upc.dsa;
 
+import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
-import edu.upc.dsa.to.*;
+import edu.upc.dsa.to.User.UserInventary;
+import edu.upc.dsa.to.User.UserLogin;
+import edu.upc.dsa.to.User.UserProfile;
+import edu.upc.dsa.to.User.UserStatistics;
 
 import java.util.List;
 
@@ -14,15 +18,7 @@ public interface GameManager {
      * @return user credentials (and its id)
      * @throws Exception if user is not found or connection error
      */
-    UserTO login(UserTO user) throws Exception;
-
-    /**
-     * Add new user to data base
-     *
-     * @param user user credentials (username and password)
-     * @throws Exception if user is already exists or connection error
-     */
-    void register(UserTO user) throws Exception;
+    void register(UserLogin user) throws Exception;
 
     /**
      * Delete an user from data base
@@ -33,20 +29,35 @@ public interface GameManager {
     void deleteUser(int userId) throws Exception;
 
     //TODO:
-    List<Object> getObjects(UserTO user);
-    List<String> getUserInventario(int idUser) throws Exception;
-    void buy(int idObject, int idUser);
-    void deleteObject(int idObject, int idUser);
-
     /*
      * Store
      * */
-    void addObjectStore(Object object);
     void deleteObjectStore(int idObject);
 
     /*
      * Map
      * */
+
+    //USER
+    public User addUser(String username, String password, String name, String surname, String mail, int age) throws UserAlreadyExistsException;
+    public UserLogin getUserLogin(String username, String password) throws Exception;
+    public User getUser (String username,String password) throws UserNotFoundException;
+    public UserProfile getProfile (String username) throws UserNotFoundException;
+    public UserInventary getInventary (String username) throws  UserNotFoundException;
+    public UserStatistics getStatistics(String username) throws UserNotFoundException;
+    public UserLogin passUserToUserLogin (User user);
+    public UserProfile passUserToUserProfile (User user);
+    public UserStatistics passUserToUserStatistics (User user);
+    public UserInventary passUserToUserInvetary (User user);
+    public int sizeUsers();
+
+    //OBJECTS
+    public void buyObject(String name, String username) throws ObjectNotExist, UserNotFoundException;
+    void addObjectStore(String name) throws ObjectExist;
+    public int sizeStore();
+
+
+    public void clear();
 
 
 }
