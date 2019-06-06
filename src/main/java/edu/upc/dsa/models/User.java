@@ -23,7 +23,6 @@ public class User {
     private String surname;
     private String mail;
     private int age;
-    private List<ObjTO> listObjetos;
 
 
     //Constructors
@@ -176,22 +175,5 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public List<ObjTO> getListObjetos() {
-        return listObjetos;
-    }
-
-    public void setListObjetos(List<ObjTO> listObjetos) {
-        this.listObjetos = listObjetos;
-    }
-    public void addObject (ObjTO objTO)
-    {
-        this.listObjetos.add(objTO);
-    }
-
-    public int size ()
-    {
-        return this.listObjetos.size();
     }
 }
