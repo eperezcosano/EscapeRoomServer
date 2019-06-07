@@ -172,7 +172,7 @@ public class GameManagerImpl implements GameManager {
         u = new User(username,password, name,surname,mail,age);
         this.userHashMap.put(username,u);
         logger.info("New user: "+u.toString());
-        return u;       }
+        return u;}
 
     @Override
     public UserLogin getUserLogin(String username, String password) throws Exception {
@@ -191,7 +191,7 @@ public class GameManagerImpl implements GameManager {
                 if (dataUser.getUsername().equals(dataUser.getUsername()) &&
                         dataUser.getPassword().equals(dataUser.getPassword())) {
                     res = new UserLogin(dataUser.getUsername(), dataUser.getPassword());
-                    User user1 = new User(res.getUsername(),res.getPassword());
+                    User user1 = new User(res.getUsername(),res.getPassword(),dataUser.getId());
                     userHashMap.put(user1.getUsername(),user1);
                 }
 
