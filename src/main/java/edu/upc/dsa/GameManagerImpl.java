@@ -19,7 +19,7 @@ public class GameManagerImpl implements GameManager {
 
     HashMap<String, User> userHashMap;
     HashMap<String, ObjTO> objectHashMap;
-
+    HashMap<String, Integer> objectIdHashMap;
     final static Logger logger = Logger.getLogger(GameManagerImpl.class);
 
     private Logger log = Logger.getLogger(GameManagerImpl.class.getName());
@@ -27,6 +27,8 @@ public class GameManagerImpl implements GameManager {
     private GameManagerImpl(){
         this.userHashMap = new HashMap<>();
         this.objectHashMap = new HashMap<>();
+        this.objectIdHashMap = new HashMap<>();
+        this.objectIdHashMap.put("katana",2);
     }
     public static GameManager getInstance(){
         if (instance==null) instance = new GameManagerImpl();
@@ -216,22 +218,22 @@ public class GameManagerImpl implements GameManager {
     }
 
     @Override
-    public void buyObject(String name, String username) throws ObjectNotExist, UserNotFoundException, WeaponException, Exception {
+    public void buyObject(String nameObject, String username) throws ObjectNotExist, UserNotFoundException, WeaponException, Exception {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
+        int objectId = this.objectIdHashMap.get(nameObject);
+        if (objectId==0) throw new ObjectNotExist();
         Inventario inventario = this.getInventary(username);
         int a = inventario.size();
         logger.info("User: "+ user.toString());
         if (a==0)  throw new Exception();
         int amountMock=0;
-        int objectoIdMock=0;
         for (ObjetoInventario objetoInventario : inventario.getLista())
         {
-            if (objetoInventario.getNombre().equals(name))
+            if (objetoInventario.getNombre().equals(nameObject))
             {
                 if (objetoInventario.getType().equals("weapon")) throw new WeaponException();
                 amountMock = objetoInventario.getAmount();
-                objectoIdMock = objetoInventario.getId();
             }
         }
 
@@ -239,7 +241,7 @@ public class GameManagerImpl implements GameManager {
 
         try {
             session = Factory.getSession();
-            session.buy(objectoIdMock, user.getId(), amountMock);
+            session.buy(objectId, user.getId(), amountMock);
 
             log.info("Object buy.");
 
