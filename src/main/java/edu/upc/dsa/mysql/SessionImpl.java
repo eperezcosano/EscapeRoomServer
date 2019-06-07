@@ -136,9 +136,13 @@ public class SessionImpl implements Session {
     @Override
     public void buy( int objetoId, int userId, int amount) throws Exception {
         String query;
-
-        query = "INSERT INTO Inventario (userId, objetoId, amount) VALUES ('" + userId + "','" + objetoId +"','" + amount + "')";
+        int amountBueno = amount + 1;
+        query = "INSERT INTO Inventario (userId, objetoId, amount) VALUES ('" + userId + "','" + objetoId +"','" + amountBueno + "')";
         PreparedStatement prep = this.connection.prepareStatement(query);
+
+        prep.setInt(2, userId);
+        prep.setInt(3, objetoId);
+        prep.setInt(4, amountBueno);
 
         prep.execute();
         prep.close();
