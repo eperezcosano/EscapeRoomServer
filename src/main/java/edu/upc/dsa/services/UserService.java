@@ -34,6 +34,7 @@ public class UserService {
 
     public UserService() throws Exception {
         this.ma = GameManagerImpl.getInstance();
+        this.ma.añadirObjetosHashMap();
         if (ma.sizeUsers() == 0) {
             logger.info("Mecago en tus.");
 

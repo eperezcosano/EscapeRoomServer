@@ -24,28 +24,15 @@ public class GameManagerImpl implements GameManager {
 
     private Logger log = Logger.getLogger(GameManagerImpl.class.getName());
 
-    private GameManagerImpl() throws Exception{
+    private GameManagerImpl(){
 
         this.userHashMap = new HashMap<>();
         this.objectHashMap = new HashMap<>();
         this.objectIdHashMap = new HashMap<>();
 
-        Session session = null;
 
-        try {
-            session = Factory.getSession();
-            List<Objeto> list = session.listaObjetos();
-            for (Objeto objeto : list) {
-                objectIdHashMap.put(objeto.getNombre(), objeto);
-            }
-            log.info("Todo correcto en el GameManagerImple");
-        } catch (Exception e) {
-        e.printStackTrace();
-    } finally {
-        if (session != null) session.close();
     }
-    }
-    public static GameManager getInstance() throws Exception{
+    public static GameManager getInstance(){
         if (instance==null) instance = new GameManagerImpl();
         return instance;
     }
@@ -130,6 +117,25 @@ public class GameManagerImpl implements GameManager {
         logger.info("size " + ret);
         return ret;
     }
+
+    @Override
+    public void añadirObjetosHashMap() throws Exception {
+        Session session = null;
+
+        try {
+            session = Factory.getSession();
+            List<Objeto> list = session.listaObjetos();
+            for (Objeto objeto : list) {
+                objectIdHashMap.put(objeto.getNombre(), objeto);
+            }
+            log.info("Todo correcto en el AñadirObjetos");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) session.close();
+        }
+    }
+
     public int sizeStore() {
         int ret = this.objectHashMap.size();
         logger.info("size " + ret);

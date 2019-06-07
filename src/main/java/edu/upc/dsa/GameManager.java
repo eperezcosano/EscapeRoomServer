@@ -50,7 +50,7 @@ public interface GameManager {
     public UserStatistics passUserToUserStatistics (User user);
    // public UserInventary passUserToUserInvetary (User user);
     public int sizeUsers();
-
+    public void añadirObjetosHashMap() throws Exception;
     //OBJECTS
     public void buyObject(String nameObject, String username) throws ObjectNotExist, UserNotFoundException, WeaponException, Exception;
     void addObjectStore(String name) throws ObjectExist;
