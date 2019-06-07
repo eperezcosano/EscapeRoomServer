@@ -4,10 +4,7 @@ package edu.upc.dsa.services;
 import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
 
-import edu.upc.dsa.exceptions.ObjectNotExist;
-import edu.upc.dsa.exceptions.PasswordNotMatchException;
-import edu.upc.dsa.exceptions.UserAlreadyExistsException;
-import edu.upc.dsa.exceptions.UserNotFoundException;
+import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
 import edu.upc.dsa.to.ObjTO;
 import edu.upc.dsa.to.User.UserInventary;
@@ -146,20 +143,20 @@ public class UserService {
     @POST
     @ApiOperation(value = "Buy", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = ObjTO.class ),
+            @ApiResponse(code = 201, message = "Successful", response = Objeto.class ),
             @ApiResponse(code = 404, message = "User not found"),
             @ApiResponse(code = 500, message = "Object not found")
 
     })
     @Path("/buy/{username}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response buy(ObjTO objTO, @PathParam("username") String username) {
+    public Response buy(Objeto objTO, @PathParam("username") String username) {
         try{
             this.ma.buyObject(objTO.getNombre(),username);
             return Response.status(201).entity(objTO).build();
-        }catch(ObjectNotExist e1) {
+        }catch(WeaponException e1) {
             return Response.status(500).build();
-        }catch (UserNotFoundException e2) {
+        }catch (Exception e2) {
             return Response.status(404).build();
         }
     }
