@@ -132,11 +132,13 @@ public class UserService {
     public Response inventory(@PathParam("username") String username){
         try {
             Inventario userInventary = this.ma.getInventary(username);
+            logger.info("Inventario");
             return Response.status(201).entity(userInventary).build();
         }catch (UserNotFoundException e1){
             return Response.status(404).build();
         }catch (Exception e)
         {
+            logger.info("Excepcion,", e);
             return Response.status(404).build();
         }
     }

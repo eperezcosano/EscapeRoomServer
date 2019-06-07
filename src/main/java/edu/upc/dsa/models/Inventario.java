@@ -31,4 +31,11 @@ public class Inventario {
         this.lista = lista;
     }
 
+    @Override
+    public String toString() {
+        return "Inventario{" +
+                "username='" + username + '\'' +
+                ", lista=" + lista +
+                '}';
+    }
 }
