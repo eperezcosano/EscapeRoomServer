@@ -3,6 +3,7 @@ package edu.upc.dsa.mysql;
 import edu.upc.dsa.exceptions.BDException;
 import edu.upc.dsa.exceptions.UserAlreadyExistsException;
 import edu.upc.dsa.models.Inventario;
+import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.ObjetoInventario;
 import edu.upc.dsa.models.User;
 import edu.upc.dsa.to.User.UserInventary;
@@ -130,6 +131,17 @@ public class SessionImpl implements Session {
         prep.execute();
 
         log.info("query: " + query);
+    }
+
+    @Override
+    public void buy( int objetoId, int userId, int amount) throws Exception {
+        String query;
+
+        query = "INSERT INTO Inventario (userId, objetoId, amount) VALUES ('" + userId + "','" + objetoId +"','" + amount + "')";
+        PreparedStatement prep = this.connection.prepareStatement(query);
+
+        prep.execute();
+        prep.close();
     }
 
     public void close() throws Exception {

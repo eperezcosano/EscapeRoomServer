@@ -216,15 +216,43 @@ public class GameManagerImpl implements GameManager {
     }
 
     @Override
-    public void buyObject(String name, String username) throws ObjectNotExist, UserNotFoundException {
-        ObjTO object = this.objectHashMap.get(name);
-        if (object==null)  throw new ObjectNotExist();
-        logger.info("Objecto: " + object.toString());
+    public void buyObject(String name, String username) throws ObjectNotExist, UserNotFoundException, WeaponException, Exception {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
+        Inventario inventario = this.getInventary(username);
+        int a = inventario.size();
         logger.info("User: "+ user.toString());
-       // user.addObject(object);
-        logger.info("Objeto añadido: " + object.toString());
+        if (a==0)  throw new Exception();
+        int amountMock=0;
+        int objectoIdMock=0;
+        for (ObjetoInventario objetoInventario : inventario.getLista())
+        {
+            if (objetoInventario.getNombre().equals(name))
+            {
+                if (objetoInventario.getType().equals("weapon")) throw new WeaponException();
+                amountMock = objetoInventario.getAmount();
+                objectoIdMock = objetoInventario.getId();
+            }
+        }
+
+        Session session = null;
+
+        try {
+            session = Factory.getSession();
+            session.buy(objectoIdMock, user.getId(), amountMock);
+
+            log.info("Object buy.");
+
+        } catch (UserAlreadyExistsException e) {
+            log.info("User already exists");
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (session != null) session.close();
+        }
+
     }
 
     @Override

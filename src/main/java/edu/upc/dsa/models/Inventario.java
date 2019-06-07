@@ -31,6 +31,9 @@ public class Inventario {
         this.lista = lista;
     }
 
+    public int size(){
+        return this.lista.size();
+    }
     @Override
     public String toString() {
         return "Inventario{" +

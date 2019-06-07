@@ -52,7 +52,7 @@ public interface GameManager {
     public int sizeUsers();
 
     //OBJECTS
-    public void buyObject(String name, String username) throws ObjectNotExist, UserNotFoundException;
+    public void buyObject(String name, String username) throws ObjectNotExist, UserNotFoundException, WeaponException, Exception;
     void addObjectStore(String name) throws ObjectExist;
     public int sizeStore();
 

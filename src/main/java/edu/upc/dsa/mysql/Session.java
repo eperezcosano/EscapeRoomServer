@@ -2,6 +2,7 @@ package edu.upc.dsa.mysql;
 
 import edu.upc.dsa.exceptions.BDException;
 import edu.upc.dsa.models.Inventario;
+import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.ObjetoInventario;
 import edu.upc.dsa.models.User;
 
@@ -15,5 +16,6 @@ public interface Session {
     List<ObjetoInventario> getInventario (String username) throws Exception;
     void update(Object object, int id) throws Exception;
     void delete(Class theClass, int id) throws Exception;
+    void buy(int objetoId, int userId , int amount) throws Exception;
     void close() throws Exception;
 }
