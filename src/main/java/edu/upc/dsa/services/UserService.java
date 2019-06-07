@@ -135,6 +135,7 @@ public class UserService {
             logger.info("Inventario");
             return Response.status(201).entity(userInventary).build();
         }catch (UserNotFoundException e1){
+            logger.info("Excepcion e1:,", e1);
             return Response.status(404).build();
         }catch (Exception e)
         {
