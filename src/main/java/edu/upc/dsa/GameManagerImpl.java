@@ -19,18 +19,32 @@ public class GameManagerImpl implements GameManager {
 
     HashMap<String, User> userHashMap;
     HashMap<String, ObjTO> objectHashMap;
-    HashMap<String, Integer> objectIdHashMap;
+    HashMap<String, Objeto> objectIdHashMap;
     final static Logger logger = Logger.getLogger(GameManagerImpl.class);
 
     private Logger log = Logger.getLogger(GameManagerImpl.class.getName());
 
-    private GameManagerImpl(){
+    private GameManagerImpl() throws Exception{
+
         this.userHashMap = new HashMap<>();
         this.objectHashMap = new HashMap<>();
         this.objectIdHashMap = new HashMap<>();
-        this.objectIdHashMap.put("katana",2);
+
+        Session session = null;
+
+        try {
+            session = Factory.getSession();
+            List<Objeto> list = session.listaObjetos();
+            for (Objeto objeto : list) {
+                objectIdHashMap.put(objeto.getNombre(), objeto);
+            }
+        } catch (Exception e) {
+        e.printStackTrace();
+    } finally {
+        if (session != null) session.close();
     }
-    public static GameManager getInstance(){
+    }
+    public static GameManager getInstance() throws Exception{
         if (instance==null) instance = new GameManagerImpl();
         return instance;
     }
@@ -56,7 +70,6 @@ public class GameManagerImpl implements GameManager {
             if (session != null) session.close();
         }
     }
-
     @Override
     public void deleteUser(int userId) throws Exception {
 
@@ -77,7 +90,6 @@ public class GameManagerImpl implements GameManager {
             if (session != null) session.close();
         }
     }
-
     @Override
     public void deleteObjectStore(int idObject) {
 
@@ -112,8 +124,6 @@ public class GameManagerImpl implements GameManager {
     }
 */
 
-
-
     public int sizeUsers() {
         int ret = this.userHashMap.size();
         logger.info("size " + ret);
@@ -124,7 +134,6 @@ public class GameManagerImpl implements GameManager {
         logger.info("size " + ret);
         return ret;
     }
-
     @Override
     public UserProfile getProfile(String username) throws UserNotFoundException {
         User user = this.userHashMap.get(username);
@@ -132,7 +141,6 @@ public class GameManagerImpl implements GameManager {
         UserProfile userProfile = this.passUserToUserProfile(user);
         return userProfile;
     }
-
     @Override
     public Inventario getInventary(String username) throws Exception {
         User user = this.userHashMap.get(username);
@@ -164,7 +172,6 @@ public class GameManagerImpl implements GameManager {
         logger.info("Logged in: "+user.toString());
         UserStatistics userStatistics = this.passUserToUserStatistics(user);
         return userStatistics;}
-
     @Override
     public User addUser(String username, String password, String name, String surname, String mail, int age) throws UserAlreadyExistsException {
         User u = this.userHashMap.get(username);
@@ -173,7 +180,6 @@ public class GameManagerImpl implements GameManager {
         this.userHashMap.put(username,u);
         logger.info("New user: "+u.toString());
         return u;}
-
     @Override
     public UserLogin getUserLogin(String username, String password) throws Exception {
         User user = this.userHashMap.get(username);
@@ -193,6 +199,7 @@ public class GameManagerImpl implements GameManager {
                     res = new UserLogin(dataUser.getUsername(), dataUser.getPassword());
                     User user1 = new User(res.getUsername(),res.getPassword(),dataUser.getId());
                     userHashMap.put(user1.getUsername(),user1);
+
                 }
 
             } catch (Exception e) {
@@ -209,20 +216,18 @@ public class GameManagerImpl implements GameManager {
         UserLogin userLogin = this.passUserToUserLogin(user);
         return userLogin;
     }
-
     @Override
     public User getUser(String username, String password) throws UserNotFoundException {
         User u = this.userHashMap.get(username);
         if(u==null) throw new UserNotFoundException();
         return u;
     }
-
     @Override
     public void buyObject(String nameObject, String username) throws ObjectNotExist, UserNotFoundException, WeaponException, Exception {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
-        int objectId = this.objectIdHashMap.get(nameObject);
-        if (objectId==0) throw new ObjectNotExist();
+        Objeto objectohash = this.objectIdHashMap.get(nameObject);
+        if (objectohash.getId()==0) throw new ObjectNotExist();
         Inventario inventario = this.getInventary(username);
         int a = inventario.size();
         logger.info("User: "+ user.toString());
@@ -241,7 +246,7 @@ public class GameManagerImpl implements GameManager {
 
         try {
             session = Factory.getSession();
-            session.buy(objectId, user.getId(), amountMock);
+            session.buy(objectohash.getId(), user.getId(), amountMock);
 
             log.info("Object buy.");
 
@@ -256,7 +261,6 @@ public class GameManagerImpl implements GameManager {
         }
 
     }
-
     @Override
     public void addObjectStore(String name) throws ObjectExist {
         ObjTO objTO = this.objectHashMap.get(name);
@@ -268,24 +272,20 @@ public class GameManagerImpl implements GameManager {
         else throw new ObjectExist();
 
     }
-
     @Override
     public void clear() {
         this.userHashMap.clear();
     }
-
     @Override
     public UserLogin passUserToUserLogin(User user) {
         UserLogin userLogin = new UserLogin(user.getUsername(),user.getPassword());
         return userLogin;
     }
-
     @Override
     public UserProfile passUserToUserProfile(User user) {
         UserProfile userProfile= new UserProfile(user.getUsername(),user.getPassword(),user.getName(),user.getSurname(),user.getMail(),user.getAge());
         return userProfile;
     }
-
     @Override
     public UserStatistics passUserToUserStatistics(User user) {
         UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames());

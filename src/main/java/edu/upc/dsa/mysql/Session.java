@@ -12,6 +12,7 @@ public interface Session {
     void save(Object entity) throws Exception;
     Object get(Class theClass, int id) throws Exception;
     User getByUsername(String username) throws Exception;
+    List<Objeto> listaObjetos() throws Exception;
     List<Object> findAll(Class theClass) throws Exception;
     List<ObjetoInventario> getInventario (String username) throws Exception;
     void update(Object object, int id) throws Exception;
