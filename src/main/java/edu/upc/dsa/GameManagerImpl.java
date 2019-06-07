@@ -38,6 +38,7 @@ public class GameManagerImpl implements GameManager {
             for (Objeto objeto : list) {
                 objectIdHashMap.put(objeto.getNombre(), objeto);
             }
+            log.info("Todo correcto en el GameManagerImple");
         } catch (Exception e) {
         e.printStackTrace();
     } finally {
@@ -241,6 +242,8 @@ public class GameManagerImpl implements GameManager {
                 amountMock = objetoInventario.getAmount();
             }
         }
+        log.info("objetohash:" + objectohash.getId());
+        log.info("Todo correcto en buy");
 
         Session session = null;
 
