@@ -124,9 +124,12 @@ public class GameManagerImpl implements GameManager {
 
         try {
             session = Factory.getSession();
-            List<Objeto> list = session.listaObjetos();
-            for (Objeto objeto : list) {
-                objectIdHashMap.put(objeto.getNombre(), objeto);
+            List<Object> list = session.findAll(Objeto.class);
+            for (Object object : list) {
+                if (object instanceof Objeto) {
+                    Objeto CP = (Objeto) object;
+                    objectIdHashMap.put(CP.getNombre(),CP);
+                }
             }
             log.info("Todo correcto en el AñadirObjetos");
         } catch (Exception e) {
