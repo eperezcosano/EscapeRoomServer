@@ -146,7 +146,7 @@ public class SessionImpl implements Session {
         query = "INSERT INTO Inventario (userId, objetoId, amount) VALUES ('" + userId + "','" + objetoId +"','" + amountBueno + "')";
         PreparedStatement prep = this.connection.prepareStatement(query);
 
-        try {
+     /*   try {
 
             prep.setInt(1, userId);
             prep.setInt(2, objetoId);
@@ -156,6 +156,7 @@ public class SessionImpl implements Session {
         {
             log.info("Index mal");
         }
+        */
         prep.execute();
         prep.close();
     }
