@@ -4,13 +4,11 @@ import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
 import edu.upc.dsa.to.*;
 import edu.upc.dsa.mysql.*;
-import edu.upc.dsa.to.User.UserInventary;
 import edu.upc.dsa.to.User.UserLogin;
 import edu.upc.dsa.to.User.UserProfile;
 import edu.upc.dsa.to.User.UserStatistics;
 import org.apache.log4j.Logger;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -18,8 +16,8 @@ public class GameManagerImpl implements GameManager {
     private static GameManager instance;
 
     HashMap<String, User> userHashMap;
-    HashMap<String, ObjTO> objectHashMap;
-    HashMap<String, Objeto> objectIdHashMap;
+    HashMap<String, Objeto> objectoHashMap;
+
     final static Logger logger = Logger.getLogger(GameManagerImpl.class);
 
     private Logger log = Logger.getLogger(GameManagerImpl.class.getName());
@@ -27,8 +25,7 @@ public class GameManagerImpl implements GameManager {
     private GameManagerImpl(){
 
         this.userHashMap = new HashMap<>();
-        this.objectHashMap = new HashMap<>();
-        this.objectIdHashMap = new HashMap<>();
+        this.objectoHashMap = new HashMap<>();
 
 
     }
@@ -128,7 +125,7 @@ public class GameManagerImpl implements GameManager {
             for (Object object : list) {
                 if (object instanceof Objeto) {
                     Objeto CP = (Objeto) object;
-                    objectIdHashMap.put(CP.getNombre(),CP);
+                    objectoHashMap.put(CP.getNombre(),CP);
                 }
             }
             log.info("Todo correcto en el AñadirObjetos");
@@ -140,7 +137,7 @@ public class GameManagerImpl implements GameManager {
     }
 
     public int sizeStore() {
-        int ret = this.objectHashMap.size();
+        int ret = this.objectoHashMap.size();
         logger.info("size " + ret);
         return ret;
     }
@@ -236,7 +233,7 @@ public class GameManagerImpl implements GameManager {
     public void buyObject(String nameObject, String username) throws ObjectNotExist, UserNotFoundException, WeaponException, Exception {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
-        Objeto objectohash = this.objectIdHashMap.get(nameObject);
+        Objeto objectohash = this.objectoHashMap.get(nameObject);
         if (objectohash.getId()==0) throw new ObjectNotExist();
         Inventario inventario = this.getInventary(username);
         int a = inventario.size();
@@ -275,10 +272,10 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public void addObjectStore(String name) throws ObjectExist {
-        ObjTO objTO = this.objectHashMap.get(name);
+        Objeto objTO = this.objectoHashMap.get(name);
         if(objTO ==null) {
-            ObjTO obje = new ObjTO(name);
-            this.objectHashMap.put(obje.getNombre(),obje);
+            Objeto obje = new Objeto(name);
+            this.objectoHashMap.put(obje.getNombre(),obje);
             logger.info("Objeto añadido a la store: " + obje.toString());
         }
         else throw new ObjectExist();

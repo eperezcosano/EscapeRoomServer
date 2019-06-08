@@ -10,6 +10,10 @@ public class Objeto {
     public Objeto(){
 
     }
+    public Objeto (String name)
+    {
+        this.nombre=name;
+    }
     public Objeto(int id, String type, String nombre, String atributo,int coste) {
         this.id = id;
         this.type = type;
