@@ -2,12 +2,9 @@ package edu.upc.dsa;
 
 import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
-import edu.upc.dsa.to.User.UserInventary;
 import edu.upc.dsa.to.User.UserLogin;
 import edu.upc.dsa.to.User.UserProfile;
 import edu.upc.dsa.to.User.UserStatistics;
-
-import java.util.List;
 
 public interface GameManager {
 
@@ -48,7 +45,7 @@ public interface GameManager {
     public UserLogin passUserToUserLogin (User user);
     public UserProfile passUserToUserProfile (User user);
     public UserStatistics passUserToUserStatistics (User user);
-   // public UserInventary passUserToUserInvetary (User user);
+
     public int sizeUsers();
     public void añadirObjetosHashMap() throws Exception;
     //OBJECTS

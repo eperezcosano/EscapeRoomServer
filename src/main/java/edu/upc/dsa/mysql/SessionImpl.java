@@ -1,14 +1,10 @@
 package edu.upc.dsa.mysql;
 
-import edu.upc.dsa.exceptions.BDException;
 import edu.upc.dsa.exceptions.UserAlreadyExistsException;
-import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.ObjetoInventario;
 import edu.upc.dsa.models.User;
-import edu.upc.dsa.to.User.UserInventary;
 import org.apache.log4j.Logger;
-import org.eclipse.persistence.exceptions.DBWSException;
 
 import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;

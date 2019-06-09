@@ -6,8 +6,6 @@ import edu.upc.dsa.GameManagerImpl;
 
 import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
-import edu.upc.dsa.to.ObjTO;
-import edu.upc.dsa.to.User.UserInventary;
 import edu.upc.dsa.to.User.UserLogin;
 import edu.upc.dsa.to.User.UserProfile;
 import edu.upc.dsa.to.User.UserStatistics;
@@ -20,8 +18,6 @@ import org.apache.log4j.Logger;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
 
 @Api(value = "/user", description = "Endpoint to User Service")
 @Path("/user")

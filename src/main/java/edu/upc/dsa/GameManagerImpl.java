@@ -23,11 +23,8 @@ public class GameManagerImpl implements GameManager {
     private Logger log = Logger.getLogger(GameManagerImpl.class.getName());
 
     private GameManagerImpl(){
-
         this.userHashMap = new HashMap<>();
         this.objectoHashMap = new HashMap<>();
-
-
     }
     public static GameManager getInstance(){
         if (instance==null) instance = new GameManagerImpl();
@@ -79,42 +76,11 @@ public class GameManagerImpl implements GameManager {
     public void deleteObjectStore(int idObject) {
 
     }
-/*
-    @Override
-    public List<Object> getObjects(UserTO user) {
-        return null;
-    }
-
-    @Override
-    public List<String> getUserInventario(int idUser) throws Exception {
-        Session session = null;
-        UserInventario user;
-        List<String> objetos = new ArrayList<>();
-        try{
-            session = Factory.getSession();
-            user = (UserInventario)session.get(UserInventario.class,idUser);
-            objetos = user.getObjectos();
-
-        }
-        catch(Exception e){
-            log.error("Error al abrir la sesion:" +e.getMessage());
-            throw new UserNotFoundException();
-        }
-        finally {
-            if (session != null) session.close();
-        }
-
-        return objetos;
-
-    }
-*/
-
     public int sizeUsers() {
         int ret = this.userHashMap.size();
         logger.info("size " + ret);
         return ret;
     }
-
     @Override
     public void añadirObjetosHashMap() throws Exception {
         Session session = null;
@@ -135,7 +101,6 @@ public class GameManagerImpl implements GameManager {
             if (session != null) session.close();
         }
     }
-
     public int sizeStore() {
         int ret = this.objectoHashMap.size();
         logger.info("size " + ret);
@@ -272,8 +237,8 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public void addObjectStore(String name) throws ObjectExist {
-        Objeto objTO = this.objectoHashMap.get(name);
-        if(objTO ==null) {
+        Objeto objeto = this.objectoHashMap.get(name);
+        if(objeto==null) {
             Objeto obje = new Objeto(name);
             this.objectoHashMap.put(obje.getNombre(),obje);
             logger.info("Objeto añadido a la store: " + obje.toString());
@@ -301,10 +266,4 @@ public class GameManagerImpl implements GameManager {
         return userStatistics;
     }
 
-   // @Override
-  /*  public UserInventary passUserToUserInvetary(User user) {
-        UserInventary userInventary = new UserInventary(user.getListObjetos());
-        return userInventary;
-    }
-    */
 }
