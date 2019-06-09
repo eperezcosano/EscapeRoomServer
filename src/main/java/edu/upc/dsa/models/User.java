@@ -13,11 +13,11 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private int cash;
+    private int cash=0;
     private Timestamp currentTime;
-    private int currentLife;
-    private int currentEnemiesKilled;
-    private int currentLevel;
+    private int currentLife=0;
+    private int currentEnemiesKilled=0;
+    private int currentLevel=0;
     private int playedGames = 0;
     private String name;
     private String surname;
