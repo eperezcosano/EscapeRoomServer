@@ -1,6 +1,7 @@
 package edu.upc.dsa.mysql;
 
 import edu.upc.dsa.exceptions.UserAlreadyExistsException;
+import edu.upc.dsa.exceptions.UserNotFoundException;
 import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.ObjetoInventario;
@@ -198,53 +199,51 @@ public class SessionImpl implements Session {
 
         log.info("query (find): " + query);
 
-        while (rs.next()) {
+        if (rs == null && id==-1) throw new UserNotFoundException();
+            else {
+            while (rs.next()) {
 
-            log.info("Creating object...");
-            object = theClass.newInstance();
-            log.info("Object created");
+                log.info("Creating object...");
+                object = theClass.newInstance();
+                log.info("Object created");
 
-            for (int i = 1; i <=rs.getMetaData().getColumnCount(); i++)
-            {
-                String columnName = rs.getMetaData().getColumnName(i);
-                columnName = columnName.substring(0, 1).toUpperCase() + columnName.substring(1);
+                for (int i = 1; i <= rs.getMetaData().getColumnCount(); i++) {
+                    String columnName = rs.getMetaData().getColumnName(i);
+                    columnName = columnName.substring(0, 1).toUpperCase() + columnName.substring(1);
 
-                log.info("Column name: " + columnName);
+                    log.info("Column name: " + columnName);
 
-                switch (rs.getMetaData().getColumnType(i))
-                {
-                    case INTEGER:
-                        int intValue = rs.getInt(i);
-                        theClass.getMethod("set" + columnName, int.class).invoke(object, intValue);
-                        log.info("set"+columnName);
-                        break;
-                    case VARCHAR:
-                        String stringValue = rs.getString(i);
-                        theClass.getMethod("set" + columnName, String.class).invoke(object, stringValue);
-                        log.info("set"+columnName);
-                        break;
-                    case TIMESTAMP:
-                        Timestamp dateValue = rs.getTimestamp(i);
-                        theClass.getMethod("set" + columnName, Timestamp.class).invoke(object, dateValue);
-                        break;
-                    case BOOLEAN:
-                        Boolean booleanValue = rs.getBoolean(i);
-                        theClass.getMethod("set" + columnName, Boolean.class).invoke(object, booleanValue);
-                        break;
-                    default:
-                        log.info("Missing type: " + rs.getMetaData().getColumnType(i));
-                        break;
+                    switch (rs.getMetaData().getColumnType(i)) {
+                        case INTEGER:
+                            int intValue = rs.getInt(i);
+                            theClass.getMethod("set" + columnName, int.class).invoke(object, intValue);
+                            log.info("set" + columnName);
+                            break;
+                        case VARCHAR:
+                            String stringValue = rs.getString(i);
+                            theClass.getMethod("set" + columnName, String.class).invoke(object, stringValue);
+                            log.info("set" + columnName);
+                            break;
+                        case TIMESTAMP:
+                            Timestamp dateValue = rs.getTimestamp(i);
+                            theClass.getMethod("set" + columnName, Timestamp.class).invoke(object, dateValue);
+                            break;
+                        case BOOLEAN:
+                            Boolean booleanValue = rs.getBoolean(i);
+                            theClass.getMethod("set" + columnName, Boolean.class).invoke(object, booleanValue);
+                            break;
+                        default:
+                            log.info("Missing type: " + rs.getMetaData().getColumnType(i));
+                            break;
+                    }
                 }
-            }
 
-            log.info("Object founded: " + object);
-            res.add(object);
+                log.info("Object founded: " + object);
+                res.add(object);
+            }
         }
-        int i=0;
-        Object integer = i;
-        if (res==null)
-        { res.add(integer);}
         return res;
+
     }
 
 }
