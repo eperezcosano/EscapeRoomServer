@@ -118,7 +118,7 @@ public class UserService {
     @GET
     @ApiOperation(value = "inventory", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = UserInventary.class),
+            @ApiResponse(code = 201, message = "Successful", response = Inventario.class),
             @ApiResponse(code = 404, message = "User not found")
     })
     @Path("/inventory/{username}")

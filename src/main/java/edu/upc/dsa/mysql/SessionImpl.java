@@ -1,9 +1,11 @@
 package edu.upc.dsa.mysql;
 
 import edu.upc.dsa.exceptions.UserAlreadyExistsException;
+import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.ObjetoInventario;
 import edu.upc.dsa.models.User;
+import io.swagger.models.auth.In;
 import org.apache.log4j.Logger;
 
 import java.beans.PropertyDescriptor;

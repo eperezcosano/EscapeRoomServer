@@ -15,6 +15,11 @@ public class Inventario {
         this.username = userId;
     }
 
+    public Inventario(String username, List<ObjetoInventario> lista) {
+        this.username = username;
+        this.lista = lista;
+    }
+
     public String getUserId() {
         return username;
     }
