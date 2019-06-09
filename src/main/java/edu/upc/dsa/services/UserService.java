@@ -36,15 +36,6 @@ public class UserService {
 
             this.ma.register("Carlo","Carlo","Carlo","Car","car",21);
             this.ma.register("Mario","Mario","Mario","San","mama",21);
-            this.ma.addObjectStore("katana");
-            this.ma.addObjectStore("corredera");
-            this.ma.addObjectStore("fusildetambor");
-            this.ma.addObjectStore("keyred");
-            this.ma.addObjectStore("keyyellow");
-            this.ma.addObjectStore("keyblue");
-            this.ma.addObjectStore("clueyellow");
-            this.ma.addObjectStore("clueblue");
-            this.ma.addObjectStore("cluered");
             this.ma.buyObject("katana","Carlo");
         }
     }
