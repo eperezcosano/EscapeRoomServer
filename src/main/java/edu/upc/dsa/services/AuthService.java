@@ -60,6 +60,7 @@ public class AuthService {
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Successful", response = UserLogin.class),
             @ApiResponse(code = 404, message = "Incorrect user"),
+            @ApiResponse(code = 700, message = "Exception"),
             @ApiResponse(code = 500, message = "Password not match", responseContainer="List")
     })
     @Path("/login")
@@ -74,6 +75,9 @@ public class AuthService {
         } catch (UserNotFoundException e) {
             e.printStackTrace();
             return Response.status(404).build();
+        } catch (Exception e6) {
+            e6.printStackTrace();
+            return Response.status(700).build();
         }
     }
 
