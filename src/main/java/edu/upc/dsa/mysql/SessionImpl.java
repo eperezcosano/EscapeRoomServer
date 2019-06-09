@@ -195,8 +195,6 @@ public class SessionImpl implements Session {
             prep.execute();
             rs = prep.getResultSet();
         }
-        log.info("Porfa," + rs.getRow());
-        if (rs.getRow() != 0) {
             log.info("query (find): " + query);
             while (rs.next()) {
 
@@ -234,13 +232,10 @@ public class SessionImpl implements Session {
                             break;
                     }
                 }
-
                 log.info("Object founded: " + object);
                 res.add(object);
             }
+            log.info("dime que es null papa, " + res);
             return res;
-        } else {
-            return null;
-        }
     }
 }
