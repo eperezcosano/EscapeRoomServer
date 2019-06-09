@@ -101,6 +101,10 @@ public class SessionImpl implements Session {
         prep.execute();
         rs = prep.getResultSet();
 
+        if (rs == null)
+        {
+            return null;
+        }
         while (rs.next()) {
 
             log.info("Creating object...");

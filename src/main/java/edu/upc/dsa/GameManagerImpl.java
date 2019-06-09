@@ -107,6 +107,8 @@ public class GameManagerImpl implements GameManager {
 
             if (lista.size() != 0)
                 inventario.setLista(lista);
+            else
+                return null;
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -194,10 +196,9 @@ public class GameManagerImpl implements GameManager {
         Objeto objectohash = this.objectoHashMap.get(nameObject);
         if (objectohash.getId()==0) throw new ObjectNotExist();
         Inventario inventario = this.getInventary(username);
-        int a = inventario.size();
         logger.info("User: "+ user.toString());
         int amountMock = 0;
-        if (a!=0) {
+        if (inventario!=null) {
             for (ObjetoInventario objetoInventario : inventario.getLista()) {
                 if (objetoInventario.getNombre().equals(nameObject)) {
                     if (objetoInventario.getType().equals("weapon")) throw new WeaponException();
