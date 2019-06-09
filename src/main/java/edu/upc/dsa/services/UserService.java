@@ -31,12 +31,6 @@ public class UserService {
     public UserService() throws Exception {
         this.ma = GameManagerImpl.getInstance();
         this.ma.añadirObjetosHashMap();
-        if (ma.sizeUsers() == 0) {
-
-            this.ma.register("Carlo","Carlo","Carlo","Car","car",21);
-            this.ma.register("Mario","Mario","Mario","San","mama",21);
-            this.ma.buyObject("katana","Carlo");
-        }
     }
     @GET
     @ApiOperation(value = "profile", notes = "asdasd")
