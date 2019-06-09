@@ -111,7 +111,7 @@ public class UserService {
         }catch (UserNotFoundException e3)
         { return Response.status(404).build();
         }catch (Exception e4)
-        { return Response.status(404).build();
+        { return Response.status(600).build();
         }
     }
 
