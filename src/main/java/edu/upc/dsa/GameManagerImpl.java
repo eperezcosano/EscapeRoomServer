@@ -193,7 +193,6 @@ public class GameManagerImpl implements GameManager {
                     res = new UserLogin(dataUser.getUsername(), dataUser.getPassword());
                     userHashMap.put(dataUser.getUsername(),dataUser);
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -203,10 +202,11 @@ public class GameManagerImpl implements GameManager {
             log.info("Login response: " + res);
             return res;
         }
-        if(!password.equals(user.getPassword())) throw new PasswordNotMatchException();
-        logger.info("Logged in: "+user.toString());
-        UserLogin userLogin = this.passUserToUserLogin(user);
-        return userLogin;
+        if(password.equals(user.getPassword())) {
+            logger.info("Logged in: " + user.toString());
+            UserLogin userLogin = this.passUserToUserLogin(user);
+            return userLogin;
+        }else throw new PasswordNotMatchException();
     }
     @Override
     public User getUser(String username, String password) throws UserNotFoundException {
