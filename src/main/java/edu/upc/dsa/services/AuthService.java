@@ -69,6 +69,7 @@ public class AuthService {
         log.info("POST /auth/login, User: " + user);
         try {
             UserLogin res = this.auth.getUserLogin(user.getUsername(),user.getPassword());
+            if (res == null) return Response.status(404).build();
             return Response.status(200).entity(res).build();
         } catch(PasswordNotMatchException e2) {
             return Response.status(500).build();
