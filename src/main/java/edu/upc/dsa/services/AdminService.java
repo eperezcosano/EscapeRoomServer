@@ -18,11 +18,11 @@ import javax.ws.rs.core.Response;
 @Path("/admin")
 public class AdminService {
 
-    private GameManager auth;
+    private GameManager admin;
     private Logger log = Logger.getLogger(AdminService.class.getName());
 
     public AdminService() {
-        this.auth = GameManagerImpl.getInstance();
+        this.admin = GameManagerImpl.getInstance();
     }
 
     @DELETE
@@ -32,11 +32,11 @@ public class AdminService {
             @ApiResponse(code = 404, message = "UserNotFound"),
             @ApiResponse(code = 405, message = "Impossible to delete")
     })
-    @Path("{username}/delete/{userId}")
+    @Path("{username}/deleteUser/{userId}")
     public Response deleteUser(@PathParam("userId") int id, @PathParam("username") String username) {
         log.info("DELETE /auth/delete/" + id);
         try {
-            this.auth.deleteUser(username,id);
+            this.admin.deleteUser(username,id);
             return Response.status(200).build();
         } catch (UserNotFoundException e) {
             e.printStackTrace();
@@ -53,11 +53,11 @@ public class AdminService {
             @ApiResponse(code = 404, message = "ObjectNotFound"),
             @ApiResponse(code = 405, message = "Impossible to delete")
     })
-    @Path("{username}/delete/{nameObject}")
+    @Path("{username}/deleteObject/{nameObject}")
     public Response deleteObject(@PathParam("nameObject") String nameObject, @PathParam("username") String username) {
         log.info("DELETE /auth/delete/" + nameObject);
         try {
-            this.auth.deleteObjectStore(username,nameObject);
+            this.admin.deleteObjectStore(username,nameObject);
             return Response.status(200).build();
         } catch (UserNotFoundException e) {
             e.printStackTrace();
