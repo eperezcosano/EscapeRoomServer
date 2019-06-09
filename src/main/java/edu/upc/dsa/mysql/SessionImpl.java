@@ -73,7 +73,7 @@ public class SessionImpl implements Session {
     }
 
     public User getByUsername(String username) throws Exception {
-        if (find(User.class, -1, username).get(0) != null){
+        if (find(User.class, -1, username) != null){
            return (User) find(User.class, -1, username).get(0);}
         else return null;
     }
@@ -175,31 +175,28 @@ public class SessionImpl implements Session {
         ResultSet rs;
         Object object;
         String query;
-        if (id > 0) {
-            query = "SELECT * FROM " + theClass.getSimpleName() + " WHERE id = ?";
-            PreparedStatement prep = this.connection.prepareStatement(query);
-            prep.setInt(1, id);
-            prep.execute();
-            rs = prep.getResultSet();
-        }
-        else if (id == 0) {
-            query = "SELECT * FROM " + theClass.getSimpleName();
-            Statement statement = this.connection.createStatement();
-            statement.execute(query);
-            rs = statement.getResultSet();
-        } else { //id == -1
-            log.info("Username: " + username);
-            query = "SELECT * FROM " + theClass.getSimpleName() + " WHERE username = ?";
-            PreparedStatement prep = this.connection.prepareStatement(query);
-            prep.setString(1, username);
-            prep.execute();
-            rs = prep.getResultSet();
-        }
 
-        log.info("query (find): " + query);
-
-        if (rs == null && id==-1) throw new UserNotFoundException();
-            else {
+            if (id > 0) {
+                query = "SELECT * FROM " + theClass.getSimpleName() + " WHERE id = ?";
+                PreparedStatement prep = this.connection.prepareStatement(query);
+                prep.setInt(1, id);
+                prep.execute();
+                rs = prep.getResultSet();
+            } else if (id == 0) {
+                query = "SELECT * FROM " + theClass.getSimpleName();
+                Statement statement = this.connection.createStatement();
+                statement.execute(query);
+                rs = statement.getResultSet();
+            } else { //id == -1
+                log.info("Username: " + username);
+                query = "SELECT * FROM " + theClass.getSimpleName() + " WHERE username = ?";
+                PreparedStatement prep = this.connection.prepareStatement(query);
+                prep.setString(1, username);
+                prep.execute();
+                rs = prep.getResultSet();
+            }
+        if ( rs.getRow() != 0 ) {
+            log.info("query (find): " + query);
             while (rs.next()) {
 
                 log.info("Creating object...");
@@ -240,9 +237,8 @@ public class SessionImpl implements Session {
                 log.info("Object founded: " + object);
                 res.add(object);
             }
+            return res;
         }
-        return res;
-
+        return null;
     }
-
 }
