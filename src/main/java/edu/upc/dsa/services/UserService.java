@@ -32,46 +32,10 @@ public class UserService {
         this.ma = GameManagerImpl.getInstance();
         this.ma.añadirObjetosHashMap();
         if (ma.sizeUsers() == 0) {
-            logger.info("Mecago en tus.");
 
             this.ma.register("Carlo","Carlo","Carlo","Car","car",21);
             this.ma.register("Mario","Mario","Mario","San","mama",21);
             this.ma.buyObject("katana","Carlo");
-        }
-    }
-    @POST
-    @ApiOperation(value = "Mock Login", notes = "asdasd")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = UserLogin.class, responseContainer="List"),
-            @ApiResponse(code = 404, message = "User not found", responseContainer="List"),
-            @ApiResponse(code = 500, message = "Password not match", responseContainer="List")
-    })
-    @Path("/login")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response login(UserLogin user) {
-        try{
-            UserLogin u = this.ma.getUserLogin(user.getUsername(),user.getPassword());
-            return Response.status(201).entity(u).build();
-        }catch(PasswordNotMatchException e2){
-            return Response.status(500).build();
-        }catch(Exception e3) {
-            return Response.status(404).build();
-        }
-    }
-    @POST
-    @ApiOperation(value = "Mock Register", notes = "asdasd")
-    @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = UserProfile.class, responseContainer="List"),
-            @ApiResponse(code = 500, message = "Existant user", responseContainer="List")
-    })
-    @Path("/register")
-    @Consumes(MediaType.APPLICATION_JSON)
-    public Response register(UserProfile user) {
-        try{
-            User u = this.ma.register(user.getUsername(),user.getPassword(),user.getName(),user.getSurname(),user.getMail(),user.getAge());
-            return Response.status(201).entity(u).build();
-        }catch(Exception e1) {
-            return Response.status(500).build();
         }
     }
     @GET

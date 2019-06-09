@@ -72,6 +72,7 @@ public class GameManagerImpl implements GameManager {
                     objectoHashMap.put(CP.getNombre(),CP);
                 }
             }
+            log.info("Size tienda:" + list.size());
             log.info("Todo correcto en el AñadirObjetos");
         } catch (Exception e) {
             e.printStackTrace();
@@ -142,7 +143,6 @@ public class GameManagerImpl implements GameManager {
         } finally {
             if (session != null) session.close();
         }
-        u = new User(username, password, name, surname, mail, age);
         this.userHashMap.put(username, u);
         logger.info("New user: " + u.toString());
         return u;
