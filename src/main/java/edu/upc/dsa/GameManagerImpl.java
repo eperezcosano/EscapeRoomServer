@@ -188,8 +188,7 @@ public class GameManagerImpl implements GameManager {
                 log.info("User request: " + user);
                 log.info("DB User" + dataUser);
 
-                if (dataUser.getUsername().equals(dataUser.getUsername()) &&
-                        dataUser.getPassword().equals(dataUser.getPassword())) {
+                if (dataUser.getPassword().equals(password)) {
                     res = new UserLogin(dataUser.getUsername(), dataUser.getPassword());
                     userHashMap.put(dataUser.getUsername(),dataUser);
                 }
