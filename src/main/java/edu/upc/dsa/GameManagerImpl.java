@@ -189,7 +189,8 @@ public class GameManagerImpl implements GameManager {
                 if (dataUser !=null && dataUser.getPassword().equals(password)) {
                     res = new UserLogin(dataUser.getUsername(), dataUser.getPassword());
                     userHashMap.put(dataUser.getUsername(), dataUser);
-                } else throw new PasswordNotMatchException();
+                }
+                if (dataUser != null && !dataUser.getPassword().equals(password)) throw new PasswordNotMatchException();
              }catch (UserNotFoundException e) {
                 e.printStackTrace();
             } finally {
