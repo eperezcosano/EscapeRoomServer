@@ -9,29 +9,29 @@ import edu.upc.dsa.to.User.UserStatistics;
 public interface GameManager{
 
     //ADMIN
-    void deleteUser(String username, int userId) throws Exception, OnlyFunctionsAdmin;
-    void deleteObjectStore(String username, int idObject) throws Exception, OnlyFunctionsAdmin;
+    void deleteUser(String username, int userId) throws Exception;
+    void deleteObjectStore(String username, int idObject) throws Exception;
+
 
     //USER
-    public User register(String username, String password, String name, String surname, String mail, int age) throws Exception;
-    public UserLogin getUserLogin(String username, String password) throws Exception;
-    public User getUser (String username,String password) throws UserNotFoundException;
-    public UserProfile getProfile (String username) throws UserNotFoundException;
-    public Inventario getInventary (String username) throws  Exception;
-    public UserStatistics getStatistics(String username) throws UserNotFoundException;
-    public UserLogin passUserToUserLogin (User user);
-    public UserProfile passUserToUserProfile (User user);
-    public UserStatistics passUserToUserStatistics (User user);
+    User register(String username, String password, String name, String surname, String mail, int age) throws Exception;
+    UserLogin getUserLogin(String username, String password) throws Exception;
+    User getUser (String username,String password) throws UserNotFoundException;
+    UserProfile getProfile (String username) throws UserNotFoundException, NotFunctionForAdminExcepction;
+    Inventario getInventary (String username) throws  Exception;
+    UserStatistics getStatistics(String username) throws UserNotFoundException, NotFunctionForAdminExcepction;
+    void buyObject(String nameObject, String username) throws Exception;
+    UserLogin passUserToUserLogin (User user);
+    UserProfile passUserToUserProfile (User user);
+    UserStatistics passUserToUserStatistics (User user);
 
-    public int sizeUsers();
-    public void añadirObjetosHashMap() throws Exception;
-    //OBJECTS
-    public void buyObject(String nameObject, String username) throws ObjectNotExist, UserNotFoundException, WeaponException, Exception;
-    void addObjectStore(String name) throws ObjectExist;
-    public int sizeStore();
+    int sizeUsers();
+    int sizeStore();
 
+    void añadirObjetosHashMap() throws Exception;
+    void addObjectStore(String name) throws ObjectExistException;
 
-    public void clear();
+    void clear();
 
 
 }

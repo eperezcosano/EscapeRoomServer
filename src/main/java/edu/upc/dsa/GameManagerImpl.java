@@ -2,7 +2,6 @@ package edu.upc.dsa;
 
 import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
-import edu.upc.dsa.to.*;
 import edu.upc.dsa.mysql.*;
 import edu.upc.dsa.to.User.UserLogin;
 import edu.upc.dsa.to.User.UserProfile;
@@ -43,7 +42,7 @@ public class GameManagerImpl implements GameManager {
     }
 
     @Override
-    public void deleteUser(String username, int userId) throws Exception, OnlyFunctionsAdmin {
+    public void deleteUser(String username, int userId) throws Exception {
 
         if(username.equals("admin")) {
             Session session = null;
@@ -63,10 +62,10 @@ public class GameManagerImpl implements GameManager {
                 if (session != null) session.close();
             }
         }
-        else throw new OnlyFunctionsAdmin();
+        else throw new OnlyFunctionsAdminException();
     }
     @Override
-    public void deleteObjectStore(String username, int idObject) throws Exception, OnlyFunctionsAdmin {
+    public void deleteObjectStore(String username, int idObject) throws Exception {
         if(username.equals("admin")) {
             Session session = null;
 
@@ -75,7 +74,7 @@ public class GameManagerImpl implements GameManager {
                 session.delete(Objeto.class, idObject);
                 log.info("Object deleted ID: " + idObject);
 
-            } catch (ObjectNotExist e) {
+            } catch (ObjectNotExistException e) {
                 log.info("Object not found");
                 throw e;
             } catch (Exception e) {
@@ -85,7 +84,7 @@ public class GameManagerImpl implements GameManager {
                 if (session != null) session.close();
             }
         }
-        else throw new OnlyFunctionsAdmin();
+        else throw new OnlyFunctionsAdminException();
     }
     @Override
     public void añadirObjetosHashMap() throws Exception {
@@ -109,7 +108,8 @@ public class GameManagerImpl implements GameManager {
         }
     }
     @Override
-    public UserProfile getProfile(String username) throws UserNotFoundException {
+    public UserProfile getProfile(String username) throws UserNotFoundException, NotFunctionForAdminExcepction {
+        if(username.equals("admin")) throw new NotFunctionForAdminExcepction();
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
         UserProfile userProfile = this.passUserToUserProfile(user);
@@ -117,6 +117,7 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public Inventario getInventary(String username) throws Exception {
+        if (username.equals("admin")) throw new NotFunctionForAdminExcepction();
         User user = this.userHashMap.get(username);
         if (user == null) throw new UserNotFoundException();
         Session session = null;
@@ -142,7 +143,8 @@ public class GameManagerImpl implements GameManager {
         return inventario;
     }
     @Override
-    public UserStatistics getStatistics(String username) throws UserNotFoundException {
+    public UserStatistics getStatistics(String username) throws UserNotFoundException, NotFunctionForAdminExcepction {
+        if (username.equals("admin")) throw new NotFunctionForAdminExcepction();
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
         logger.info("Logged in: "+user.toString());
@@ -213,11 +215,11 @@ public class GameManagerImpl implements GameManager {
         return u;
     }
     @Override
-    public void buyObject(String nameObject, String username) throws ObjectNotExist, UserNotFoundException, WeaponException, Exception {
+    public void buyObject(String nameObject, String username) throws Exception {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
         Objeto objectohash = this.objectoHashMap.get(nameObject);
-        if (objectohash.getId()==0) throw new ObjectNotExist();
+        if (objectohash.getId()==0) throw new ObjectNotExistException();
         Inventario inventario = this.getInventary(username);
         logger.info("User: "+ user.toString());
         int amountMock = 0;
@@ -252,14 +254,14 @@ public class GameManagerImpl implements GameManager {
 
     }
     @Override
-    public void addObjectStore(String name) throws ObjectExist {
+    public void addObjectStore(String name) throws ObjectExistException {
         Objeto objeto = this.objectoHashMap.get(name);
         if(objeto==null) {
             Objeto obje = new Objeto(name);
             this.objectoHashMap.put(obje.getNombre(),obje);
             logger.info("Objeto añadido a la store: " + obje.toString());
         }
-        else throw new ObjectExist();
+        else throw new ObjectExistException();
 
     }
     @Override

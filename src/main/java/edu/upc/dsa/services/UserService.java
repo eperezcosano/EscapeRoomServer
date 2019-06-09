@@ -6,7 +6,6 @@ import edu.upc.dsa.GameManagerImpl;
 
 import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
-import edu.upc.dsa.to.User.UserLogin;
 import edu.upc.dsa.to.User.UserProfile;
 import edu.upc.dsa.to.User.UserStatistics;
 import io.swagger.annotations.Api;
@@ -36,7 +35,8 @@ public class UserService {
     @ApiOperation(value = "profile", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = UserProfile.class),
-            @ApiResponse(code = 404, message = "User not found")
+            @ApiResponse(code = 404, message = "User not found"),
+            @ApiResponse(code = 600, message = "Not function for ADMIN")
     })
     @Path("/profile/{username}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -46,13 +46,17 @@ public class UserService {
             return Response.status(201).entity(userProfile).build();
         }catch(UserNotFoundException e1){
             return Response.status(404).build();
+        } catch(NotFunctionForAdminExcepction e10){
+            return Response.status(600).build();
         }
     }
     @GET
     @ApiOperation(value = "statistics", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = UserStatistics.class),
-            @ApiResponse(code = 404, message = "User not found")
+            @ApiResponse(code = 404, message = "User not found"),
+            @ApiResponse(code = 600, message = "Not function for ADMIN")
+
     })
     @Path("/statistics/{username}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -62,29 +66,31 @@ public class UserService {
             return Response.status(201).entity(userStatistics).build();
         }catch(UserNotFoundException e1){
             return Response.status(404).build();
+        }catch(NotFunctionForAdminExcepction e10){
+            return Response.status(600).build();
         }
     }
     @GET
     @ApiOperation(value = "inventory", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Inventario.class),
-            @ApiResponse(code = 404, message = "User not found")
+            @ApiResponse(code = 404, message = "User not found"),
+            @ApiResponse(code = 600, message = "Not function for ADMIN"),
+            @ApiResponse(code = 700, message = "Exception")
+
     })
     @Path("/inventory/{username}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response inventory(@PathParam("username") String username){
         try {
-            Inventario userInventary = this.ma.getInventary(username);
-            logger.info("Inventario");
-            return Response.status(201).entity(userInventary).build();
+            Inventario inventario = this.ma.getInventary(username);
+            return Response.status(201).entity(inventario).build();
         }catch (UserNotFoundException e1){
-            logger.info("Excepcion e1:,", e1);
             return Response.status(404).build();
+        }catch(NotFunctionForAdminExcepction e10){
+            return Response.status(600).build();
         }catch (Exception e)
-        {
-            logger.info("Excepcion,", e);
-            return Response.status(404).build();
-        }
+        { return Response.status(700).build(); }
     }
     @POST
     @ApiOperation(value = "Buy", notes = "asdasd")
@@ -93,10 +99,8 @@ public class UserService {
             @ApiResponse(code = 404, message = "User not found"),
             @ApiResponse(code = 500, message = "Object not found"),
             @ApiResponse(code = 501, message = "You can't buy two same weapons"),
-            @ApiResponse(code = 600, message = "EXCEPCION")
-
-
-
+            @ApiResponse(code = 600, message = "Not function for ADMIN"),
+            @ApiResponse(code = 700, message = "Exception")
     })
     @Path("/buy/{username}")
     @Consumes(MediaType.APPLICATION_JSON)
@@ -106,12 +110,14 @@ public class UserService {
             return Response.status(201).entity(objTO).build();
         }catch(WeaponException e1)
         {return Response.status(501).build();
-        }catch (ObjectNotExist e2)
+        }catch (ObjectNotExistException e2)
         { return Response.status(500).build();
         }catch (UserNotFoundException e3)
         { return Response.status(404).build();
+        }catch(NotFunctionForAdminExcepction e10){
+            return Response.status(600).build();
         }catch (Exception e4)
-        { return Response.status(600).build();
+        { return Response.status(700).build();
         }
     }
 
