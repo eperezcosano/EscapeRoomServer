@@ -66,15 +66,14 @@ public class GameManagerImpl implements GameManager {
         else throw new OnlyFunctionsAdmin();
     }
     @Override
-    public void deleteObjectStore(String username, String nameObject) throws Exception, OnlyFunctionsAdmin {
-        Objeto objeto = this.objectoHashMap.get(username);
+    public void deleteObjectStore(String username, int idObject) throws Exception, OnlyFunctionsAdmin {
         if(username.equals("admin")) {
             Session session = null;
 
             try {
                 session = Factory.getSession();
-                session.delete(Objeto.class, objeto.getId());
-                log.info("Object deleted ID: " + objeto.getId());
+                session.delete(Objeto.class, idObject);
+                log.info("Object deleted ID: " + idObject);
 
             } catch (ObjectNotExist e) {
                 log.info("Object not found");

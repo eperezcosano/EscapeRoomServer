@@ -10,7 +10,7 @@ public interface GameManager{
 
     //ADMIN
     void deleteUser(String username, int userId) throws Exception, OnlyFunctionsAdmin;
-    void deleteObjectStore(String username, String nameObject) throws Exception, OnlyFunctionsAdmin;
+    void deleteObjectStore(String username, int idObject) throws Exception, OnlyFunctionsAdmin;
 
     //USER
     public User register(String username, String password, String name, String surname, String mail, int age) throws Exception;

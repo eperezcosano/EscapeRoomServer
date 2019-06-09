@@ -53,11 +53,11 @@ public class AdminService {
             @ApiResponse(code = 404, message = "ObjectNotFound"),
             @ApiResponse(code = 405, message = "Impossible to delete")
     })
-    @Path("{username}/deleteObject/{nameObject}")
-    public Response deleteObject(@PathParam("nameObject") String nameObject, @PathParam("username") String username) {
-        log.info("DELETE /auth/delete/" + nameObject);
+    @Path("{username}/deleteObject/{idObject}")
+    public Response deleteObject(@PathParam("idObject") int idObject, @PathParam("username") String username) {
+        log.info("DELETE /auth/delete/" + idObject);
         try {
-            this.admin.deleteObjectStore(username,nameObject);
+            this.admin.deleteObjectStore(username,idObject);
             return Response.status(200).build();
         } catch (UserNotFoundException e) {
             e.printStackTrace();
