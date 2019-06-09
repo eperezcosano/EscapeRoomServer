@@ -73,16 +73,14 @@ public class SessionImpl implements Session {
     }
 
     public User getByUsername(String username) throws Exception {
-        return (User) find(User.class, -1, username).get(0);
+        if (find(User.class, -1, username).get(0) != null){
+           return (User) find(User.class, -1, username).get(0);}
+        else return null;
     }
 
     @Override
     public List<Objeto> listaObjetos() throws Exception {
-        if (find(Objeto.class, 0, "").get(0) != null) {
-            return (List<Objeto>) find(Objeto.class, 0, "").get(0);
-        }
-        return null;
-    }
+       return (List<Objeto>) find(Objeto.class, 0, "").get(0); }
 
     public Object get(Class theClass, int id) throws Exception {
         return find(theClass, id, null).get(0);
