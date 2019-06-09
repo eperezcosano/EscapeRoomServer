@@ -35,7 +35,7 @@ public class UserService {
     @ApiOperation(value = "profile", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = UserProfile.class),
-            @ApiResponse(code = 404, message = "User not found"),
+            @ApiResponse(code = 404, message = "First login or register"),
             @ApiResponse(code = 600, message = "Not function for ADMIN")
     })
     @Path("/profile/{username}")
@@ -54,7 +54,7 @@ public class UserService {
     @ApiOperation(value = "statistics", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = UserStatistics.class),
-            @ApiResponse(code = 404, message = "User not found"),
+            @ApiResponse(code = 404, message = "First login or register"),
             @ApiResponse(code = 600, message = "Not function for ADMIN")
 
     })
@@ -74,7 +74,7 @@ public class UserService {
     @ApiOperation(value = "inventory", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Inventario.class),
-            @ApiResponse(code = 404, message = "User not found"),
+            @ApiResponse(code = 404, message = "First login or register"),
             @ApiResponse(code = 600, message = "Not function for ADMIN"),
             @ApiResponse(code = 700, message = "Exception")
 
@@ -96,7 +96,7 @@ public class UserService {
     @ApiOperation(value = "Buy", notes = "asdasd")
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Objeto.class ),
-            @ApiResponse(code = 404, message = "User not found"),
+            @ApiResponse(code = 404, message = "First login or register"),
             @ApiResponse(code = 500, message = "Object not found"),
             @ApiResponse(code = 501, message = "You can't buy two same weapons"),
             @ApiResponse(code = 600, message = "Not function for ADMIN"),
