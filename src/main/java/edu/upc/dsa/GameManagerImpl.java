@@ -31,28 +31,6 @@ public class GameManagerImpl implements GameManager {
         return instance;
     }
     @Override
-    public void register(UserLogin user) throws Exception {
-
-        Session session = null;
-
-        try {
-            session = Factory.getSession();
-            User insertUser = new User(user.getUsername(), user.getPassword());
-            session.save(insertUser);
-
-            log.info("User insert: " + insertUser);
-
-        } catch (UserAlreadyExistsException e) {
-            log.info("User already exists");
-            throw e;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            if (session != null) session.close();
-        }
-    }
-    @Override
     public void deleteUser(int userId) throws Exception {
 
         Session session = null;
@@ -145,13 +123,30 @@ public class GameManagerImpl implements GameManager {
         UserStatistics userStatistics = this.passUserToUserStatistics(user);
         return userStatistics;}
     @Override
-    public User addUser(String username, String password, String name, String surname, String mail, int age) throws UserAlreadyExistsException {
-        User u = this.userHashMap.get(username);
-        if(u!=null) throw new UserAlreadyExistsException();
-        u = new User(username,password, name,surname,mail,age);
-        this.userHashMap.put(username,u);
-        logger.info("New user: "+u.toString());
-        return u;}
+    public User register(String username, String password, String name, String surname, String mail, int age) throws Exception {
+       Session session = null;
+       User u = new User(username, password, name, surname, mail, age);
+        try {
+            session = Factory.getSession();
+            User insertUser = new User(u.getUsername(), u.getPassword(),u.getName(),u.getSurname(),u.getMail(),u.getAge());
+            session.save(insertUser);
+
+            log.info("User insert: " + insertUser);
+
+        } catch (UserAlreadyExistsException e) {
+            log.info("User already exists");
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (session != null) session.close();
+        }
+        u = new User(username, password, name, surname, mail, age);
+        this.userHashMap.put(username, u);
+        logger.info("New user: " + u.toString());
+        return u;
+    }
     @Override
     public UserLogin getUserLogin(String username, String password) throws Exception {
         User user = this.userHashMap.get(username);

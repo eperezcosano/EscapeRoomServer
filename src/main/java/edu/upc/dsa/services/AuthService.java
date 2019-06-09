@@ -8,6 +8,7 @@ import edu.upc.dsa.exceptions.UserNotFoundException;
 import edu.upc.dsa.to.*;
 
 import edu.upc.dsa.to.User.UserLogin;
+import edu.upc.dsa.to.User.UserRegister;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -39,10 +40,10 @@ public class AuthService {
     })
     @Path("/register")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response register(UserLogin user) {
+    public Response register(UserRegister user) {
         log.info("POST /auth/register, User: " + user);
         try {
-            this.auth.register(user);
+            this.auth.register(user.getUsername(),user.getPassword(),user.getName(),user.getSurname(),user.getMail(),user.getAge());
             log.info("User registered");
             return Response.status(201).build();
         } catch (UserAlreadyExistsException e) {

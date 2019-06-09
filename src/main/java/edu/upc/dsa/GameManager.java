@@ -6,23 +6,8 @@ import edu.upc.dsa.to.User.UserLogin;
 import edu.upc.dsa.to.User.UserProfile;
 import edu.upc.dsa.to.User.UserStatistics;
 
-public interface GameManager {
+public interface GameManager{
 
-    /**
-     * Check user credentials
-     *
-     * @param user user credentials (username and password)
-     * @return user credentials (and its id)
-     * @throws Exception if user is not found or connection error
-     */
-    void register(UserLogin user) throws Exception;
-
-    /**
-     * Delete an user from data base
-     *
-     * @param userId user identification
-     * @throws Exception if user is not found or connection error
-     */
     void deleteUser(int userId) throws Exception;
 
     //TODO:
@@ -36,7 +21,7 @@ public interface GameManager {
      * */
 
     //USER
-    public User addUser(String username, String password, String name, String surname, String mail, int age) throws UserAlreadyExistsException;
+    public User register(String username, String password, String name, String surname, String mail, int age) throws Exception;
     public UserLogin getUserLogin(String username, String password) throws Exception;
     public User getUser (String username,String password) throws UserNotFoundException;
     public UserProfile getProfile (String username) throws UserNotFoundException;

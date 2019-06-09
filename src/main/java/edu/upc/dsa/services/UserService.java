@@ -34,8 +34,8 @@ public class UserService {
         if (ma.sizeUsers() == 0) {
             logger.info("Mecago en tus.");
 
-            this.ma.addUser("Carlo","Carlo","Carlo","Car","car",21);
-            this.ma.addUser("Mario","Mario","Mario","San","mama",21);
+            this.ma.register("Carlo","Carlo","Carlo","Car","car",21);
+            this.ma.register("Mario","Mario","Mario","San","mama",21);
             this.ma.addObjectStore("katana");
             this.ma.addObjectStore("corredera");
             this.ma.addObjectStore("fusildetambor");
@@ -77,9 +77,9 @@ public class UserService {
     @Consumes(MediaType.APPLICATION_JSON)
     public Response register(UserProfile user) {
         try{
-            User u = this.ma.addUser(user.getUsername(),user.getPassword(),user.getName(),user.getSurname(),user.getMail(),user.getAge());
+            User u = this.ma.register(user.getUsername(),user.getPassword(),user.getName(),user.getSurname(),user.getMail(),user.getAge());
             return Response.status(201).entity(u).build();
-        }catch(UserAlreadyExistsException e1) {
+        }catch(Exception e1) {
             return Response.status(500).build();
         }
     }
