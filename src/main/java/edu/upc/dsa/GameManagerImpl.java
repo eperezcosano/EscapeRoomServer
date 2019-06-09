@@ -177,34 +177,33 @@ public class GameManagerImpl implements GameManager {
     @Override
     public UserLogin getUserLogin(String username, String password) throws Exception {
         User user = this.userHashMap.get(username);
-        if(user==null) {
+        if (user == null) {
             Session session = null;
             UserLogin res = null;
-
             try {
                 session = Factory.getSession();
                 User dataUser = session.getByUsername(username);
-
                 log.info("DB User" + dataUser);
-                if (dataUser !=null && dataUser.getPassword().equals(password)) {
+                if (dataUser != null && dataUser.getPassword().equals(password)) {
                     res = new UserLogin(dataUser.getUsername(), dataUser.getPassword());
                     userHashMap.put(dataUser.getUsername(), dataUser);
                     return res;
                 }
                 if (dataUser != null && !dataUser.getPassword().equals(password)) throw new PasswordNotMatchException();
-             }catch (UserNotFoundException e) {
+                else throw new UserNotFoundException();
+            } catch (UserNotFoundException e) {
                 e.printStackTrace();
+                return null;
             } finally {
                 if (session != null) session.close();
             }
-
-            log.info("Login response: " + res);
+        } else {
+            if (password.equals(user.getPassword())) {
+                logger.info("Logged in: " + user.toString());
+                UserLogin userLogin = this.passUserToUserLogin(user);
+                return userLogin;
+            } else throw new PasswordNotMatchException();
         }
-        if(password.equals(user.getPassword())) {
-            logger.info("Logged in: " + user.toString());
-            UserLogin userLogin = this.passUserToUserLogin(user);
-            return userLogin;
-        }else throw new PasswordNotMatchException();
     }
     @Override
     public User getUser(String username, String password) throws UserNotFoundException {
