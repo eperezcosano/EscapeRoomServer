@@ -68,11 +68,10 @@ public class AuthService {
         log.info("POST /auth/login, User: " + user);
         try {
             UserLogin res = this.auth.getUserLogin(user.getUsername(),user.getPassword());
-            GenericEntity<UserLogin> entity = new GenericEntity<UserLogin>(res) {};
-            return Response.status(200).entity(entity).build();
+            return Response.status(200).entity(res).build();
         } catch(PasswordNotMatchException e2) {
             return Response.status(500).build();
-        } catch (Exception e) {
+        } catch (UserNotFoundException e) {
             e.printStackTrace();
             return Response.status(404).build();
         }
