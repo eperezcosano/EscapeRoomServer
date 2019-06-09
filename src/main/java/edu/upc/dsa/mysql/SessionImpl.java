@@ -73,9 +73,7 @@ public class SessionImpl implements Session {
     }
 
     public User getByUsername(String username) throws Exception {
-        if (find(User.class, -1, username) != null){
-           return (User) find(User.class, -1, username).get(0);}
-        else return null;
+           return (User) find(User.class, -1, username).get(0);
     }
 
     @Override
@@ -235,7 +233,6 @@ public class SessionImpl implements Session {
                 log.info("Object founded: " + object);
                 res.add(object);
             }
-            log.info("dime que es null papa, " + res);
             return res;
     }
 }
