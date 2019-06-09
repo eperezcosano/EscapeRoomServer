@@ -77,8 +77,11 @@ public class SessionImpl implements Session {
 
     @Override
     public List<Objeto> listaObjetos() throws Exception {
-        return (List<Objeto>) find(Objeto.class, 0,"").get(0);
-
+       if((List<Objeto>) find(Objeto.class, 0,"").get(0)!=null) {
+           return (List<Objeto>) find(Objeto.class, 0, "").get(0);
+       }else{
+           return null;
+       }
     }
 
     public Object get(Class theClass, int id) throws Exception {
