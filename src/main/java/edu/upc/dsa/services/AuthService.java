@@ -84,25 +84,4 @@ public class AuthService {
         }
     }
 
-    @DELETE
-    @ApiOperation(value = "delete an user")
-    @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successful"),
-            @ApiResponse(code = 404, message = "UserNotFound"),
-            @ApiResponse(code = 405, message = "Impossible to delete")
-    })
-    @Path("/delete/{userId}")
-    public Response deleteUser(@PathParam("userId") int id) {
-        log.info("DELETE /auth/delete/" + id);
-        try {
-            this.auth.deleteUser(id);
-            return Response.status(200).build();
-        } catch (UserNotFoundException e) {
-            e.printStackTrace();
-            return Response.status(404).build();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return Response.status(405).build();
-        }
-    }
 }

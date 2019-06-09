@@ -30,34 +30,63 @@ public class GameManagerImpl implements GameManager {
         if (instance==null) instance = new GameManagerImpl();
         return instance;
     }
-    @Override
-    public void deleteUser(int userId) throws Exception {
 
-        Session session = null;
-
-        try {
-            session = Factory.getSession();
-            session.delete(User.class, userId);
-            log.info("User deleted ID: " + userId);
-
-        } catch (UserNotFoundException e) {
-            log.info("User not found");
-            throw e;
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw e;
-        } finally {
-            if (session != null) session.close();
-        }
-    }
-    @Override
-    public void deleteObjectStore(int idObject) {
-
-    }
     public int sizeUsers() {
         int ret = this.userHashMap.size();
         logger.info("size " + ret);
         return ret;
+    }
+    public int sizeStore() {
+        int ret = this.objectoHashMap.size();
+        logger.info("size " + ret);
+        return ret;
+    }
+
+    @Override
+    public void deleteUser(String username, int userId) throws Exception, OnlyFunctionsAdmin {
+
+        if(username.equals("admin")) {
+            Session session = null;
+
+            try {
+                session = Factory.getSession();
+                session.delete(User.class, userId);
+                log.info("User deleted ID: " + userId);
+
+            } catch (UserNotFoundException e) {
+                log.info("User not found");
+                throw e;
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw e;
+            } finally {
+                if (session != null) session.close();
+            }
+        }
+        else throw new OnlyFunctionsAdmin();
+    }
+    @Override
+    public void deleteObjectStore(String username, String nameObject) throws Exception, OnlyFunctionsAdmin {
+        Objeto objeto = this.objectoHashMap.get(username);
+        if(username.equals("admin")) {
+            Session session = null;
+
+            try {
+                session = Factory.getSession();
+                session.delete(Objeto.class, objeto.getId());
+                log.info("Object deleted ID: " + objeto.getId());
+
+            } catch (ObjectNotExist e) {
+                log.info("Object not found");
+                throw e;
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw e;
+            } finally {
+                if (session != null) session.close();
+            }
+        }
+        else throw new OnlyFunctionsAdmin();
     }
     @Override
     public void añadirObjetosHashMap() throws Exception {
@@ -79,11 +108,6 @@ public class GameManagerImpl implements GameManager {
         } finally {
             if (session != null) session.close();
         }
-    }
-    public int sizeStore() {
-        int ret = this.objectoHashMap.size();
-        logger.info("size " + ret);
-        return ret;
     }
     @Override
     public UserProfile getProfile(String username) throws UserNotFoundException {

@@ -8,17 +8,9 @@ import edu.upc.dsa.to.User.UserStatistics;
 
 public interface GameManager{
 
-    void deleteUser(int userId) throws Exception;
-
-    //TODO:
-    /*
-     * Store
-     * */
-    void deleteObjectStore(int idObject);
-
-    /*
-     * Map
-     * */
+    //ADMIN
+    void deleteUser(String username, int userId) throws Exception, OnlyFunctionsAdmin;
+    void deleteObjectStore(String username, String nameObject) throws Exception, OnlyFunctionsAdmin;
 
     //USER
     public User register(String username, String password, String name, String surname, String mail, int age) throws Exception;

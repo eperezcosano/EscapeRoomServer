@@ -24,7 +24,7 @@ import javax.ws.rs.core.Response;
 
 public class UserService {
 
-    final static Logger logger = Logger.getLogger(GameManagerImpl.class);
+    final static Logger logger = Logger.getLogger(UserService.class);
 
     private GameManager ma;
 
