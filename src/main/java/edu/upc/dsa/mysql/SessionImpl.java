@@ -240,7 +240,8 @@ public class SessionImpl implements Session {
             log.info("Object founded: " + object);
             res.add(object);
         }
-        Object integer = 0;
+        int i=0;
+        Object integer = i;
         if (res==null)
         { res.add(integer);}
         return res;
