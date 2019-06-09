@@ -142,7 +142,11 @@ public class UserService {
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Objeto.class ),
             @ApiResponse(code = 404, message = "User not found"),
-            @ApiResponse(code = 500, message = "Object not found")
+            @ApiResponse(code = 500, message = "Object not found"),
+            @ApiResponse(code = 501, message = "You can't buy two same weapons"),
+            @ApiResponse(code = 600, message = "EXCEPCION")
+
+
 
     })
     @Path("/buy/{username}")
@@ -151,10 +155,14 @@ public class UserService {
         try{
             this.ma.buyObject(objTO.getNombre(),username);
             return Response.status(201).entity(objTO).build();
-        }catch(WeaponException e1) {
-            return Response.status(500).build();
-        }catch (Exception e2) {
-            return Response.status(404).build();
+        }catch(WeaponException e1)
+        {return Response.status(501).build();
+        }catch (ObjectNotExist e2)
+        { return Response.status(500).build();
+        }catch (UserNotFoundException e3)
+        { return Response.status(404).build();
+        }catch (Exception e4)
+        { return Response.status(404).build();
         }
     }
 
