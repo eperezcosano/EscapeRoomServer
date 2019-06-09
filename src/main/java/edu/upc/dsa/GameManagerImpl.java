@@ -198,14 +198,13 @@ public class GameManagerImpl implements GameManager {
         Inventario inventario = this.getInventary(username);
         int a = inventario.size();
         logger.info("User: "+ user.toString());
-        if (a==0)  throw new Exception();
-        int amountMock=0;
-        for (ObjetoInventario objetoInventario : inventario.getLista())
-        {
-            if (objetoInventario.getNombre().equals(nameObject))
-            {
-                if (objetoInventario.getType().equals("weapon")) throw new WeaponException();
-                amountMock = objetoInventario.getAmount();
+        int amountMock = 0;
+        if (a!=0) {
+            for (ObjetoInventario objetoInventario : inventario.getLista()) {
+                if (objetoInventario.getNombre().equals(nameObject)) {
+                    if (objetoInventario.getType().equals("weapon")) throw new WeaponException();
+                    amountMock = objetoInventario.getAmount();
+                }
             }
         }
         log.info("objetohash:" + objectohash.getId());
