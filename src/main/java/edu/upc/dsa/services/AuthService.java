@@ -70,6 +70,7 @@ public class AuthService {
         try {
             UserLogin res = this.auth.getUserLogin(user.getUsername(),user.getPassword());
             if (res == null) return Response.status(404).build();
+            if (res.getPassword()==null) return Response.status(500).build();
             return Response.status(200).entity(res).build();
         } catch(PasswordNotMatchException e2) {
             return Response.status(500).build();
