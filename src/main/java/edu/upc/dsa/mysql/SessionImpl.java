@@ -176,26 +176,27 @@ public class SessionImpl implements Session {
         Object object;
         String query;
 
-            if (id > 0) {
-                query = "SELECT * FROM " + theClass.getSimpleName() + " WHERE id = ?";
-                PreparedStatement prep = this.connection.prepareStatement(query);
-                prep.setInt(1, id);
-                prep.execute();
-                rs = prep.getResultSet();
-            } else if (id == 0) {
-                query = "SELECT * FROM " + theClass.getSimpleName();
-                Statement statement = this.connection.createStatement();
-                statement.execute(query);
-                rs = statement.getResultSet();
-            } else { //id == -1
-                log.info("Username: " + username);
-                query = "SELECT * FROM " + theClass.getSimpleName() + " WHERE username = ?";
-                PreparedStatement prep = this.connection.prepareStatement(query);
-                prep.setString(1, username);
-                prep.execute();
-                rs = prep.getResultSet();
-            }
-        if ( rs.getRow() != 0 ) {
+        if (id > 0) {
+            query = "SELECT * FROM " + theClass.getSimpleName() + " WHERE id = ?";
+            PreparedStatement prep = this.connection.prepareStatement(query);
+            prep.setInt(1, id);
+            prep.execute();
+            rs = prep.getResultSet();
+        } else if (id == 0) {
+            query = "SELECT * FROM " + theClass.getSimpleName();
+            Statement statement = this.connection.createStatement();
+            statement.execute(query);
+            rs = statement.getResultSet();
+        } else { //id == -1
+            log.info("Username: " + username);
+            query = "SELECT * FROM " + theClass.getSimpleName() + " WHERE username = ?";
+            PreparedStatement prep = this.connection.prepareStatement(query);
+            prep.setString(1, username);
+            prep.execute();
+            rs = prep.getResultSet();
+        }
+        log.info("Porfa," + rs.getRow());
+        if (rs.getRow() != 0) {
             log.info("query (find): " + query);
             while (rs.next()) {
 
@@ -238,7 +239,8 @@ public class SessionImpl implements Session {
                 res.add(object);
             }
             return res;
+        } else {
+            return null;
         }
-        return null;
     }
 }

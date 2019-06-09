@@ -179,7 +179,7 @@ public class GameManagerImpl implements GameManager {
         User user = this.userHashMap.get(username);
         if (user == null) {
             Session session = null;
-            UserLogin res = null;
+            UserLogin res;
             try {
                 session = Factory.getSession();
                 User dataUser = session.getByUsername(username);
