@@ -144,6 +144,7 @@ public class SessionImpl implements Session {
     public void buy( int objetoId, int userId, int amount) throws Exception {
         String query;
         int amountBueno = amount + 1;
+        this.delete(Inventario.class,objetoId);
         query = "INSERT INTO Inventario (userId, objetoId, amount) VALUES ('" + userId + "','" + objetoId +"','" + amountBueno + "')";
         PreparedStatement prep = this.connection.prepareStatement(query);
 
