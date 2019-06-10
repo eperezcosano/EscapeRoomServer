@@ -221,7 +221,7 @@ public class GameManagerImpl implements GameManager {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
         Objeto objectohash = this.objectoHashMap.get(nameObject);
-        if (objectohash.getId()==0) throw new ObjectNotExistException();
+        if (objectohash == null) throw new ObjectNotExistException();
         Inventario inventario = this.getInventary(username);
         logger.info("User: "+ user.toString());
         int amountMock = 0;
