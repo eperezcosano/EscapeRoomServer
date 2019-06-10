@@ -72,6 +72,19 @@ $(document).ready(function(){
             }
         });
     });
+    var paramstr = window.location.search.substr(1);
+    var paramarr = paramstr.split ("&");
+    var params = {};
+
+    for ( var i = 0; i < paramarr.length; i++) {
+        var tmparr = paramarr[i].split("=");
+        params[tmparr[0]] = tmparr[1];
+    }
+    if (params['username']) {
+        console.log('El valor del parámetro variable es: '+params['username']);
+    } else {
+        console.log('No se envió el parámetro variable');
+    }
     $("#inventory_button").click(function () {
         location.href = "http://147.83.7.205:8080/Inventory.html";
     })
@@ -83,7 +96,7 @@ $(document).ready(function(){
         var surname = data.surname;
         var mail = data.mail;
         var age = data.age;
-        var username_text = "username";
+        var username_text = params[username].text();
         var password_text = "password";
         var name_text = "name";
         var surname_text = "surname";

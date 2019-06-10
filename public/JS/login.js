@@ -1,6 +1,14 @@
 var username = "marioboto";
 var BASE_URI = "http://147.83.7.205:8080/dsaApp/";
 
+function pasarVariables(pagina, nombres) {
+    pagina +="?";
+    nomVec = nombres.split(",");
+    for (i=0; i<nomVec.length; i++)
+        pagina += nomVec[i] + "=" + escape(eval(nomVec[i]))+"&";
+    pagina = pagina.substring(0,pagina.length-1);
+    location.href=pagina;
+}
 $(document).ready(function(){
     console.log("Va cojones");
     $('#login').on('submit', function(e){
@@ -16,7 +24,8 @@ $(document).ready(function(){
             url: 'http://147.83.7.205:8080/dsaApp/auth/login',
             data: JSON.stringify(myObj),
             success: function(data) {
-                location.href = "http://147.83.7.205:8080/Home.html";
+                location.href="javascript:pasarVariables('http://147.83.7.205:8080/Home.html', 'var1,var2')"
+                window.location="http://147.83.7.205:8080/Home.html?username="+ $("#loginUsername").val();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===500){
