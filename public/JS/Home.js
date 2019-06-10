@@ -9,7 +9,7 @@ function buy(id){
     console.log("ou mama");
     console.log(id,": puta id");
         var myObj = {
-            nombre: id,
+            string:id
         };
         console.log(myObj,": Me cago en dios");
         $.ajax({
@@ -94,23 +94,21 @@ $(document).ready(function(){
         $("#mytabla tbody").append(insertion);
 }, "json");
     $.get("http://147.83.7.205:8080/dsaApp/user/statistics/"+username, function (data) {
-        var partidasjugadas = data.partidasjugadas;
-        var enemigosmatados = data.enemigosmatados;
-        var monedasconseguidas = data.monedasconseguidas;
-        var tiempototal = data.minutostotales;
-        var partidasjugadas_text = "Partidas";
-        var enemigosmatados_text = "Enemigos asesinados";
-        var monedasconseguidas_text = "Monedas conseguidas";
-        var tiempototal_text = "Tiempo total";
+        var currentEnemiesKilled = data.currentEnemiesKilled;
+        var currentTime = data.currentTime;
+        var playedGames = data.playedGames;
+        var partidasjugadas_text = "playedGames";
+        var enemigosmatados_text = "currentEnemiesKilled";
+        var tiempototal_text = "currentTime";
         console.log("Profile:",data);
-        var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + partidasjugadas + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + tiempototal + "</td></tr><tr><td>" + enemigosmatados_text +"</td>><td>" + enemigosmatados + "</td></tr><tr><td>" + monedasconseguidas_text + "</td><td>" + monedasconseguidas + "</td></tr>";
+        var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + playedGames + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + currentTime + "</td></tr><tr><td>" + enemigosmatados_text +"</td>><td>" + currentEnemiesKilled + "</td></tr><tr><td>";
         $("#statistics_tabla tbody").append(insertion);
     }, "json");
     $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+username, function (data) {
         console.log("Data:",data.lista[0].nombre);
         for (let i = 0; i<data.lista.length; i++)
         {
-            if(data.lista[i].nombre=="fusildetambor"||data.lista[i].nombre=="corredera"||data.lista[i].nombre=="katana") {
+            if(data.lista[i].nombre=="fusil"||data.lista[i].nombre=="corredera"||data.lista[i].nombre=="katana") {
                 myfunction(data.lista[i].nombre);
             }
         }
