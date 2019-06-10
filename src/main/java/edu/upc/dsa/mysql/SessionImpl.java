@@ -84,6 +84,13 @@ public class SessionImpl implements Session {
         return find(theClass, id, null).get(0);
     }
 
+    public void deleteInventario (int objetoId, int userId) throws Exception{
+        String query ="DELETE FROM Inventario WHERE userId = " + userId +" AND objetoId = " + objetoId;
+        PreparedStatement prep = this.connection.prepareStatement(query);
+        prep.execute();
+        log.info("query: " + query);
+    }
+
     public List<Object> findAll(Class theClass) throws Exception {
         return find(theClass, 0, null);
     }
@@ -144,21 +151,11 @@ public class SessionImpl implements Session {
     public void buy( int objetoId, int userId, int amount) throws Exception {
         String query;
         int amountBueno = amount + 1;
-        this.delete(Inventario.class,objetoId);
+        this.deleteInventario(objetoId,userId);
         query = "INSERT INTO Inventario (userId, objetoId, amount) VALUES ('" + userId + "','" + objetoId +"','" + amountBueno + "')";
         PreparedStatement prep = this.connection.prepareStatement(query);
 
-     /*   try {
 
-            prep.setInt(1, userId);
-            prep.setInt(2, objetoId);
-            prep.setInt(3, amountBueno);
-
-        }catch (Exception e)
-        {
-            log.info("Index mal");
-        }
-        */
         prep.execute();
         prep.close();
     }
