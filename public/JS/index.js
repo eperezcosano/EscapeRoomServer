@@ -1,9 +1,9 @@
-var BASE_URI = "http://localhost:8080/dsaApp";
+var BASE_URI = "http://147.83.7.205:8080/";
 
 
 function acceder(id)
 { console.log("id",id);
-    location.href = "http://localhost:8080/login.html";
+    location.href = "http://147.83.7.205:8080/login.html";
 }
 
 $(document).ready(function() {

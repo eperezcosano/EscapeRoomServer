@@ -11,7 +11,7 @@ var username = "Carlo";
 
 function volver(id)
 { console.log("id",id);
-    location.href = "http://localhost:8080/Home.html";
+    location.href = "http://147.83.7.205:8080/Home.html";
 }
 $(document).ready(function() {
     // Add smooth scrolling to all links in navbar + footer link

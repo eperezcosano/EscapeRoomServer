@@ -1,4 +1,5 @@
 var username = "Carlo";
+var BASE_URI = "http://147.83.7.205:8080/";
 
 $(document).ready(function(){
     console.log("Va cojones");
@@ -12,10 +13,10 @@ $(document).ready(function(){
         console.log("Me cago en dios");
         $.ajax({
             type: 'POST',
-            url: '/dsaApp/user/login',
+            url: '/auth/login',
             data: JSON.stringify(myObj),
             success: function(data) {
-                location.href = "http://localhost:8080/Home.html";
+                location.href = "http://http://147.83.7.205:8080/Home.html";
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===500){
@@ -37,7 +38,7 @@ $(document).ready(function(){
         e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '/dsaApp/user/register',
+            url: '/auth/register',
             data: JSON.stringify(myObj),
             success: function(data) {
                 var username = data.username;

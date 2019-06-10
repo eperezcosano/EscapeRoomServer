@@ -1,3 +1,4 @@
+var BASE_URI = "http://147.83.7.205:8080/";
 $(document).ready(function(){
     // Add smooth scrolling to all links in navbar + footer link
     $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
@@ -49,7 +50,7 @@ $(document).ready(function(){
         $.ajax({
             header: {'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE'},
             type: 'POST',
-            url: BASE_URI.concat("/user/register"),
+            url: BASE_URI.concat("/auth/register"),
             data: JSON.stringify(user),
             dataType: 'json',
             success: function (data) {
