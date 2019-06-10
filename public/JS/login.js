@@ -1,5 +1,5 @@
 var username = "Carlo";
-var BASE_URI = "http://147.83.7.205:8080/";
+var BASE_URI = "http://147.83.7.205:8080/dsaApp";
 
 $(document).ready(function(){
     console.log("Va cojones");
@@ -38,7 +38,7 @@ $(document).ready(function(){
         e.preventDefault();
         $.ajax({
             type: 'POST',
-            url: '/auth/register',
+            url: 'http://147.83.7.205:8080/dsaApp/auth/register',
             data: JSON.stringify(myObj),
             success: function(data) {
                 var username = data.username;

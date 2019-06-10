@@ -73,10 +73,10 @@ $(document).ready(function(){
         });
     });
     $("#inventory_button").click(function () {
-        location.href = "http://localhost:8080/Inventory.html";
+        location.href = "http://147.83.7.205:8080/Inventory.html";
     })
     titulo();
-    $.get("http://localhost:8080/dsaApp/user/profile/"+username, function (data) {
+    $.get("http://147.83.7.205:8080/dsaApp/user/profile/"+username, function (data) {
         var username = data.username;
         var password = data.password;
         var name = data.name;
@@ -93,7 +93,7 @@ $(document).ready(function(){
         var insertion = "<tr><td>" + username_text + "</td><td>" + username + "</td></tr><tr><td>" + password_text + "</td><td>" + password + "</td></tr><tr><td>" + name_text+"</td>><td>" + name + "</td></tr><tr><td>" + surname_text + "</td><td>" + surname + "</td></tr><tr><td>" + mail_text + "</td><td>" + mail + "</td></tr><tr><td>" + age_text + "</td><td>" + age + "</td></tr>";
         $("#mytabla tbody").append(insertion);
 }, "json");
-    $.get("http://localhost:8080/dsaApp/user/statistics/"+username, function (data) {
+    $.get("http://147.83.7.205:8080/dsaApp/user/statistics/"+username, function (data) {
         var partidasjugadas = data.partidasjugadas;
         var enemigosmatados = data.enemigosmatados;
         var monedasconseguidas = data.monedasconseguidas;
@@ -106,7 +106,7 @@ $(document).ready(function(){
         var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + partidasjugadas + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + tiempototal + "</td></tr><tr><td>" + enemigosmatados_text +"</td>><td>" + enemigosmatados + "</td></tr><tr><td>" + monedasconseguidas_text + "</td><td>" + monedasconseguidas + "</td></tr>";
         $("#statistics_tabla tbody").append(insertion);
     }, "json");
-    $.get("http://localhost:8080/dsaApp/user/inventory/"+username, function (data) {
+    $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+username, function (data) {
         console.log("Data:",data.lista[0].nombre);
         for (let i = 0; i<data.lista.length; i++)
         {

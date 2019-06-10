@@ -1,4 +1,4 @@
-var BASE_URI = "http://147.83.7.205:8080/";
+var BASE_URI = "http://147.83.7.205:8080/dsaApp";
 $(document).ready(function(){
     // Add smooth scrolling to all links in navbar + footer link
     $(".navbar a, footer a[href='#myPage']").on('click', function(event) {

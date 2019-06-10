@@ -47,7 +47,7 @@ $(document).ready(function() {
     });
     console.log("EEEEEEEE");
     var i=0;
-    $.get("http://localhost:8080/dsaApp/user/inventory/"+username, function (data) {
+    $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+username, function (data) {
             console.log("Data:",data);
             console.log("AA:",data.lista[i]);
             while(i<data.lista.length) {
