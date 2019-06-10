@@ -8,6 +8,7 @@ import edu.upc.dsa.to.User.UserProfile;
 import edu.upc.dsa.to.User.UserStatistics;
 import org.apache.log4j.Logger;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 
@@ -74,10 +75,7 @@ public class GameManagerImpl implements GameManager {
                 session.delete(Objeto.class, idObject);
                 log.info("Object deleted ID: " + idObject);
 
-            } catch (ObjectNotExistException e) {
-                log.info("Object not found");
-                throw e;
-            } catch (Exception e) {
+            } catch (SQLException e) {
                 e.printStackTrace();
                 throw e;
             } finally {

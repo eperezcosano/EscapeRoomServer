@@ -139,12 +139,16 @@ public class SessionImpl implements Session {
     }
 
     public void delete(Class theClass, int id) throws Exception {
-        String query ="DELETE FROM " + theClass.getSimpleName() + " WHERE id = ?";
-        PreparedStatement prep = this.connection.prepareStatement(query);
-        prep.setInt(1 , id);
-        prep.execute();
-        log.info("que sale:"+prep);
-        log.info("query: " + query);
+        try {
+            String query = "DELETE FROM " + theClass.getSimpleName() + " WHERE id = ?";
+            PreparedStatement prep = this.connection.prepareStatement(query);
+            prep.setInt(1, id);
+            prep.execute();
+            log.info("que sale:" + prep);
+            log.info("query: " + query);
+        }catch (SQLException e)
+        {
+        }
     }
 
     @Override
