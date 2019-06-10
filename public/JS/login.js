@@ -31,7 +31,7 @@ $(document).ready(function(){
         });
     });
     $('#register').on('submit', function(e){
-        var myObj = {
+        var myObj2 = {
             username: $("#registerUsername").val(),
             password: $("#registerPassword").val(),
             name: $("#registerName").val(),
@@ -43,13 +43,17 @@ $(document).ready(function(){
         $.ajax({
             type: 'POST',
             url: 'http://147.83.7.205:8080/dsaApp/auth/register',
-            data: JSON.stringify(myObj),
+            data: JSON.stringify(myObj2),
             success: function(data) {
                 location.href = "http://147.83.7.205:8080/Home.html";
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                alert("Existant user");
-            },
+                if(xhr.status===500){
+                    alert("Password not match");
+                }
+                else {
+                    alert("Existant user");
+                }},
             contentType: "application/json",
             dataType: 'json'
         });
