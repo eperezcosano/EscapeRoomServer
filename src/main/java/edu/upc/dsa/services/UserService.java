@@ -6,6 +6,7 @@ import edu.upc.dsa.GameManagerImpl;
 
 import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
+import edu.upc.dsa.to.ObjTO;
 import edu.upc.dsa.to.User.UserProfile;
 import edu.upc.dsa.to.User.UserStatistics;
 import io.swagger.annotations.Api;
@@ -95,7 +96,7 @@ public class UserService {
     @POST
     @ApiOperation(value = "Buy", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = String.class ),
+            @ApiResponse(code = 201, message = "Successful", response = ObjTO.class ),
             @ApiResponse(code = 404, message = "First login or register"),
             @ApiResponse(code = 500, message = "Object not found"),
             @ApiResponse(code = 501, message = "You can't buy two same weapons"),
@@ -104,9 +105,9 @@ public class UserService {
     })
     @Path("/buy/{username}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response buy(String objTO, @PathParam("username") String username) {
+    public Response buy(ObjTO objTO, @PathParam("username") String username) {
         try{
-            this.ma.buyObject(objTO,username);
+            this.ma.buyObject(objTO.getNombre(),username);
             return Response.status(201).entity(objTO).build();
         }catch(WeaponException e1)
         {return Response.status(501).build();

@@ -9,7 +9,7 @@ function buy(id){
     console.log("ou mama");
     console.log(id,": puta id");
         var myObj = {
-            string:id
+            nombre:id
         };
         console.log(myObj,": Me cago en dios");
         $.ajax({
