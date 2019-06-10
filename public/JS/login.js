@@ -33,7 +33,11 @@ $(document).ready(function(){
     $('#register').on('submit', function(e){
         var myObj = {
             username: $("#registerUsername").val(),
-            password: $("#registerPassword").val()
+            password: $("#registerPassword").val(),
+            name: $("#registerName").val(),
+            surname: $("#registerSurname").val(),
+            mail: $("#registerMail").val(),
+            age: $("#registerAge").val()
         };
         e.preventDefault();
         $.ajax({
@@ -41,14 +45,7 @@ $(document).ready(function(){
             url: 'http://147.83.7.205:8080/dsaApp/auth/register',
             data: JSON.stringify(myObj),
             success: function(data) {
-                var username = data.username;
-                var password = data.password;
-                document.getElementById('registerTextUsername').innerHTML = "Username: "+ username.toString();
-                document.getElementById('registerTextPassword').innerHTML = "Password: "+ password.toString();
-                var container = document.getElementById('secondRow');
-                var registerContainer = document.getElementById('registerResponse');
-                container.style.display="block";
-                registerContainer.style.display="block";
+                location.href = "http://147.83.7.205:8080/Home.html";
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 alert("Existant user");
