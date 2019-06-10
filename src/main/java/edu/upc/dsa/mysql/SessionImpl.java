@@ -138,14 +138,8 @@ public class SessionImpl implements Session {
         log.info("query: " + query);
     }
 
-    public void deleteUserFromAdmin(Class theClass, int id) throws Exception {
-        Object object = find(User.class, id, "admin").get(0);
-        String query = "DELETE FROM " + theClass.getSimpleName() + " WHERE id = ?";
-        PreparedStatement prep = this.connection.prepareStatement(query);
-        prep.setInt(1, id);
-        prep.execute();
-    }
     public void delete(Class theClass, int id) throws Exception {
+        Object object = find(theClass, id, "admin").get(0);
         String query = "DELETE FROM " + theClass.getSimpleName() + " WHERE id = ?";
         PreparedStatement prep = this.connection.prepareStatement(query);
         prep.setInt(1, id);

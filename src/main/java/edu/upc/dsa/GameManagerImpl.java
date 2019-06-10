@@ -50,7 +50,7 @@ public class GameManagerImpl implements GameManager {
 
             try {
                 session = Factory.getSession();
-                session.deleteUserFromAdmin(User.class, userId);
+                session.delete(User.class, userId);
                 log.info("User deleted ID: " + userId);
 
             } catch (UserNotFoundException e) {
