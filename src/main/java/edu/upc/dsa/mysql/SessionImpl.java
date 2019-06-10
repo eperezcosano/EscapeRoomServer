@@ -143,7 +143,7 @@ public class SessionImpl implements Session {
         PreparedStatement prep = this.connection.prepareStatement(query);
         prep.setInt(1 , id);
         prep.execute();
-
+        log.info("que sale:"+prep);
         log.info("query: " + query);
     }
 
