@@ -1,4 +1,4 @@
-var BASE_URI = "http://147.83.7.205:8080/";
+var BASE_URI = "http://147.83.7.205:8080";
 var username = "Carlo";
 
 function myfunction(id) {
@@ -17,7 +17,7 @@ function buy(id){
             url: '/dsaApp/user/buy/'+ username,
             data: JSON.stringify(myObj),
             success: function(data) {
-                location.href = "http://localhost:8080/Inventory.html";
+                location.href = "http://147.83.7.205:8080/Inventory.html";
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===500){

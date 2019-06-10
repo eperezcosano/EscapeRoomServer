@@ -1,4 +1,4 @@
-var BASE_URI = "http://147.83.7.205:8080/";
+var BASE_URI = "http://147.83.7.205:8080/dsaApp";
 
 
 function acceder(id)
