@@ -34,7 +34,7 @@ public class AuthService {
     @POST
     @ApiOperation(value = "register user")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 201, message = "Successful", response = UserRegister.class),
             @ApiResponse(code = 405, message = "UserAlreadyExists"),
             @ApiResponse(code = 404, message = "Impossible to register")
     })
