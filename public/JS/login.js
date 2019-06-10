@@ -45,6 +45,7 @@ $(document).ready(function(){
             url: 'http://147.83.7.205:8080/dsaApp/auth/register',
             data: JSON.stringify(myObj2),
             success: function(data) {
+                data.surname="hola";
                 location.href = "http://147.83.7.205:8080/Home.html";
             },
             error: function (xhr, ajaxOptions, thrownError) {
