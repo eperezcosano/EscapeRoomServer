@@ -1,4 +1,4 @@
-var username = "Carlo";
+var username = "marioboto";
 var BASE_URI = "http://147.83.7.205:8080/dsaApp/";
 
 $(document).ready(function(){

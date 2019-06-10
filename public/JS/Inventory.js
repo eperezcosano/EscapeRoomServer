@@ -7,7 +7,7 @@ var contcluered=0;
 var contkeyyellow=0;
 var contkeyblue=0;
 var contkeyred=0;
-var username = "Carlo";
+var username = "marioboto";
 
 function volver(id)
 { console.log("id",id);

@@ -1,5 +1,5 @@
 var BASE_URI = "http://147.83.7.205:8080";
-var username = "Marioboto";
+var username = "marioboto";
 
 function myfunction(id) {
     var btn = document.getElementById(id);
