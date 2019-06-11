@@ -192,4 +192,24 @@ public class User {
     public void setAge(int age) {
         this.age = age;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", cash=" + cash +
+                ", currentTime=" + currentTime +
+                ", currentLife=" + currentLife +
+                ", currentEnemiesKilled=" + currentEnemiesKilled +
+                ", currentLevel=" + currentLevel +
+                ", playedGames=" + playedGames +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", mail='" + mail + '\'' +
+                ", age=" + age +
+                ", currentWeapon='" + currentWeapon + '\'' +
+                '}';
+    }
 }

@@ -143,6 +143,7 @@ public class GameManagerImpl implements GameManager {
     public UserStatistics getStatistics(String username) throws UserNotFoundException, NotFunctionForAdminExcepction {
         if (username.equals("admin")) throw new NotFunctionForAdminExcepction();
         User user = this.userHashMap.get(username);
+
         if(user==null) throw new UserNotFoundException();
         logger.info("Logged in: "+user.toString());
         UserStatistics userStatistics = this.passUserToUserStatistics(user);
