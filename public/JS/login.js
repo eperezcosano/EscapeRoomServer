@@ -45,14 +45,14 @@ $(document).ready(function(){
             url: 'http://147.83.7.205:8080/dsaApp/auth/register',
             data: JSON.stringify(myObj2),
             success: function(data) {
-                location.href = "http://147.83.7.205:8080/Home.html";
+                window.location="http://147.83.7.205:8080/Home.html?username="+ $("#registerUsername").val();
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===500) {
                     alert("Password not match");
                 }
                 if(xhr.status===201) {
-                    location.href = "http://147.83.7.205:8080/Home.html";
+                    window.location="http://147.83.7.205:8080/Home.html?username="+ $("#registerUsername").val();
                 }
                 else {
                 alert("Existant user");
