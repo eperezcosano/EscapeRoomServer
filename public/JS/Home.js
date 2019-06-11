@@ -89,14 +89,14 @@ $(document).ready(function(){
         location.href = "http://147.83.7.205:8080/Inventory.html";
     })
     titulo();
-    $.get("http://147.83.7.205:8080/dsaApp/user/profile/"+username, function (data) {
-        var username = data.username;
+    $.get("http://147.83.7.205:8080/dsaApp/user/profile/"+params['username'], function (data) {
+        var username = params['username'];
         var password = data.password;
         var name = data.name;
         var surname = data.surname;
         var mail = data.mail;
         var age = data.age;
-        var username_text = params[username];
+        var username_text = 'username';
         var password_text = "password";
         var name_text = "name";
         var surname_text = "surname";
@@ -106,7 +106,7 @@ $(document).ready(function(){
         var insertion = "<tr><td>" + username_text + "</td><td>" + username + "</td></tr><tr><td>" + password_text + "</td><td>" + password + "</td></tr><tr><td>" + name_text+"</td>><td>" + name + "</td></tr><tr><td>" + surname_text + "</td><td>" + surname + "</td></tr><tr><td>" + mail_text + "</td><td>" + mail + "</td></tr><tr><td>" + age_text + "</td><td>" + age + "</td></tr>";
         $("#mytabla tbody").append(insertion);
 }, "json");
-    $.get("http://147.83.7.205:8080/dsaApp/user/statistics/"+username, function (data) {
+    $.get("http://147.83.7.205:8080/dsaApp/user/statistics/"+params['username'], function (data) {
         var currentEnemiesKilled = data.currentEnemiesKilled;
         var currentTime = data.currentTime;
         var playedGames = data.playedGames;
@@ -117,7 +117,7 @@ $(document).ready(function(){
         var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + playedGames + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + currentTime + "</td></tr><tr><td>" + enemigosmatados_text +"</td>><td>" + currentEnemiesKilled + "</td></tr><tr><td>";
         $("#statistics_tabla tbody").append(insertion);
     }, "json");
-    $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+username, function (data) {
+    $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+params['username'], function (data) {
         console.log("Data:",data.lista[0].nombre);
         for (let i = 0; i<data.lista.length; i++)
         {
