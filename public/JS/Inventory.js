@@ -74,7 +74,7 @@ $(document).ready(function() {
                 if (data.lista[i].nombre == "corredera") {
                     contcorredera = 1;
                 }
-                if (data.lista[i].nombre == "llsveB") {
+                if (data.lista[i].nombre == "llaveB") {
                     contkeyblue=data.lista[i].amount;
                 }
                 if (data.lista[i].nombre == "llaveR") {
