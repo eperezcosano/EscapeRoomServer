@@ -158,7 +158,7 @@ public class GameManagerImpl implements GameManager {
             session.save(insertUser);
 
             log.info("User insert: " + insertUser);
-
+            this.userHashMap.put(username, insertUser);
         } catch (UserAlreadyExistsException e) {
             log.info("User already exists");
             throw e;
@@ -168,7 +168,6 @@ public class GameManagerImpl implements GameManager {
         } finally {
             if (session != null) session.close();
         }
-        this.userHashMap.put(username, u);
         logger.info("New user: " + u.toString());
         return u;
     }
