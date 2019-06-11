@@ -1,5 +1,5 @@
 var BASE_URI = "http://147.83.7.205:8080";
-var username = "marioboto";
+var username = null;
 
 function myfunction(id) {
     var btn = document.getElementById(id);
@@ -17,7 +17,7 @@ function buy(id){
             url: '/dsaApp/user/buy/'+ username,
             data: JSON.stringify(myObj),
             success: function(data) {
-                window.location="http://147.83.7.205:8080/Inventory.html?username="+ params['username'];
+                window.location="http://147.83.7.205:8080/Inventory.html?username="+ username;
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===500){
@@ -82,6 +82,7 @@ $(document).ready(function(){
     }
     if (params['username']) {
         console.log('El valor del parámetro variable es: '+params['username']);
+        username=params['username'];
     } else {
         console.log('No se envió el parámetro variable');
     }
