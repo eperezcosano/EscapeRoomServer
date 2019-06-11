@@ -120,13 +120,12 @@ public class GameManagerImpl implements GameManager {
         if (user == null) throw new UserNotFoundException();
         Session session = null;
         Inventario inventario = new Inventario(username);
-
         try {
             session = Factory.getSession();
             List<ObjetoInventario> lista = session.getInventario(username);
 
             log.info("User request: " + user);
-
+            log.info("LISTA:"+lista.size());
             if (lista.size() != 0)
                 inventario.setLista(lista);
             else
