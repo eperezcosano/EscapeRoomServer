@@ -278,7 +278,7 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public UserStatistics passUserToUserStatistics(User user) {
-        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames());
+        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames(), user.getCurrentWeapon());
         return userStatistics;
     }
 
