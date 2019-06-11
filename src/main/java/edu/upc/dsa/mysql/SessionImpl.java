@@ -173,7 +173,7 @@ public class SessionImpl implements Session {
     }
     @Override
     public void setWeapon(String nombre, int userId) throws Exception {
-        String query = "UPDATE User SET currentWeapon = " + nombre + " WHERE id = " +  userId + ";";
+        String query = "UPDATE User SET currentWeapon = '" + nombre + "' WHERE id = " +  userId + ";";
         PreparedStatement prep = this.connection.prepareStatement(query);
 
         prep.execute();
