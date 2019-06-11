@@ -63,8 +63,8 @@ $(document).ready(function() {
     var i=0;
     $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+username, function (data) {
             console.log("Data:",data);
-            console.log("AA:",data.lista[i]);
             while(i<data.lista.length) {
+                console.log("AA:",data.lista[i]);
                 if (data.lista[i].nombre == "fusil") {
                     contfusil = 1;
                 }
