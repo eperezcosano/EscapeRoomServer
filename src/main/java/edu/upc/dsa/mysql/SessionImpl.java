@@ -180,6 +180,15 @@ public class SessionImpl implements Session {
         prep.close();
     }
 
+    @Override
+    public void setShield(String nombre, int userId) throws Exception {
+        String query = "UPDATE User SET currentShield = '" + nombre + "' WHERE id = " +  userId + ";";
+        PreparedStatement prep = this.connection.prepareStatement(query);
+
+        prep.execute();
+        prep.close();
+    }
+
     public void close() throws Exception {
         this.connection.close();
         log.info("Connection closed");

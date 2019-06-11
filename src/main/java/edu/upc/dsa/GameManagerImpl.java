@@ -295,6 +295,34 @@ public class GameManagerImpl implements GameManager {
         }
 
     }
+
+    @Override
+    public void setShield(String weapon, String username) throws Exception {
+        User user = this.userHashMap.get(username);
+        if(user==null) throw new UserNotFoundException();
+        Objeto objectohash = this.objectoHashMap.get(weapon);
+        if (objectohash == null) throw new ObjectNotExistException();
+        logger.info("User: "+ user.toString());
+        log.info("objetohash:" + objectohash.getId());
+        log.info("Todo correcto en setWeapon");
+
+        Session session = null;
+        try {
+            session = Factory.getSession();
+            session.setShield(objectohash.getNombre(), user.getId());
+            user.setCurrentWeapon(objectohash.getNombre());
+
+        } catch (UserAlreadyExistsException e) {
+            log.info("User already exists");
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (session != null) session.close();
+        }
+    }
+
     @Override
     public void addObjectStore(String name) throws ObjectExistException {
         Objeto objeto = this.objectoHashMap.get(name);
