@@ -246,12 +246,8 @@ public class GameManagerImpl implements GameManager {
         log.info("objetohash:" + objectohash.getId());
         log.info("Todo correcto en buy");
 
-<<<<<<< HEAD
         Session session2 = null;
-=======
 
-        Session session = null;
->>>>>>> 8c81869859f687dcfeda1b6fdeb2db1c029a7a13
 
         try {
             session2 = Factory.getSession();
