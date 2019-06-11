@@ -269,7 +269,7 @@ public class GameManagerImpl implements GameManager {
         try {
             session = Factory.getSession();
             session.setWeapon(objectohash.getNombre(), user.getId());
-
+            user.setCurrentWeapon(objectohash.getNombre());
 
         } catch (UserAlreadyExistsException e) {
             log.info("User already exists");
