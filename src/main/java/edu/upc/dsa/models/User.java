@@ -47,9 +47,10 @@ public class User {
         this.surname = surname;
         this.mail = mail;
         this.age = age;
+        this.currentWeapon="0";
     }
 
-    public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, Timestamp minutostotales, int monedasconseguidas, int partidasjugadas, String currentWeapon) {
+    public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, Timestamp minutostotales, int monedasconseguidas, int partidasjugadas) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -60,7 +61,6 @@ public class User {
         this.currentEnemiesKilled = enemigosmatados;
         this.currentTime = minutostotales;
         this.playedGames = partidasjugadas;
-        this.currentWeapon = currentWeapon;
     }
 
     public User(int id, String username, String password, int cash,String currentWeapon, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age) {
