@@ -232,6 +232,7 @@ public class GameManagerImpl implements GameManager {
         log.info("objetohash:" + objectohash.getId());
         log.info("Todo correcto en buy");
 
+
         Session session = null;
 
         try {
@@ -239,6 +240,35 @@ public class GameManagerImpl implements GameManager {
             session.buy(objectohash.getId(), user.getId(), amountMock);
 
             log.info("Object buy.");
+
+        } catch (UserAlreadyExistsException e) {
+            log.info("User already exists");
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (session != null) session.close();
+        }
+
+    }
+    @Override
+    public void setWeapon(String weapon, String username) throws Exception {
+        User user = this.userHashMap.get(username);
+        if(user==null) throw new UserNotFoundException();
+        Objeto objectohash = this.objectoHashMap.get(weapon);
+        if (objectohash == null) throw new ObjectNotExistException();
+        logger.info("User: "+ user.toString());
+        log.info("objetohash:" + objectohash.getId());
+        log.info("Todo correcto en setWeapon");
+
+
+        Session session = null;
+
+        try {
+            session = Factory.getSession();
+            session.setWeapon(objectohash.getNombre(), user.getId());
+
 
         } catch (UserAlreadyExistsException e) {
             log.info("User already exists");

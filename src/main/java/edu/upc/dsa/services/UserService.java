@@ -39,6 +39,7 @@ public class UserService {
             @ApiResponse(code = 404, message = "First login or register"),
             @ApiResponse(code = 600, message = "Not function for ADMIN")
     })
+
     @Path("/profile/{username}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response profile(@PathParam("username") String username) {
@@ -119,6 +120,33 @@ public class UserService {
             return Response.status(600).build();
         }catch (Exception e4)
         { return Response.status(700).build();
+        }
+    }
+    @POST
+    @ApiOperation(value = "setWeapon", notes = "sets a weapon to an user")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Successful"),
+            @ApiResponse(code = 404, message = "First login or register"),
+            @ApiResponse(code = 500, message = "Object not found"),
+            @ApiResponse(code = 600, message = "Not function for ADMIN"),
+            @ApiResponse(code = 700, message = "Exception")
+    })
+    @Path("/setWeapon/{username}")
+    @Consumes (MediaType.APPLICATION_JSON)
+    public Response setWeapon(ObjTO objTO,@PathParam("username") String username) {
+        try {
+            this.ma.setWeapon(objTO.getNombre(), username);
+            return Response.status(201).entity(objTO).build();
+        } catch (ObjectNotExistException e2) {
+            return Response.status(500).build();
+        } catch (UserNotFoundException e3) {
+            return Response.status(404).build();
+        } catch (NotFunctionForAdminExcepction e10) {
+            return Response.status(600).build();
+        } catch (Exception e4) {
+            return Response.status(700).build();
+
+
         }
     }
 
