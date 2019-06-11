@@ -23,6 +23,7 @@ public class User {
     private String surname;
     private String mail;
     private int age;
+    private String currentWeapon;
 
 
     //Constructors
@@ -48,7 +49,7 @@ public class User {
         this.age = age;
     }
 
-    public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, Timestamp minutostotales, int monedasconseguidas, int partidasjugadas) {
+    public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, Timestamp minutostotales, int monedasconseguidas, int partidasjugadas, String currentWeapon) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -59,9 +60,10 @@ public class User {
         this.currentEnemiesKilled = enemigosmatados;
         this.currentTime = minutostotales;
         this.playedGames = partidasjugadas;
+        this.currentWeapon = currentWeapon;
     }
 
-    public User(int id, String username, String password, int cash, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age) {
+    public User(int id, String username, String password, int cash,String currentWeapon, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -70,12 +72,21 @@ public class User {
         this.currentLife = currentLife;
         this.currentEnemiesKilled = currentEnemiesKilled;
         this.currentLevel = currentLevel;
+        this.currentWeapon = currentWeapon;
         this.playedGames = partidasjugadas;
         this.name = name;
         this.surname = surname;
         this.mail = mail;
         this.age = age;
 
+    }
+
+    public String getCurrentWeapon() {
+        return currentWeapon;
+    }
+
+    public void setCurrentWeapon(String currentWeapon) {
+        this.currentWeapon = currentWeapon;
     }
 
     public int getId() {
@@ -180,5 +191,25 @@ public class User {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", cash=" + cash +
+                ", currentTime=" + currentTime +
+                ", currentLife=" + currentLife +
+                ", currentEnemiesKilled=" + currentEnemiesKilled +
+                ", currentLevel=" + currentLevel +
+                ", playedGames=" + playedGames +
+                ", name='" + name + '\'' +
+                ", surname='" + surname + '\'' +
+                ", mail='" + mail + '\'' +
+                ", age=" + age +
+                ", currentWeapon='" + currentWeapon + '\'' +
+                '}';
     }
 }

@@ -143,6 +143,7 @@ public class GameManagerImpl implements GameManager {
     public UserStatistics getStatistics(String username) throws UserNotFoundException, NotFunctionForAdminExcepction {
         if (username.equals("admin")) throw new NotFunctionForAdminExcepction();
         User user = this.userHashMap.get(username);
+
         if(user==null) throw new UserNotFoundException();
         logger.info("Logged in: "+user.toString());
         UserStatistics userStatistics = this.passUserToUserStatistics(user);
@@ -245,7 +246,12 @@ public class GameManagerImpl implements GameManager {
         log.info("objetohash:" + objectohash.getId());
         log.info("Todo correcto en buy");
 
+<<<<<<< HEAD
         Session session2 = null;
+=======
+
+        Session session = null;
+>>>>>>> 8c81869859f687dcfeda1b6fdeb2db1c029a7a13
 
         try {
             session2 = Factory.getSession();
@@ -261,6 +267,35 @@ public class GameManagerImpl implements GameManager {
             throw e;
         } finally {
             if (session2 != null) session2.close();
+        }
+
+    }
+    @Override
+    public void setWeapon(String weapon, String username) throws Exception {
+        User user = this.userHashMap.get(username);
+        if(user==null) throw new UserNotFoundException();
+        Objeto objectohash = this.objectoHashMap.get(weapon);
+        if (objectohash == null) throw new ObjectNotExistException();
+        logger.info("User: "+ user.toString());
+        log.info("objetohash:" + objectohash.getId());
+        log.info("Todo correcto en setWeapon");
+
+
+        Session session = null;
+
+        try {
+            session = Factory.getSession();
+            session.setWeapon(objectohash.getNombre(), user.getId());
+            user.setCurrentWeapon(objectohash.getNombre());
+
+        } catch (UserAlreadyExistsException e) {
+            log.info("User already exists");
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (session != null) session.close();
         }
 
     }
@@ -328,7 +363,7 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public UserStatistics passUserToUserStatistics(User user) {
-        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames());
+        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames(), user.getCurrentWeapon());
         return userStatistics;
     }
 
