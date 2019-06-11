@@ -158,7 +158,7 @@ public class UserService {
             @ApiResponse(code = 600, message = "Not function for ADMIN"),
             @ApiResponse(code = 700, message = "Exception")
     })
-    @Path("/setWeapon/{username}")
+    @Path("/setShield/{username}")
     @Consumes (MediaType.APPLICATION_JSON)
     public Response setShield(ObjTO objTO,@PathParam("username") String username) {
         try {
