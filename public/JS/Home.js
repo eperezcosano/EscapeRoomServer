@@ -17,7 +17,7 @@ function buy(id){
             url: '/dsaApp/user/buy/'+ username,
             data: JSON.stringify(myObj),
             success: function(data) {
-                location.href = "http://147.83.7.205:8080/Inventory.html";
+                window.location="http://147.83.7.205:8080/Inventory.html?username="+ params['username'];
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===500){
