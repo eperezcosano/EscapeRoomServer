@@ -80,10 +80,6 @@ $(document).ready(function(){
         var tmparr = paramarr[i].split("=");
         params[tmparr[0]] = tmparr[1];
     }
-    console.log('El valor del parámetro variable es:1 '+params['username']);
-    console.log('El valor del parámetro variable es:2 '+tmparr[0]);
-    console.log('El valor del parámetro variable es:3 '+tmparr[1]);
-
     if (params['username']) {
         console.log('El valor del parámetro variable es: '+params['username']);
     } else {
@@ -100,7 +96,7 @@ $(document).ready(function(){
         var surname = data.surname;
         var mail = data.mail;
         var age = data.age;
-        var username_text = params[username].text();
+        var username_text = params[username];
         var password_text = "password";
         var name_text = "name";
         var surname_text = "surname";
