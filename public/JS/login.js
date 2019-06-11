@@ -24,8 +24,8 @@ $(document).ready(function(){
             url: 'http://147.83.7.205:8080/dsaApp/auth/login',
             data: JSON.stringify(myObj),
             success: function(data) {
-                location.href="javascript:pasarVariables('http://147.83.7.205:8080/Home.html', 'var1,var2')"
                 window.location="http://147.83.7.205:8080/Home.html?username="+ $("#loginUsername").val();
+                location.href="http://147.83.7.205:8080/Home.html";
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===500){
