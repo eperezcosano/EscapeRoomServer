@@ -152,7 +152,7 @@ public class SessionImpl implements Session {
         prep.execute();
         log.info("que sale:" + prep);
         log.info("query: " + query);
-        if(theClass.getName().equals("Objeto")){
+        if(theClass.getSimpleName().equals("Objeto")){
             this.deleteObjetoFromInventario(id);
         }
     }
