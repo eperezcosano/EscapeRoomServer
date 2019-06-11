@@ -25,7 +25,7 @@ $(document).ready(function(){
             data: JSON.stringify(myObj),
             success: function(data) {
                 window.location="http://147.83.7.205:8080/Home.html?username="+ $("#loginUsername").val();
-                location.href="http://147.83.7.205:8080/Home.html";
+                //location.href="http://147.83.7.205:8080/Home.html";
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===500){

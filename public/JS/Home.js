@@ -80,6 +80,10 @@ $(document).ready(function(){
         var tmparr = paramarr[i].split("=");
         params[tmparr[0]] = tmparr[1];
     }
+    console.log('El valor del parámetro variable es:1 '+params['username']);
+    console.log('El valor del parámetro variable es:2 '+tmparr[0]);
+    console.log('El valor del parámetro variable es:3 '+tmparr[1]);
+
     if (params['username']) {
         console.log('El valor del parámetro variable es: '+params['username']);
     } else {
