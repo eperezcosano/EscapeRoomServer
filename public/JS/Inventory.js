@@ -7,11 +7,11 @@ var contcluered=0;
 var contkeyyellow=0;
 var contkeyblue=0;
 var contkeyred=0;
-var username = "marioboto";
+var username = null;
 
 function volver(id)
 { console.log("id",id);
-    location.href = "http://147.83.7.205:8080/Home.html";
+    window.location="http://147.83.7.205:8080/Home.html?username="+ username;
 }
 $(document).ready(function() {
     // Add smooth scrolling to all links in navbar + footer link
@@ -45,6 +45,20 @@ $(document).ready(function() {
             }
         });
     });
+    var paramstr = window.location.search.substr(1);
+    var paramarr = paramstr.split ("&");
+    var params = {};
+
+    for ( var i = 0; i < paramarr.length; i++) {
+        var tmparr = paramarr[i].split("=");
+        params[tmparr[0]] = tmparr[1];
+    }
+    if (params['username']) {
+        console.log('El valor del parámetro variable es: '+params['username']);
+        username=params['username'];
+    } else {
+        console.log('No se envió el parámetro variable');
+    }
     console.log("EEEEEEEE");
     var i=0;
     $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+username, function (data) {

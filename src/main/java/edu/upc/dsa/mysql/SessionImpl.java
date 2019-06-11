@@ -90,6 +90,12 @@ public class SessionImpl implements Session {
         prep.execute();
         log.info("query: " + query);
     }
+    public void deleteObjetoFromInventario (int objetoId) throws Exception{
+        String query ="DELETE FROM Inventario WHERE objetoId = " + objetoId;
+        PreparedStatement prep = this.connection.prepareStatement(query);
+        prep.execute();
+        log.info("query: " + query);
+    }
 
     public List<Object> findAll(Class theClass) throws Exception {
         return find(theClass, 0, null);
@@ -146,6 +152,9 @@ public class SessionImpl implements Session {
         prep.execute();
         log.info("que sale:" + prep);
         log.info("query: " + query);
+        if(theClass.getName().equals("Objeto")){
+            this.deleteObjetoFromInventario(id);
+        }
     }
 
     @Override
