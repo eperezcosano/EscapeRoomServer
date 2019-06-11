@@ -75,22 +75,22 @@ $(document).ready(function() {
                     contcorredera = 1;
                 }
                 if (data.lista[i].nombre == "llsveB") {
-                    contkeyblue++;
+                    contkeyblue=data.lista[i].amount;
                 }
                 if (data.lista[i].nombre == "llaveR") {
-                    contkeyred++;
+                    contkeyred=data.lista[i].amount;
                 }
                 if (data.lista[i].nombre == "llaveY") {
-                    contkeyyellow++;
+                    contkeyyellow=data.lista[i].amount;
                 }
-                if (data.lista[i].nombre == "pistaA") {
-                    contclueblue++;
+                if (data.lista[i].nombre == "pistaB") {
+                    contclueblue=data.lista[i].amount;
                 }
                 if (data.lista[i].nombre == "pistaR") {
-                    contcluered++;
+                    contcluered=data.lista[i].amount;
                 }
                 if (data.lista[i].nombre == "pistaY") {
-                    contclueyellow++;
+                    contclueyellow=data.lista[i].amount;
                 }
                 i++;
                 console.log("OLAOLAOLA");
@@ -220,7 +220,7 @@ $(document).ready(function() {
         }
         else{
             console.log("Hola",16);
-            document.getElementById('keyblue').src ="https://scontent-mad1-1.xx.fbcdn.net/v/t1.0-9/59904610_2381158021936904_3630824489995993088_n.jpg?_nc_cat=105&_nc_ht=scontent-mad1-1.xx&oh=b09ac4773b91ee855ae246c60469be4e&oe=5D2FAC40";
+            document.getElementById('llaveB').src ="https://scontent-mad1-1.xx.fbcdn.net/v/t1.0-9/59904610_2381158021936904_3630824489995993088_n.jpg?_nc_cat=105&_nc_ht=scontent-mad1-1.xx&oh=b09ac4773b91ee855ae246c60469be4e&oe=5D2FAC40";
             var conte = document.getElementById('contenedorkey_blue');
             conte.style.display = "block";
             document.getElementById('contadorkey_blue').innerHTML=contkeyblue.toString();
