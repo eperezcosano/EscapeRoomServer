@@ -214,7 +214,20 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public void buyObject(String nameObject, String username) throws Exception {
-        User user = this.userHashMap.get(username);
+        Session session = null;
+        User user;
+        try {
+            session = Factory.getSession();
+            user = session.getByUsername(username);
+        } catch (UserNotFoundException e) {
+            log.info("User not found");
+            throw e;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        } finally {
+            if (session != null) session.close();
+        }
         if(user==null) throw new UserNotFoundException();
         Objeto objectohash = this.objectoHashMap.get(nameObject);
         if (objectohash == null) throw new ObjectNotExistException();
@@ -232,11 +245,11 @@ public class GameManagerImpl implements GameManager {
         log.info("objetohash:" + objectohash.getId());
         log.info("Todo correcto en buy");
 
-        Session session = null;
+        Session session2 = null;
 
         try {
-            session = Factory.getSession();
-            session.buy(objectohash.getId(), user.getId(), amountMock);
+            session2 = Factory.getSession();
+            session2.buy(objectohash.getId(), user.getId(), amountMock);
 
             log.info("Object buy.");
 
@@ -247,7 +260,7 @@ public class GameManagerImpl implements GameManager {
             e.printStackTrace();
             throw e;
         } finally {
-            if (session != null) session.close();
+            if (session2 != null) session2.close();
         }
 
     }
@@ -261,6 +274,43 @@ public class GameManagerImpl implements GameManager {
         }
         else throw new ObjectExistException();
 
+    }
+
+    @Override
+    public Map getMapas() throws Exception {
+        Session session = null;
+        /*try {
+            session = Factory.getSession();
+                if (Map instanceof Objeto) {
+
+                    List<Map> lista = (Map) session.findAll(Map.class);
+                log.info("DB User" + dataUser);
+                if (dataUser != null && dataUser.getPassword().equals(password)) {
+                    res = new UserLogin(dataUser.getUsername(), dataUser.getPassword());
+                    userHashMap.put(dataUser.getUsername(), dataUser);
+                    return res;
+                }
+                if (dataUser != null && !dataUser.getPassword().equals(password)) throw new PasswordNotMatchException();
+                else throw new UserNotFoundException();
+            } catch (PasswordNotMatchException e)
+            {
+                res = new UserLogin(username, null);
+                return res;
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+                return null;
+            } finally {
+                if (session != null) session.close();
+            }
+        } else {
+            if (password.equals(user.getPassword())) {
+                logger.info("Logged in: " + user.toString());
+                UserLogin userLogin = this.passUserToUserLogin(user);
+                return userLogin;
+            } else throw new PasswordNotMatchException();
+        }  */
+        return null;
     }
     @Override
     public void clear() {

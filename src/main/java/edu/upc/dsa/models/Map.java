@@ -1,42 +1,33 @@
 package edu.upc.dsa.models;
 
+import java.util.List;
+
 public class Map {
     //Atributes
-    private String id;
-    private int level;
-    private String casillero;
+    private int id;
+    private String mapLevel;
 
-    public Map(){
-
+    public Map() {
     }
 
-    public Map(String id, int level, String casillero) {
+    public Map(int id, String mapLevel) {
         this.id = id;
-        this.level = level;
-        this.casillero = casillero;
+        this.mapLevel = mapLevel;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getLevel() {
-        return level;
+    public String getMapLevel() {
+        return mapLevel;
     }
 
-    public void setLevel(int level) {
-        this.level = level;
-    }
-
-    public String getCasillero() {
-        return casillero;
-    }
-
-    public void setCasillero(String casillero) {
-        this.casillero = casillero;
+    public void setMapLevel(String mapLevel) {
+        this.mapLevel = mapLevel;
     }
 }

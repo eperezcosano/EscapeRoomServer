@@ -6,6 +6,8 @@ import edu.upc.dsa.to.User.UserLogin;
 import edu.upc.dsa.to.User.UserProfile;
 import edu.upc.dsa.to.User.UserStatistics;
 
+import java.util.List;
+
 public interface GameManager{
 
     //ADMIN
@@ -30,6 +32,9 @@ public interface GameManager{
 
     void añadirObjetosHashMap() throws Exception;
     void addObjectStore(String name) throws ObjectExistException;
+
+    //UNITY
+    Map getMapas() throws Exception;
 
     void clear();
 
