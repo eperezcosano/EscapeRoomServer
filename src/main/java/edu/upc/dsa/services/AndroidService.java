@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.log4j.Logger;
+import sun.rmi.runtime.Log;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -44,6 +45,7 @@ public class AndroidService {
     public Response profile(@PathParam("id") int id) {
         try{
             String map = this.android.getMapa(id);
+            log.info("Y mi puto string:"+map);
             return Response.status(201).entity(map).build();
         } catch(MapNotFoundException e10){
             return Response.status(404).build();

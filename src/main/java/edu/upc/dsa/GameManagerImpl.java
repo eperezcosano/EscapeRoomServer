@@ -345,7 +345,7 @@ public class GameManagerImpl implements GameManager {
          while (fin)
          {
              map=map+rs.getString(String.valueOf(i));
-
+             log.info("Mi mapa:"+map);
              if(rs.getString(String.valueOf(i))==null)
              {
                  fin=true;
