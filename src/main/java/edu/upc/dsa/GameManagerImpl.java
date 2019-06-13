@@ -144,6 +144,21 @@ public class GameManagerImpl implements GameManager {
         log.info("Login response: " + inventario);
         return inventario;
     }
+
+    @Override
+    public void setInventary(Inventario inventario) throws Exception {
+        Session session = null;
+        try {
+            session = Factory.getSession();
+            session.setInventario(inventario);
+            log.info("Inventario actualizado");
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) session.close();
+        }
+    }
+
     @Override
     public UserStatistics getStatistics(String username) throws UserNotFoundException, NotFunctionForAdminExcepction {
         if (username.equals("admin")) throw new NotFunctionForAdminExcepction();
@@ -391,7 +406,7 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public UserStatistics passUserToUserStatistics(User user) {
-        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames(),user.getCurrentWeapon(),user.getCurrentShield(),user.getCurrentLevel());
+        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames(),user.getCurrentWeapon(),user.getCurrentShield(),user.getCurrentLevel(),user.getCash());
         return userStatistics;
     }
 

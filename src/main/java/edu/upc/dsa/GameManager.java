@@ -21,6 +21,7 @@ public interface GameManager{
     User getUser (String username,String password) throws UserNotFoundException;
     UserProfile getProfile (String username) throws UserNotFoundException, NotFunctionForAdminExcepction;
     Inventario getInventary (String username) throws  Exception;
+    void setInventary (Inventario inventario) throws Exception;
     UserStatistics getStatistics(String username) throws UserNotFoundException, NotFunctionForAdminExcepction;
     void buyObject(String nameObject, String username) throws Exception;
     void setWeapon(String weapon, String username) throws Exception;

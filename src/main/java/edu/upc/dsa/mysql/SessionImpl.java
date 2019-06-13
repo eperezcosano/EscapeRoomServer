@@ -90,6 +90,12 @@ public class SessionImpl implements Session {
         prep.execute();
         log.info("query: " + query);
     }
+    public void deleteAllInventarioFromOneUser (int userId) throws Exception{
+        String query ="DELETE FROM Inventario WHERE userId = " + userId;
+        PreparedStatement prep = this.connection.prepareStatement(query);
+        prep.execute();
+        log.info("query: " + query);
+    }
 
     public void deleteObjetoFromInventario (int objetoId) throws Exception{
         String query ="DELETE FROM Inventario WHERE objetoId = " + objetoId;
@@ -125,6 +131,22 @@ public class SessionImpl implements Session {
             objetos.add(new ObjetoInventario(rs.getInt(2),rs.getString(3),rs.getString(4),rs.getInt(5),rs.getString(6),rs.getInt(1)));
         }
         return objetos;
+    }
+
+    @Override
+    public void setInventario(Inventario inventario) throws Exception {
+        User user;
+        try{
+             user = getByUsername(inventario.getUsername());
+        }catch (Exception e){
+            user=null;
+        }
+        if(user!=null) {
+            this.deleteAllInventarioFromOneUser(user.getId());
+            for (ObjetoInventario objetoInventario : inventario.getLista()) {
+                this.save(objetoInventario);
+            }
+        }
     }
 
     public void update(Object entity, int id) throws Exception {
