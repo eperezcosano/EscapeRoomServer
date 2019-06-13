@@ -2,5 +2,10 @@
 <project version="4">
   <component name="ResourceBundleManager">
     <file url="file://$PROJECT_DIR$/src/main/resources/bundle.properties" />
+    <custom-resource-bundle>
+      <file value="file://$PROJECT_DIR$/src/main/resources/bundle_1.properties" />
+      <file value="file://$PROJECT_DIR$/src/main/resources/bundle_2.properties" />
+      <base-name>bundle</base-name>
+    </custom-resource-bundle>
   </component>
 </project>

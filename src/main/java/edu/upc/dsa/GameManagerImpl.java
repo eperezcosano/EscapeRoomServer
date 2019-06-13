@@ -29,9 +29,6 @@ public class GameManagerImpl implements GameManager {
         this.userHashMap = new HashMap<>();
         this.objectoHashMap = new HashMap<>();
         this.data = new HashMap<>();
-        Locale l = new Locale("1");
-        ResourceBundle rs = ResourceBundle.getBundle("bundle",l);
-        data.put(1,rs);
 
     }
     public static GameManager getInstance(){
@@ -341,24 +338,23 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public String getMapa(int id) throws Exception {
-        ResourceBundle rs = data.get(id);
-        if(rs==null)
-        {
-
-        }
-        String map = null;
+       // ResourceBundle rs = data.get(id);
+        Locale l = new Locale("mapa1");
+        ResourceBundle rs = ResourceBundle.getBundle("bundle",l);
+      //  data.put(1,rs);
+        String map="";
         boolean fin = false;
         int i=1;
-         while (fin)
+         while (!fin)
          {
-             map=map+rs.getString(String.valueOf(i));
-             log.info("Mi mapa:"+map);
-             if(rs.getString(String.valueOf(i))==null)
-             {
-                 fin=true;
-             }else {
+             try{
+                 map+=rs.getString(String.valueOf(i));
+                 log.info("Mi mapa:"+map);
                  i++;
-             }
+                }
+             catch (Exception e)
+             {fin=true;}
+
          }
         return map;
         }
