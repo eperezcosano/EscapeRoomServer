@@ -14,7 +14,7 @@ public class User {
     private String username;
     private String password;
     private int cash=0;
-    private Timestamp currentTime;
+    private String currentTime;
     private int currentLife=0;
     private int currentEnemiesKilled=0;
     private int currentLevel=0;
@@ -52,7 +52,7 @@ public class User {
         this.currentShield="0";
     }
 
-    public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, Timestamp minutostotales, int monedasconseguidas, int partidasjugadas) {
+    public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, String minutostotales, int monedasconseguidas, int partidasjugadas) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -64,7 +64,7 @@ public class User {
         this.playedGames = partidasjugadas;
     }
 
-    public User(int id, String username, String password, int cash,String currentWeapon, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age, String currentShield) {
+    public User(int id, String username, String password, int cash,String currentWeapon, String currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age, String currentShield) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -131,11 +131,11 @@ public class User {
         this.cash = cash;
     }
 
-    public Timestamp getCurrentTime() {
+    public String getCurrentTime() {
         return currentTime;
     }
 
-    public void setCurrentTime(Timestamp currentTime) {
+    public void setCurrentTime(String currentTime) {
         this.currentTime = currentTime;
     }
 

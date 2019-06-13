@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class UserStatistics {
     private int currentEnemiesKilled;
-    private Timestamp currentTime;
+    private String currentTime;
     private int playedGames;
     private String currentWeapon;
     private String currentShield;
@@ -13,7 +13,7 @@ public class UserStatistics {
     public UserStatistics() {
     }
 
-    public UserStatistics(int currentEnemiesKilled, Timestamp currentTime, int playedGames, String currentWeapon, String currentShield, int currentLevel) {
+    public UserStatistics(int currentEnemiesKilled, String currentTime, int playedGames, String currentWeapon, String currentShield, int currentLevel) {
         this.currentEnemiesKilled = currentEnemiesKilled;
         this.currentTime = currentTime;
         this.playedGames = playedGames;
@@ -46,11 +46,11 @@ public class UserStatistics {
         this.currentEnemiesKilled = currentEnemiesKilled;
     }
 
-    public Timestamp getCurrentTime() {
+    public String getCurrentTime() {
         return currentTime;
     }
 
-    public void setCurrentTime(Timestamp currentTime) {
+    public void setCurrentTime(String currentTime) {
         this.currentTime = currentTime;
     }
 
