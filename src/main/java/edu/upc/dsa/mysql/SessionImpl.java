@@ -150,6 +150,13 @@ public class SessionImpl implements Session {
         }
     }
 
+    @Override
+    public void updateUser (User user) throws Exception {
+        String query ="UPDATE User SET currentTime='"+user.getCurrentTime()+"', currentLife='"+user.getCurrentLife()+"', currentEnemiesKilled='"+user.getCurrentEnemiesKilled()+"', currentLevel='"+ user.getCurrentLevel()+"', currentWeapon='"+user.getCurrentWeapon()+"', currentShield='"+user.getCurrentShield()+"' WHERE id='"+user.getId()+"'";
+        PreparedStatement prep = this.connection.prepareStatement(query);
+        prep.execute();
+        prep.close();
+    }
     public void update(Object entity, int id) throws Exception {
         Field[] fields = entity.getClass().getDeclaredFields();
         StringBuilder sb = new StringBuilder();

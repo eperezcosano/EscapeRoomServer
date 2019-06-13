@@ -18,6 +18,7 @@ public interface Session {
     List<ObjetoInventario> getInventario (String username) throws Exception;
     void setInventario (Inventario inventario) throws Exception;
     void update(Object object, int id) throws Exception;
+    void updateUser (User user) throws Exception;
     void delete(Class theClass, int id) throws Exception;
     void buy(int objetoId, int userId , int amount) throws Exception;
     void setWeapon(String nombre, int userId) throws Exception;
