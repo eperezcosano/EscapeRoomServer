@@ -6,12 +6,9 @@ function myfunction(id) {
     btn.innerHTML='<button id=id type="button" class="btn btn-buya" onclick="buy(this.id);myfunction(id)" disabled>BUY</button>';
 }
 function buy(id){
-    console.log("ou mama");
-    console.log(id,": puta id");
         var myObj = {
             nombre:id
         };
-        console.log(myObj,": Me cago en dios");
         $.ajax({
             type: 'POST',
             url: '/dsaApp/user/buy/'+ username,
@@ -111,18 +108,22 @@ $(document).ready(function(){
         var currentEnemiesKilled = data.currentEnemiesKilled;
         var currentTime = data.currentTime;
         var playedGames = data.playedGames;
+        var currentShield = data.currentShield;
+        var currentSword = data.currentSword;
         var partidasjugadas_text = "playedGames";
         var enemigosmatados_text = "currentEnemiesKilled";
         var tiempototal_text = "currentTime";
+        var currentShieldtext = "currentShield";
+        var currentSwordtext = "currentSword";
         console.log("Profile:",data);
-        var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + playedGames + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + currentTime + "</td></tr><tr><td>" + enemigosmatados_text +"</td>><td>" + currentEnemiesKilled + "</td></tr><tr><td>";
+        var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + playedGames + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + currentTime + "</td></tr><tr><td>" + enemigosmatados_text +"</td><td>" + currentEnemiesKilled + "</td></tr><tr><td><tr><td>" + currentShieldtext + "</td><td>" + currentShield + "</td></tr><tr><td>" + currentSwordtext + "</td><td>" + currentSword + "</td></tr>";
         $("#statistics_tabla tbody").append(insertion);
     }, "json");
     $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+params['username'], function (data) {
         console.log("Data:",data.lista[0].nombre);
         for (let i = 0; i<data.lista.length; i++)
         {
-            if(data.lista[i].nombre=="fusil"||data.lista[i].nombre=="corredera"||data.lista[i].nombre=="katana") {
+            if(data.lista[i].nombre=="woodSword"||data.lista[i].nombre=="ironSword"||data.lista[i].nombre=="goldSword"||data.lista[i].nombre=="woodShield"||data.lista[i].nombre=="ironShield"||data.lista[i].nombre=="goldShield") {
                 myfunction(data.lista[i].nombre);
             }
         }

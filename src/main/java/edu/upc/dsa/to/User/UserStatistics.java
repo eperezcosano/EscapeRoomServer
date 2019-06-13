@@ -7,16 +7,27 @@ public class UserStatistics {
     private Timestamp currentTime;
     private int playedGames;
     private String currentWeapon;
+    private String currentShield;
+    private int currentLevel=0;
 
     public UserStatistics() {
     }
 
-
-    public UserStatistics(int currentEnemiesKilled, Timestamp currentTime, int partidasjugadas, String currentWeapon) {
+    public UserStatistics(int currentEnemiesKilled, Timestamp currentTime, int playedGames, String currentWeapon, String currentShield, int currentLevel) {
         this.currentEnemiesKilled = currentEnemiesKilled;
         this.currentTime = currentTime;
-        this.playedGames = partidasjugadas;
+        this.playedGames = playedGames;
         this.currentWeapon = currentWeapon;
+        this.currentShield = currentShield;
+        this.currentLevel = currentLevel;
+    }
+
+    public String getCurrentShield() {
+        return currentShield;
+    }
+
+    public void setCurrentShield(String currentShield) {
+        this.currentShield = currentShield;
     }
 
     public String getCurrentWeapon() {

@@ -19,7 +19,7 @@ public class GameManagerImpl implements GameManager {
 
     HashMap<String, User> userHashMap;
     HashMap<String, Objeto> objectoHashMap;
-    private HashMap<Integer, ResourceBundle> data;
+    private HashMap<String, ResourceBundle> data;
 
     final static Logger logger = Logger.getLogger(GameManagerImpl.class);
 
@@ -337,11 +337,13 @@ public class GameManagerImpl implements GameManager {
 
     }
     @Override
-    public String getMapa(int id) throws Exception {
-       // ResourceBundle rs = data.get(id);
-        Locale l = new Locale("mapa1");
-        ResourceBundle rs = ResourceBundle.getBundle("bundle",l);
-      //  data.put(1,rs);
+    public String getMapa(String id) throws Exception {
+        ResourceBundle rs = data.get(id);
+        if(rs==null) {
+            Locale l = new Locale(id);
+            rs = ResourceBundle.getBundle("bundle", l);
+            data.put(id, rs);
+        }
         String map="";
         boolean fin = false;
         int i=1;

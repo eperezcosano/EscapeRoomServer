@@ -1,6 +1,9 @@
 var contfusil =0;
 var contcorredera =0;
 var contkatana =0;
+var contWoodShield =0;
+var contIronShield =0;
+var contGoldShield =0;
 var contclueyellow=0;
 var contclueblue=0;
 var contcluered=0;
@@ -74,6 +77,15 @@ $(document).ready(function() {
                 if (data.lista[i].nombre == "corredera") {
                     contcorredera = 1;
                 }
+                if (data.lista[i].nombre == "woodShield") {
+                    contWoodShield = 1;
+                }
+                if (data.lista[i].nombre == "ironShield") {
+                    contIronShield = 1;
+                }
+                if (data.lista[i].nombre == "goldShield") {
+                    contGoldShield = 1;
+                }
                 if (data.lista[i].nombre == "llaveB") {
                     contkeyblue=data.lista[i].amount;
                 }
@@ -93,7 +105,6 @@ $(document).ready(function() {
                     contclueyellow=data.lista[i].amount;
                 }
                 i++;
-                console.log("OLAOLAOLA");
             }
             console.log("yellow:",contkeyyellow);
         if (contfusil == 0) {
@@ -130,6 +141,43 @@ $(document).ready(function() {
             console.log("Hola",6);
             document.getElementById('katana').src ="https://puregaming.es/wp-content/uploads/2019/01/Dw8klLOWkAEhrTX.png";
             var conte = document.getElementById('contenedor_katana');
+            conte.style.display = "block";
+            contkatana=0;
+        }
+        if (contWoodShield == 0) {
+            console.log("Hola",20);
+            document.getElementById('woodShield').src = "https://pngimage.net/wp-content/uploads/2018/05/candados-png-6.png";
+            var conte = document.getElementById('contenedor_woodShield');
+            conte.style.display = "none";
+        } else {
+            console.log("Hola",21);
+            document.getElementById('woodShield').src = "https://3.bp.blogspot.com/-_7onQnAUhjk/W0Zgdxl1YTI/AAAAAAAADHk/-DUkca9CbAguymTgJ64cY-uen7JTZ88ngCLcBGAs/s1600/THOMPSON.png";
+            var conte = document.getElementById('contenedor_woodShield');
+            conte.style.display = "block";
+            contfusil=0;
+        }
+        if (contIronShield == 0) {
+            console.log("Hola",3);
+            document.getElementById('ironShield').src = "https://pngimage.net/wp-content/uploads/2018/05/candados-png-6.png";
+            var conte = document.getElementById('contenedor_ironShield');
+            conte.style.display = "none";
+        } else {
+            console.log("Hola",4);
+            document.getElementById('ironShield').src = "https://fortniteestadisticas.com/assets/img//weapons/double-barrel-shotgun.png";
+            var conte = document.getElementById('contenedor_ironShield');
+            conte.style.display = "block";
+            contcorredera=0;
+        }
+        if (contGoldShield == 0) {
+            console.log("Hola",5);
+            document.getElementById('goldShield').src = "https://pngimage.net/wp-content/uploads/2018/05/candados-png-6.png";
+            var conte = document.getElementById('contenedor_goldShield');
+            conte.style.display = "none";
+        }
+        else{
+            console.log("Hola",6);
+            document.getElementById('goldShield').src ="https://puregaming.es/wp-content/uploads/2019/01/Dw8klLOWkAEhrTX.png";
+            var conte = document.getElementById('contenedor_goldShield');
             conte.style.display = "block";
             contkatana=0;
         }
