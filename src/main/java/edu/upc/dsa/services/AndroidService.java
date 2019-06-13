@@ -42,7 +42,7 @@ public class AndroidService {
 
     @Path("/map/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response profile(@PathParam("id") int id) {
+    public Response profile(@PathParam("id") String id) {
         try{
             String map = this.android.getMapa(id);
             Map mapa = new Map(1,map);

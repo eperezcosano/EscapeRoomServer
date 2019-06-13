@@ -19,6 +19,6 @@ public interface Session {
     void delete(Class theClass, int id) throws Exception;
     void buy(int objetoId, int userId , int amount) throws Exception;
     void setWeapon(String nombre, int userId) throws Exception;
-    void setShield(int shield, int userId) throws Exception;
+    void setShield(String shield, int userId) throws Exception;
     void close() throws Exception;
 }

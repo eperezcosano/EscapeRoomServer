@@ -160,7 +160,7 @@ public class UserService {
     })
     @Path("/setShield/{username}")
     @Consumes (MediaType.APPLICATION_JSON)
-    public Response setShield(int shield,@PathParam("username") String username) {
+    public Response setShield(String shield,@PathParam("username") String username) {
         try {
             this.ma.setShield(shield, username);
             return Response.status(201).entity(shield).build();

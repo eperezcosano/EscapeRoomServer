@@ -24,7 +24,7 @@ public class User {
     private String mail;
     private int age;
     private String currentWeapon;
-    private int currentShield;
+    private String currentShield;
 
 
     //Constructors
@@ -49,7 +49,7 @@ public class User {
         this.mail = mail;
         this.age = age;
         this.currentWeapon="0";
-        this.currentShield=0;
+        this.currentShield="0";
     }
 
     public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, Timestamp minutostotales, int monedasconseguidas, int partidasjugadas) {
@@ -59,13 +59,12 @@ public class User {
         this.surname = surname;
         this.mail = mail;
         this.age = age;
-
         this.currentEnemiesKilled = enemigosmatados;
         this.currentTime = minutostotales;
         this.playedGames = partidasjugadas;
     }
 
-    public User(int id, String username, String password, int cash,String currentWeapon, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age, int currentShield) {
+    public User(int id, String username, String password, int cash,String currentWeapon, Timestamp currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age, String currentShield) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -84,11 +83,11 @@ public class User {
 
     }
 
-    public int getCurrentShield() {
+    public String getCurrentShield() {
         return currentShield;
     }
 
-    public void setCurrentShield(int currentShield) {
+    public void setCurrentShield(String currentShield) {
         this.currentShield = currentShield;
     }
 

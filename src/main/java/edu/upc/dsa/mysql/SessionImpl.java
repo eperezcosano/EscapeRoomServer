@@ -181,7 +181,7 @@ public class SessionImpl implements Session {
     }
 
     @Override
-    public void setShield(int shield, int userId) throws Exception {
+    public void setShield(String shield, int userId) throws Exception {
         String query = "UPDATE User SET currentShield = '" + shield + "' WHERE id = " +  userId + ";";
         PreparedStatement prep = this.connection.prepareStatement(query);
 

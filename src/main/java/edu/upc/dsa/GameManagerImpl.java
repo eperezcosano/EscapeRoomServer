@@ -301,7 +301,7 @@ public class GameManagerImpl implements GameManager {
 
     }
     @Override
-    public void setShield(int shield, String username) throws Exception {
+    public void setShield(String shield, String username) throws Exception {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
         Objeto objectohash = this.objectoHashMap.get(String.valueOf(shield));
@@ -376,7 +376,7 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public UserStatistics passUserToUserStatistics(User user) {
-        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames(), user.getCurrentWeapon());
+        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames(),user.getCurrentWeapon(),user.getCurrentShield(),user.getCurrentLevel());
         return userStatistics;
     }
 
