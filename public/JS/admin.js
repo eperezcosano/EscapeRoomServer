@@ -1,46 +1,4 @@
 
-function eje(id)
-{ console.log("id",id);
-    user = $("#userIdholder").val();
-    $.ajax({
-        type: 'DELETE',
-        url: '/dsaApp/admin/admin/deleteUser/'+ user,
-        success: function(data) {
-            alert("PERFECT");
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            if(xhr.status===500){
-                alert("Password not match");
-            }
-            else{
-                alert("User not found");
-            }
-        },
-        contentType: "application/json"
-    });
-}
-
-function ejeObject(id)
-{ console.log("id",id);
-    object = $("#objectIdholder").val();
-    $.ajax({
-        type: 'DELETE',
-        url: '/dsaApp/admin/admin/deleteObject/'+ object,
-        success: function(data) {
-            alert("PERFECT");
-        },
-        error: function (xhr, ajaxOptions, thrownError) {
-            if(xhr.status===500){
-                alert("Password not match");
-            }
-            else{
-                alert("User not found");
-            }
-        },
-        contentType: "application/json"
-    });
-}
-
 $(document).ready(function() {
     $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
         // Make sure this.hash has a value before overriding default behavior
@@ -72,4 +30,41 @@ $(document).ready(function() {
             }
         });
     });
-}
+    $("#deleteuserbutton").click(function () {
+        user = $("#userIdholder").val();
+        $.ajax({
+            type: 'DELETE',
+            url: '/dsaApp/admin/admin/deleteUser/'+ user,
+            success: function(data) {
+                alert("PERFECT");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                if(xhr.status===500){
+                    alert("Password not match");
+                }
+                else{
+                    alert("User not found");
+                }
+            },
+            contentType: "application/json"
+        });
+    }
+    $("#deleteobjectbutton").click(function () {
+        object = $("#objectIdholder").val();
+        $.ajax({
+            type: 'DELETE',
+            url: '/dsaApp/admin/admin/deleteObject/' + object,
+            success: function (data) {
+                alert("PERFECT");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                if (xhr.status === 500) {
+                    alert("Password not match");
+                } else {
+                    alert("User not found");
+                }
+            },
+            contentType: "application/json"
+        });
+    })
+})
