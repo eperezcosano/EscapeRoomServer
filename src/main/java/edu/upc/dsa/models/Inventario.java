@@ -20,12 +20,12 @@ public class Inventario {
         this.lista = lista;
     }
 
-    public String getUserId() {
+    public String getUsername() {
         return username;
     }
 
-    public void setUserId(String userId) {
-        this.username = userId;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public List<ObjetoInventario> getLista() {

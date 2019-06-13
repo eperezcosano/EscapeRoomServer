@@ -2,11 +2,10 @@ package edu.upc.dsa.services;
 
 import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
-import edu.upc.dsa.exceptions.MapNotFoundException;
-import edu.upc.dsa.exceptions.NotFunctionForAdminExcepction;
-import edu.upc.dsa.exceptions.ObjectExistException;
-import edu.upc.dsa.exceptions.UserNotFoundException;
+import edu.upc.dsa.exceptions.*;
+import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.models.Map;
+import edu.upc.dsa.to.ObjTO;
 import edu.upc.dsa.to.User.UserProfile;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -15,10 +14,7 @@ import io.swagger.annotations.ApiResponses;
 import org.apache.log4j.Logger;
 import sun.rmi.runtime.Log;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -43,14 +39,33 @@ public class AndroidService {
     @Path("/map/{id}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response profile(@PathParam("id") String id) {
-        try{
+        try {
             String map = this.android.getMapa(id);
-            Map mapa = new Map(1,map);
-            log.info("Y mi puto string:"+map);
+            Map mapa = new Map(1, map);
+            log.info("Y mi puto string:" + map);
             return Response.status(201).entity(mapa).build();
-        } catch(MapNotFoundException e10){
+        } catch (MapNotFoundException e10) {
             return Response.status(404).build();
-        } catch(Exception e10){
-        return Response.status(600).build(); }
+        } catch (Exception e10) {
+            return Response.status(600).build();
+        }
+    }
+
+    @POST
+    @ApiOperation(value = "Set inventory", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful"),
+            @ApiResponse(code = 500, message = "Can't set the inventory, retry")
+    })
+    @Path("/setinventory")
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response setInventory(Inventario inventario) {
+        try {
+            this.android.setInventary(inventario);
+            return Response.status(201).build();
+        }catch (Exception e1) {
+            return Response.status(500).build();
+        }
     }
 }
+
