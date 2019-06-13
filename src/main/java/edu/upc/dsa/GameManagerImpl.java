@@ -317,7 +317,6 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public void updateUser (User user) throws Exception{
-        if (user == null ) throw new UserNotFoundException();
         Session session = null;
         try {
             session = Factory.getSession();
