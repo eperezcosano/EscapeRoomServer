@@ -342,7 +342,6 @@ public class GameManagerImpl implements GameManager {
         String map = null;
         boolean fin = false;
         int i=1;
-
          while (fin)
          {
              map=map+rs.getString(String.valueOf(i));

@@ -34,7 +34,7 @@ public class AndroidService {
     @GET
     @ApiOperation(value = "profile", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Map.class),
+            @ApiResponse(code = 201, message = "Successful", response = String.class),
             @ApiResponse(code = 404, message = "Map not found"),
             @ApiResponse(code = 600, message = "Exception")
     })
