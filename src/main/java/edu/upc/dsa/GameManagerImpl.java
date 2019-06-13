@@ -327,7 +327,6 @@ public class GameManagerImpl implements GameManager {
         }finally{
             if(session != null) session.close();
         }
-
     }
     @Override
     public void setShield(String shield, String username) throws Exception {

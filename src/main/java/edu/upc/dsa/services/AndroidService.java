@@ -68,7 +68,6 @@ public class AndroidService {
             return Response.status(500).build();
         }
     }
-
     @POST
     @ApiOperation(value="updateUser", notes = "asdad")
     @ApiResponses(value = {
@@ -84,7 +83,7 @@ public class AndroidService {
     public Response updateUser(User user) {
         try {
             this.android.updateUser(user);
-            return Response.status(201).entity(updateUser(user)).build();
+            return Response.status(201).build();
         } catch (ObjectNotExistException e2) {
             return Response.status(500).build();
         } catch (UserNotFoundException e3) {
