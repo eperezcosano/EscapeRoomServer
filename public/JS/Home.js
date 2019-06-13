@@ -31,9 +31,8 @@ function buy(id){
 }
 function titulo(){
     var container = document.getElementById("titulo");
-    container.innerHTML='<h1>EscapeRoom</h1>'+'<p>Escapa si puedes Mario</p>';
+    container.innerHTML='<h1>EscapeRoom</h1>'+'<p>Escapa si puedes</p>' + username ;
 }
-
 $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
     $('[data-toggle="popover1"]').popover();
