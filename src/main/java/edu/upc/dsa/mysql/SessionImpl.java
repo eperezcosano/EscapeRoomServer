@@ -90,6 +90,7 @@ public class SessionImpl implements Session {
         prep.execute();
         log.info("query: " + query);
     }
+
     public void deleteAllInventarioFromOneUser (int userId) throws Exception{
         String query ="DELETE FROM Inventario WHERE userId = " + userId;
         PreparedStatement prep = this.connection.prepareStatement(query);

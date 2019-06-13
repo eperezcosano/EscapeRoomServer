@@ -52,7 +52,6 @@ public class AndroidService {
             return Response.status(600).build();
         }
     }
-
     @POST
     @ApiOperation(value = "Set inventory", notes = "asdasd")
     @ApiResponses(value = {
@@ -80,7 +79,7 @@ public class AndroidService {
             @ApiResponse(code = 600, message = "Not function for ADMIN"),
             @ApiResponse(code = 700, message = "Exception")
     })
-    @PathParam("/updateUser")
+    @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
         try {
