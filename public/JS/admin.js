@@ -47,8 +47,8 @@ $(document).ready(function() {
                 }
             },
             contentType: "application/json"
-        });
-    }
+        })
+    )}
     $("#deleteobjectbutton").click(function () {
         object = $("#objectIdholder").val();
         $.ajax({
