@@ -35,7 +35,7 @@ public class AndroidService {
     @GET
     @ApiOperation(value = "profile", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = String.class),
+            @ApiResponse(code = 201, message = "Successful", response = Map.class),
             @ApiResponse(code = 404, message = "Map not found"),
             @ApiResponse(code = 600, message = "Exception")
     })
@@ -45,8 +45,9 @@ public class AndroidService {
     public Response profile(@PathParam("id") int id) {
         try{
             String map = this.android.getMapa(id);
+            Map mapa = new Map(1,map);
             log.info("Y mi puto string:"+map);
-            return Response.status(201).entity(map).build();
+            return Response.status(201).entity(mapa).build();
         } catch(MapNotFoundException e10){
             return Response.status(404).build();
         } catch(Exception e10){
