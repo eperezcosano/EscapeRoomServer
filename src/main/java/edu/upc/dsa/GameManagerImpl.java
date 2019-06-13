@@ -29,6 +29,9 @@ public class GameManagerImpl implements GameManager {
         this.userHashMap = new HashMap<>();
         this.objectoHashMap = new HashMap<>();
         this.data = new HashMap<>();
+        Locale l = new Locale("1");
+        ResourceBundle rs = ResourceBundle.getBundle("bundle",l);
+        data.put(1,rs);
 
     }
     public static GameManager getInstance(){
@@ -339,6 +342,10 @@ public class GameManagerImpl implements GameManager {
     @Override
     public String getMapa(int id) throws Exception {
         ResourceBundle rs = data.get(id);
+        if(rs==null)
+        {
+
+        }
         String map = null;
         boolean fin = false;
         int i=1;
