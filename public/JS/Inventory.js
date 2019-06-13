@@ -71,10 +71,10 @@ $(document).ready(function() {
                 if (data.lista[i].nombre == "woodSword") {
                     contWoodSword = 1;
                 }
-                if (data.lista[i].nombre == "ironSword") {
+                if (data.lista[i].nombre == "goldSword") {
                     contGoldSword = 1;
                 }
-                if (data.lista[i].nombre == "goldSword") {
+                if (data.lista[i].nombre == "ironSword") {
                     contIronSword = 1;
                 }
                 if (data.lista[i].nombre == "woodShield") {
