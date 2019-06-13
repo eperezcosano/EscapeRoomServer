@@ -15,9 +15,13 @@ $(document).ready(function(){
             type: 'POST',
             url: 'http://147.83.7.205:8080/dsaApp/auth/login',
             data: JSON.stringify(myObj),
-            success: function(data) {
-                window.location="http://147.83.7.205:8080/Home.html?username="+ $("#loginUsername").val();
-            },
+            success: function(data,xhr) {
+                if(xhr.status==201){
+                    location.href = "http://147.83.205:8080/admin.html";
+                }
+                else {
+                    window.location = "http://147.83.7.205:8080/Home.html?username=" + $("#loginUsername").val();
+                }},
             error: function (xhr, ajaxOptions, thrownError) {
                 if(xhr.status===500){
                     alert("Password not match");
