@@ -34,21 +34,20 @@ $(document).ready(function() {
         user = $("#userIdholder").val();
         $.ajax({
             type: 'DELETE',
-            url: '/dsaApp/admin/admin/deleteUser/'+ user,
-            success: function(data) {
+            url: '/dsaApp/admin/admin/deleteUser/' + user,
+            success: function (data) {
                 alert("PERFECT");
             },
             error: function (xhr, ajaxOptions, thrownError) {
-                if(xhr.status===500){
+                if (xhr.status === 500) {
                     alert("Password not match");
-                }
-                else{
+                } else {
                     alert("User not found");
                 }
             },
             contentType: "application/json"
         })
-    )}
+    })
     $("#deleteobjectbutton").click(function () {
         object = $("#objectIdholder").val();
         $.ajax({
