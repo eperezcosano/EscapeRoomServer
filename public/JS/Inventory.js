@@ -1,6 +1,6 @@
-var contfusil =0;
-var contcorredera =0;
-var contkatana =0;
+var contWoodSword =0;
+var contIronSword =0;
+var contGoldSword =0;
 var contWoodShield =0;
 var contIronShield =0;
 var contGoldShield =0;
@@ -68,14 +68,14 @@ $(document).ready(function() {
             console.log("Data:",data);
             while(i<data.lista.length) {
                 console.log("AA:",data.lista[i]);
-                if (data.lista[i].nombre == "fusil") {
-                    contfusil = 1;
+                if (data.lista[i].nombre == "woodSword") {
+                    contWoodSword = 1;
                 }
-                if (data.lista[i].nombre == "katana") {
-                    contkatana = 1;
+                if (data.lista[i].nombre == "ironSword") {
+                    contGoldSword = 1;
                 }
-                if (data.lista[i].nombre == "corredera") {
-                    contcorredera = 1;
+                if (data.lista[i].nombre == "goldSword") {
+                    contIronSword = 1;
                 }
                 if (data.lista[i].nombre == "woodShield") {
                     contWoodShield = 1;
@@ -107,42 +107,42 @@ $(document).ready(function() {
                 i++;
             }
             console.log("yellow:",contkeyyellow);
-        if (contfusil == 0) {
+        if (contWoodSword == 0) {
             console.log("Hola",1);
-            document.getElementById('fusil').src = "https://pngimage.net/wp-content/uploads/2018/05/candados-png-6.png";
-            var conte = document.getElementById('contenedor_fusil');
+            document.getElementById('woodSword').src = "https://pngimage.net/wp-content/uploads/2018/05/candados-png-6.png";
+            var conte = document.getElementById('contenedor_woodSword');
             conte.style.display = "none";
         } else {
             console.log("Hola",2);
-            document.getElementById('fusil').src = "https://3.bp.blogspot.com/-_7onQnAUhjk/W0Zgdxl1YTI/AAAAAAAADHk/-DUkca9CbAguymTgJ64cY-uen7JTZ88ngCLcBGAs/s1600/THOMPSON.png";
-            var conte = document.getElementById('contenedor_fusil');
+            document.getElementById('woodSword').src = "https://3.bp.blogspot.com/-_7onQnAUhjk/W0Zgdxl1YTI/AAAAAAAADHk/-DUkca9CbAguymTgJ64cY-uen7JTZ88ngCLcBGAs/s1600/THOMPSON.png";
+            var conte = document.getElementById('contenedor_woodSword');
             conte.style.display = "block";
-            contfusil=0;
+            contWoodSword=0;
         }
-        if (contcorredera == 0) {
+        if (contIronSword == 0) {
             console.log("Hola",3);
-            document.getElementById('corredera').src = "https://pngimage.net/wp-content/uploads/2018/05/candados-png-6.png";
-            var conte = document.getElementById('contenedor_corredera');
+            document.getElementById('ironSword').src = "https://pngimage.net/wp-content/uploads/2018/05/candados-png-6.png";
+            var conte = document.getElementById('contenedor_ironSword');
             conte.style.display = "none";
         } else {
             console.log("Hola",4);
-            document.getElementById('corredera').src = "https://fortniteestadisticas.com/assets/img//weapons/double-barrel-shotgun.png";
-            var conte = document.getElementById('contenedor_corredera');
+            document.getElementById('ironSword').src = "https://fortniteestadisticas.com/assets/img//weapons/double-barrel-shotgun.png";
+            var conte = document.getElementById('contenedor_ironSword');
             conte.style.display = "block";
-            contcorredera=0;
+            contIronSword=0;
         }
-        if (contkatana == 0) {
+        if (contGoldSword == 0) {
             console.log("Hola",5);
-            document.getElementById('katana').src = "https://pngimage.net/wp-content/uploads/2018/05/candados-png-6.png";
-            var conte = document.getElementById('contenedor_katana');
+            document.getElementById('goldSword').src = "https://pngimage.net/wp-content/uploads/2018/05/candados-png-6.png";
+            var conte = document.getElementById('contenedor_goldSword');
             conte.style.display = "none";
         }
         else{
             console.log("Hola",6);
-            document.getElementById('katana').src ="https://puregaming.es/wp-content/uploads/2019/01/Dw8klLOWkAEhrTX.png";
-            var conte = document.getElementById('contenedor_katana');
+            document.getElementById('goldSword').src ="https://puregaming.es/wp-content/uploads/2019/01/Dw8klLOWkAEhrTX.png";
+            var conte = document.getElementById('contenedor_goldSword');
             conte.style.display = "block";
-            contkatana=0;
+            contGoldSword=0;
         }
         if (contWoodShield == 0) {
             console.log("Hola",20);
@@ -154,7 +154,7 @@ $(document).ready(function() {
             document.getElementById('woodShield').src = "https://3.bp.blogspot.com/-_7onQnAUhjk/W0Zgdxl1YTI/AAAAAAAADHk/-DUkca9CbAguymTgJ64cY-uen7JTZ88ngCLcBGAs/s1600/THOMPSON.png";
             var conte = document.getElementById('contenedor_woodShield');
             conte.style.display = "block";
-            contfusil=0;
+            contWoodSword=0;
         }
         if (contIronShield == 0) {
             console.log("Hola",3);
@@ -166,7 +166,7 @@ $(document).ready(function() {
             document.getElementById('ironShield').src = "https://fortniteestadisticas.com/assets/img//weapons/double-barrel-shotgun.png";
             var conte = document.getElementById('contenedor_ironShield');
             conte.style.display = "block";
-            contcorredera=0;
+            contIronSword=0;
         }
         if (contGoldShield == 0) {
             console.log("Hola",5);
@@ -179,7 +179,7 @@ $(document).ready(function() {
             document.getElementById('goldShield').src ="https://puregaming.es/wp-content/uploads/2019/01/Dw8klLOWkAEhrTX.png";
             var conte = document.getElementById('contenedor_goldShield');
             conte.style.display = "block";
-            contkatana=0;
+            contGoldSword=0;
         }
         if(contclueyellow==0) {
             console.log("Hola",7);
