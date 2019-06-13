@@ -316,6 +316,21 @@ public class GameManagerImpl implements GameManager {
 
     }
     @Override
+    public void updateUser (User user) throws Exception{
+        if (user == null ) throw new UserNotFoundException();
+        Session session = null;
+        try {
+            session = Factory.getSession();
+            session.update(user, user.getId());
+        }catch (Exception e) {
+            e.printStackTrace();
+            throw e;
+        }finally{
+            if(session != null) session.close();
+        }
+
+    }
+    @Override
     public void setShield(String shield, String username) throws Exception {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();

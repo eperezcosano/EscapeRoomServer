@@ -26,6 +26,7 @@ public interface GameManager{
     void buyObject(String nameObject, String username) throws Exception;
     void setWeapon(String weapon, String username) throws Exception;
     void setShield(String shield, String username) throws Exception;
+    void updateUser (User user) throws Exception;
     UserLogin passUserToUserLogin (User user);
     UserProfile passUserToUserProfile (User user);
     UserStatistics passUserToUserStatistics (User user);

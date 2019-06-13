@@ -3,6 +3,8 @@ package edu.upc.dsa.services;
 import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
 import edu.upc.dsa.exceptions.*;
+import edu.upc.dsa.models.Map;
+import edu.upc.dsa.models.User;
 import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.models.Map;
 import edu.upc.dsa.to.ObjTO;
@@ -67,5 +69,39 @@ public class AndroidService {
             return Response.status(500).build();
         }
     }
-}
+
+    @POST
+    @ApiOperation(value="updateUser", notes = "asdad")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful" ),
+            @ApiResponse(code = 404, message = "First login or register"),
+            @ApiResponse(code = 500, message = "Object not found"),
+            @ApiResponse(code = 501, message = "You can't buy two same weapons"),
+            @ApiResponse(code = 600, message = "Not function for ADMIN"),
+            @ApiResponse(code = 700, message = "Exception")
+    })
+    @PathParam("/updateUser")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response updateUser(User user) {
+        try {
+            this.android.updateUser(user);
+            return Response.status(201).entity(updateUser(user)).build();
+        } catch (ObjectNotExistException e2) {
+            return Response.status(500).build();
+        } catch (UserNotFoundException e3) {
+            return Response.status(404).build();
+        } catch (NotFunctionForAdminExcepction e10) {
+            return Response.status(600).build();
+        } catch (Exception e4) {
+            return Response.status(700).build();
+        }
+    }
+
+
+
+
+
+    }
+
+
 
