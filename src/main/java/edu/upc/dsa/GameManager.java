@@ -24,7 +24,7 @@ public interface GameManager{
     UserStatistics getStatistics(String username) throws UserNotFoundException, NotFunctionForAdminExcepction;
     void buyObject(String nameObject, String username) throws Exception;
     void setWeapon(String weapon, String username) throws Exception;
-    void setShield(String weapon, String username) throws Exception;
+    void setShield(int shield, String username) throws Exception;
     UserLogin passUserToUserLogin (User user);
     UserProfile passUserToUserProfile (User user);
     UserStatistics passUserToUserStatistics (User user);
@@ -36,7 +36,7 @@ public interface GameManager{
     void addObjectStore(String name) throws ObjectExistException;
 
     //UNITY
-    Map getMapas() throws Exception;
+    String getMapa(int id) throws Exception;
 
     void clear();
 

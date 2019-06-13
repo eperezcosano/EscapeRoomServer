@@ -11,12 +11,15 @@ import org.apache.log4j.Logger;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 public class GameManagerImpl implements GameManager {
     private static GameManager instance;
 
     HashMap<String, User> userHashMap;
     HashMap<String, Objeto> objectoHashMap;
+    private HashMap<Integer, ResourceBundle> data;
 
     final static Logger logger = Logger.getLogger(GameManagerImpl.class);
 
@@ -25,6 +28,8 @@ public class GameManagerImpl implements GameManager {
     private GameManagerImpl(){
         this.userHashMap = new HashMap<>();
         this.objectoHashMap = new HashMap<>();
+        this.data = new HashMap<>();
+
     }
     public static GameManager getInstance(){
         if (instance==null) instance = new GameManagerImpl();
@@ -295,22 +300,20 @@ public class GameManagerImpl implements GameManager {
         }
 
     }
-
     @Override
-    public void setShield(String weapon, String username) throws Exception {
+    public void setShield(int shield, String username) throws Exception {
         User user = this.userHashMap.get(username);
         if(user==null) throw new UserNotFoundException();
-        Objeto objectohash = this.objectoHashMap.get(weapon);
+        Objeto objectohash = this.objectoHashMap.get(String.valueOf(shield));
         if (objectohash == null) throw new ObjectNotExistException();
         logger.info("User: "+ user.toString());
-        log.info("objetohash:" + objectohash.getId());
-        log.info("Todo correcto en setWeapon");
+        log.info("Todo correcto en setShield");
 
         Session session = null;
         try {
             session = Factory.getSession();
-            session.setShield(objectohash.getNombre(), user.getId());
-            user.setCurrentWeapon(objectohash.getNombre());
+            session.setShield(shield, user.getId());
+            user.setCurrentShield(shield);
 
         } catch (UserAlreadyExistsException e) {
             log.info("User already exists");
@@ -322,7 +325,6 @@ public class GameManagerImpl implements GameManager {
             if (session != null) session.close();
         }
     }
-
     @Override
     public void addObjectStore(String name) throws ObjectExistException {
         Objeto objeto = this.objectoHashMap.get(name);
@@ -334,43 +336,26 @@ public class GameManagerImpl implements GameManager {
         else throw new ObjectExistException();
 
     }
-
     @Override
-    public Map getMapas() throws Exception {
-        Session session = null;
-        /*try {
-            session = Factory.getSession();
-                if (Map instanceof Objeto) {
+    public String getMapa(int id) throws Exception {
+        ResourceBundle rs = data.get(id);
+        String map = null;
+        boolean fin = false;
+        int i=1;
 
-                    List<Map> lista = (Map) session.findAll(Map.class);
-                log.info("DB User" + dataUser);
-                if (dataUser != null && dataUser.getPassword().equals(password)) {
-                    res = new UserLogin(dataUser.getUsername(), dataUser.getPassword());
-                    userHashMap.put(dataUser.getUsername(), dataUser);
-                    return res;
-                }
-                if (dataUser != null && !dataUser.getPassword().equals(password)) throw new PasswordNotMatchException();
-                else throw new UserNotFoundException();
-            } catch (PasswordNotMatchException e)
-            {
-                res = new UserLogin(username, null);
-                return res;
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-                return null;
-            } finally {
-                if (session != null) session.close();
-            }
-        } else {
-            if (password.equals(user.getPassword())) {
-                logger.info("Logged in: " + user.toString());
-                UserLogin userLogin = this.passUserToUserLogin(user);
-                return userLogin;
-            } else throw new PasswordNotMatchException();
-        }  */
-        return null;
-    }
+         while (fin)
+         {
+             map=map+rs.getString(String.valueOf(i));
+
+             if(rs.getString(String.valueOf(i))==null)
+             {
+                 fin=true;
+             }else {
+                 i++;
+             }
+         }
+        return map;
+        }
     @Override
     public void clear() {
         this.userHashMap.clear();

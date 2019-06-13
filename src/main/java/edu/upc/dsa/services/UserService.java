@@ -160,10 +160,10 @@ public class UserService {
     })
     @Path("/setShield/{username}")
     @Consumes (MediaType.APPLICATION_JSON)
-    public Response setShield(ObjTO objTO,@PathParam("username") String username) {
+    public Response setShield(int shield,@PathParam("username") String username) {
         try {
-            this.ma.setShield(objTO.getNombre(), username);
-            return Response.status(201).entity(objTO).build();
+            this.ma.setShield(shield, username);
+            return Response.status(201).entity(shield).build();
         } catch (ObjectNotExistException e2) {
             return Response.status(500).build();
         } catch (UserNotFoundException e3) {
