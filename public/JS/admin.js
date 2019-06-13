@@ -1,5 +1,5 @@
 
-function ejecutar(id)
+function eje(id)
 { console.log("id",id);
     user = $("#userIdholder").val();
     $.ajax({
@@ -20,7 +20,7 @@ function ejecutar(id)
     });
 }
 
-function ejecutarObject(id)
+function ejeObject(id)
 { console.log("id",id);
     object = $("#objectIdholder").val();
     $.ajax({
