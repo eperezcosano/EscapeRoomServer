@@ -26,6 +26,9 @@ $(document).ready(function(){
                 if(xhr.status===500){
                     alert("Password not match");
                 }
+                if(xhr.status==201){
+                    location.href = "http://147.83.205:8080/admin.html";
+                }
                 else{
                     alert("User not found");
                 }
