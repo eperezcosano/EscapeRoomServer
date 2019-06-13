@@ -126,13 +126,13 @@ $(document).ready(function(){
     }, "json");
     $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+params['username'], function (data) {
         console.log("Data:",data.lista[0].nombre);
-        if(data.lista[0]==null)
-        {inventario_nulo=1;}
         for (let i = 0; i<data.lista.length; i++)
         {
             if(data.lista[i].nombre=="woodSword"||data.lista[i].nombre=="ironSword"||data.lista[i].nombre=="goldSword"||data.lista[i].nombre=="woodShield"||data.lista[i].nombre=="ironShield"||data.lista[i].nombre=="goldShield") {
                 myfunction(data.lista[i].nombre);
             }
         }
-    }, "json");
+    }, "json").fail(function (error) {
+        inventario_nulo=1;
+    });
 })
