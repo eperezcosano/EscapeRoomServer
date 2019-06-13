@@ -77,6 +77,7 @@ public class UserService {
     @ApiResponses(value = {
             @ApiResponse(code = 201, message = "Successful", response = Inventario.class),
             @ApiResponse(code = 404, message = "First login or register"),
+            @ApiResponse(code = 500, message = "You not have any object"),
             @ApiResponse(code = 600, message = "Not function for ADMIN"),
             @ApiResponse(code = 700, message = "Exception")
 
@@ -86,7 +87,9 @@ public class UserService {
     public Response inventory(@PathParam("username") String username){
         try {
             Inventario inventario = this.ma.getInventary(username);
-            return Response.status(201).entity(inventario).build();
+            if(inventario==null)
+            { return Response.status(500).build();}
+            else return Response.status(201).entity(inventario).build();
         }catch (UserNotFoundException e1){
             return Response.status(404).build();
         }catch(NotFunctionForAdminExcepction e10){

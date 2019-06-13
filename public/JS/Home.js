@@ -1,5 +1,6 @@
 var BASE_URI = "http://147.83.7.205:8080";
 var username = null;
+var inventario_nulo=0;
 
 function myfunction(id) {
     var btn = document.getElementById(id);
@@ -84,7 +85,11 @@ $(document).ready(function(){
         console.log('No se envió el parámetro variable');
     }
     $("#inventory_button").click(function () {
-        window.location="http://147.83.7.205:8080/Inventory.html?username="+ params['username'];
+        if(inventario_nulo==1) {
+            alert("You not have any object");
+        }else {
+            window.location = "http://147.83.7.205:8080/Inventory.html?username=" + params['username'];
+        }
     })
     titulo();
     $.get("http://147.83.7.205:8080/dsaApp/user/profile/"+params['username'], function (data) {
@@ -121,6 +126,8 @@ $(document).ready(function(){
     }, "json");
     $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+params['username'], function (data) {
         console.log("Data:",data.lista[0].nombre);
+        if(data.lista[0]==null)
+        {inventario_nulo=1;}
         for (let i = 0; i<data.lista.length; i++)
         {
             if(data.lista[i].nombre=="woodSword"||data.lista[i].nombre=="ironSword"||data.lista[i].nombre=="goldSword"||data.lista[i].nombre=="woodShield"||data.lista[i].nombre=="ironShield"||data.lista[i].nombre=="goldShield") {
