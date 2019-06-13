@@ -3,14 +3,11 @@ package edu.upc.dsa.services;
 import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
 import edu.upc.dsa.exceptions.*;
-<<<<<<< HEAD
 import edu.upc.dsa.models.Map;
 import edu.upc.dsa.models.User;
-=======
 import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.models.Map;
 import edu.upc.dsa.to.ObjTO;
->>>>>>> d2e5932eb4e0adf1b3c62ef99afae065112c64c8
 import edu.upc.dsa.to.User.UserProfile;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -72,7 +69,7 @@ public class AndroidService {
             return Response.status(500).build();
         }
     }
-<<<<<<< HEAD
+
     @POST
     @ApiOperation(value="updateUser", notes = "asdad")
     @ApiResponses(value = {
@@ -87,7 +84,7 @@ public class AndroidService {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
         try {
-            this.android.updateUser(user,user.getId() );
+            this.android.updateUser(user);
             return Response.status(201).entity(updateUser(user)).build();
         } catch (ObjectNotExistException e2) {
             return Response.status(500).build();
@@ -106,7 +103,5 @@ public class AndroidService {
 
     }
 
-=======
-}
->>>>>>> d2e5932eb4e0adf1b3c62ef99afae065112c64c8
+
 
