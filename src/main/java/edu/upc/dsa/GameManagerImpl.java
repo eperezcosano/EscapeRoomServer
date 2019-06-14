@@ -316,11 +316,14 @@ public class GameManagerImpl implements GameManager {
 
     }
     @Override
-    public void updateUser (User user) throws Exception{
+    public void updateUser (UserStatistics user, String username) throws Exception{
         Session session = null;
+        User usera=null;
         try {
+
             session = Factory.getSession();
-            session.update(user,user.getId());
+            usera=session.getByUsername(username);
+            session.update(user,usera.getId());
             //   session.updateUser(user);
         }catch (Exception e) {
             e.printStackTrace();

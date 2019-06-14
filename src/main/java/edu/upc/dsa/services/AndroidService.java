@@ -9,6 +9,7 @@ import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.models.Map;
 import edu.upc.dsa.to.ObjTO;
 import edu.upc.dsa.to.User.UserProfile;
+import edu.upc.dsa.to.User.UserStatistics;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -78,11 +79,11 @@ public class AndroidService {
             @ApiResponse(code = 600, message = "Not function for ADMIN"),
             @ApiResponse(code = 700, message = "Exception")
     })
-    @Path("/update")
+    @Path("/update/{username}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response updateUser(User user) {
+    public Response updateUser(UserStatistics user, @PathParam("username") String username) {
         try {
-            this.android.updateUser(user);
+            this.android.updateUser(user,username);
             return Response.status(201).build();
         } catch (ObjectNotExistException e2) {
             return Response.status(500).build();
