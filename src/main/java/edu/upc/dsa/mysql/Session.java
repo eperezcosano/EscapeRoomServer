@@ -5,6 +5,7 @@ import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.ObjetoInventario;
 import edu.upc.dsa.models.User;
+import edu.upc.dsa.to.User.UserRanking;
 import io.swagger.models.auth.In;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public interface Session {
     List<Objeto> listaObjetos() throws Exception;
     List<Object> findAll(Class theClass) throws Exception;
     List<ObjetoInventario> getInventario (String username) throws Exception;
+    List<UserRanking> getRanking () throws Exception;
     void setInventario (Inventario inventario) throws Exception;
     void update(Object object, int id) throws Exception;
     void updateUser (User user) throws Exception;

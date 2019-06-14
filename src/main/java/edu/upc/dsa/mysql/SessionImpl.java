@@ -6,6 +6,8 @@ import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.models.Objeto;
 import edu.upc.dsa.models.ObjetoInventario;
 import edu.upc.dsa.models.User;
+import edu.upc.dsa.to.User.UserRanking;
+import edu.upc.dsa.to.User.UserStatistics;
 import io.swagger.models.auth.In;
 import org.apache.log4j.Logger;
 
@@ -107,6 +109,29 @@ public class SessionImpl implements Session {
 
     public List<Object> findAll(Class theClass) throws Exception {
         return find(theClass, 0, null);
+    }
+    public List<UserRanking> getRanking() throws Exception {
+        List<UserRanking> res = new ArrayList<>();
+        String query ="SELECT User.name, User.currentTime, User.currentEnemiesKilled, User.currentLife FROM User ORDER BY currentTime ASC LIMIT 10;";
+        ResultSet rs;
+
+        PreparedStatement prep = this.connection.prepareStatement(query);
+        prep.execute();
+        rs = prep.getResultSet();
+
+        if (rs == null)
+        {
+            return null;
+        }
+        while (rs.next()) {
+
+            log.info("Creating user...");
+            log.info("User created");
+            res.add(new UserRanking(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
+
+        }
+        return res;
+
     }
 
     @Override
