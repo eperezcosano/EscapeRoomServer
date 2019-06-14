@@ -50,6 +50,11 @@ public class User {
         this.age = age;
         this.currentWeapon="0";
         this.currentShield="0";
+        this.playedGames=0;
+        this.currentTime="0";
+        this.cash=50;
+        this.currentLevel=0;
+        this.currentLife=200;
     }
 
     public User(String username, String password, String name, String surname, String mail, int age, int enemigosmatados, String minutostotales, int monedasconseguidas, int partidasjugadas) {
@@ -82,6 +87,7 @@ public class User {
         this.currentShield=currentShield;
 
     }
+
 
     public String getCurrentShield() {
         return currentShield;
