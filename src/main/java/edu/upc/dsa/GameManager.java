@@ -30,6 +30,8 @@ public interface GameManager{
     UserLogin passUserToUserLogin (User user);
     UserProfile passUserToUserProfile (User user);
     UserStatistics passUserToUserStatistics (User user);
+    User passUserStatisticsToUser (UserStatistics user);
+
 
     int sizeUsers();
     int sizeStore();

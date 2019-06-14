@@ -176,8 +176,8 @@ public class SessionImpl implements Session {
     }
 
     @Override
-    public void updateUser (User user) throws Exception {
-        String query ="UPDATE User SET currentTime='"+user.getCurrentTime()+"', currentLife='"+user.getCurrentLife()+"', currentEnemiesKilled='"+user.getCurrentEnemiesKilled()+"', currentLevel='"+ user.getCurrentLevel()+"', currentWeapon='"+user.getCurrentWeapon()+"', currentShield='"+user.getCurrentShield()+"' WHERE id='"+user.getId()+"'";
+    public void updateUser (UserStatistics user, int id) throws Exception {
+        String query ="UPDATE User SET cash='"+user.getCash()+"', playedGames='"+user.getPlayedGames()+"',currentTime='"+user.getCurrentTime()+"', currentLife='"+user.getCurrentLife()+"', currentEnemiesKilled='"+user.getCurrentEnemiesKilled()+"', currentLevel='"+ user.getCurrentLevel()+"', currentWeapon='"+user.getCurrentWeapon()+"', currentShield='"+user.getCurrentShield()+"' WHERE id='"+id+"'";
         PreparedStatement prep = this.connection.prepareStatement(query);
         prep.execute();
         prep.close();

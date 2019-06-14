@@ -318,12 +318,12 @@ public class GameManagerImpl implements GameManager {
     @Override
     public void updateUser (UserStatistics user, String username) throws Exception{
         Session session = null;
-        User usera=null;
+        User usera;
         try {
 
             session = Factory.getSession();
             usera=session.getByUsername(username);
-            session.update(user,usera.getId());
+            session.updateUser(user,usera.getId());
             //   session.updateUser(user);
         }catch (Exception e) {
             e.printStackTrace();
@@ -410,6 +410,11 @@ public class GameManagerImpl implements GameManager {
     public UserStatistics passUserToUserStatistics(User user) {
         UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames(),user.getCurrentWeapon(),user.getCurrentShield(),user.getPassword(),user.getCurrentLevel(),user.getCash());
         return userStatistics;
+    }
+
+    @Override
+    public User passUserStatisticsToUser(UserStatistics user) {
+        return null;
     }
 
 }
