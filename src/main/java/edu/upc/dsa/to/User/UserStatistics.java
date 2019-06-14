@@ -24,6 +24,7 @@ public class UserStatistics {
         this.cash = cash;
     }
 
+
     public int getCurrentLevel() {
         return currentLevel;
     }
