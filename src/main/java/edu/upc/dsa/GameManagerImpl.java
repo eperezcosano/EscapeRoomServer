@@ -9,10 +9,7 @@ import edu.upc.dsa.to.User.UserStatistics;
 import org.apache.log4j.Logger;
 
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class GameManagerImpl implements GameManager {
     private static GameManager instance;
@@ -369,29 +366,43 @@ public class GameManagerImpl implements GameManager {
 
     }
     @Override
-    public String getMapa(String id) throws Exception {
-        ResourceBundle rs = data.get(id);
-        if(rs==null) {
-            Locale l = new Locale(id);
-            rs = ResourceBundle.getBundle("bundle", l);
-            data.put(id, rs);
-        }
-        String map="";
-        boolean fin = false;
-        int i=1;
-         while (!fin)
-         {
-             try{
-                 map+=rs.getString(String.valueOf(i));
-                 log.info("Mi mapa:"+map);
-                 i++;
+    public List<String> getMapas() throws Exception {
+        Boolean a = false;
+        String id = null;
+        List<String> list = new ArrayList<>();
+        int cont=0;
+        String map = "";
+        while (!a) {
+            if (cont == 0) {
+                id = "mapa1";
+            }
+            if (cont == 1) {
+                id = "mapa2";
+                a=true;
+            }
+            ResourceBundle rs = data.get(id);
+            if (rs == null) {
+                Locale l = new Locale(id);
+                rs = ResourceBundle.getBundle("bundle", l);
+                data.put(id, rs);
+            }
+            boolean fin = false;
+            int i = 1;
+            while (!fin) {
+                try {
+                    map += rs.getString(String.valueOf(i));
+                    log.info("Mi mapa:" + map);
+                    i++;
+                } catch (Exception e) {
+                    fin = true;
+                    list.add(map);
+                    map="";
                 }
-             catch (Exception e)
-             {fin=true;}
 
-         }
-        return map;
+            }
         }
+        return list;
+    }
     @Override
     public void clear() {
         this.userHashMap.clear();

@@ -20,6 +20,8 @@ import sun.rmi.runtime.Log;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
+import java.util.List;
 
 @Api(value = "/android")
 @Path("/android")
@@ -39,14 +41,21 @@ public class AndroidService {
             @ApiResponse(code = 600, message = "Exception")
     })
 
-    @Path("/map/{id}")
+    @Path("/maps")
     @Produces(MediaType.APPLICATION_JSON)
-    public Response profile(@PathParam("id") String id) {
+    public Response maps() {
         try {
-            String map = this.android.getMapa(id);
-            Map mapa = new Map(1, map);
-            log.info("Y mi puto string:" + map);
-            return Response.status(201).entity(mapa).build();
+            List<String> mapas = this.android.getMapas();
+            int i=1;
+            List<Map> listaMapas = new ArrayList<>();
+            for(String mapasito : mapas)
+            {
+                Map map = new Map(i, mapasito);
+                log.info("Y mi puto string:" + map);
+                listaMapas.add(map);
+                i++;
+            }
+            return Response.status(201).entity(listaMapas).build();
         } catch (MapNotFoundException e10) {
             return Response.status(404).build();
         } catch (Exception e10) {
@@ -95,12 +104,7 @@ public class AndroidService {
             return Response.status(700).build();
         }
     }
-
-
-
-
-
-    }
+}
 
 
 

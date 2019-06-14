@@ -40,7 +40,7 @@ public interface GameManager{
     void addObjectStore(String name) throws ObjectExistException;
 
     //UNITY
-    String getMapa(String id) throws Exception;
+    List<String> getMapas() throws Exception;
 
     void clear();
 
