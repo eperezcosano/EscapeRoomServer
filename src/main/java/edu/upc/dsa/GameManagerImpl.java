@@ -396,6 +396,7 @@ public class GameManagerImpl implements GameManager {
                 } catch (Exception e) {
                     fin = true;
                     list.add(map);
+                    cont++;
                     map="";
                 }
 
