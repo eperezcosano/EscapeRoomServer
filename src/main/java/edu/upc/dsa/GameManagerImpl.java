@@ -38,6 +38,7 @@ public class GameManagerImpl implements GameManager {
         logger.info("size " + ret);
         return ret;
     }
+
     public int sizeStore() {
         int ret = this.objectoHashMap.size();
         logger.info("size " + ret);

@@ -170,11 +170,10 @@ public class SessionImpl implements Session {
         if(user!=null) {
             this.deleteAllInventarioFromOneUser(user.getId());
             for (ObjetoInventario objetoInventario : inventario.getLista()) {
-                this.save(objetoInventario);
+            this.buy(objetoInventario.getId(),user.getId(),objetoInventario.getAmount());
             }
         }
     }
-
     @Override
     public void updateUser (UserStatistics user, int id) throws Exception {
         String query ="UPDATE User SET cash='"+user.getCash()+"', playedGames='"+user.getPlayedGames()+"',currentTime='"+user.getCurrentTime()+"', currentLife='"+user.getCurrentLife()+"', currentEnemiesKilled='"+user.getCurrentEnemiesKilled()+"', currentLevel='"+ user.getCurrentLevel()+"', currentWeapon='"+user.getCurrentWeapon()+"', currentShield='"+user.getCurrentShield()+"' WHERE id='"+id+"'";
