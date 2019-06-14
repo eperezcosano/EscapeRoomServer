@@ -172,7 +172,7 @@ public class GameManagerImpl implements GameManager {
        User u = new User(username, password, name, surname, mail, age);
         try {
             session = Factory.getSession();
-            User insertUser = new User(1,username,password,50,"0",0,0,1,0,name,surname,mail,age,"0","0");
+            User insertUser = new User(username,password,50,"0",0,0,1,0,name,surname,mail,age,"0","0");
             session.save(insertUser);
 
             log.info("User insert: " + insertUser);
