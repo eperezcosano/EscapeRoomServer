@@ -8,14 +8,14 @@ public class UserStatistics {
     private int playedGames;
     private String currentWeapon;
     private String currentShield;
-    private String currentLife;
+    private int currentLife;
     private int currentLevel=0;
     private int cash;
 
     public UserStatistics() {
     }
 
-    public UserStatistics(int currentEnemiesKilled, String currentTime, int playedGames, String currentWeapon, String currentShield, String currentLife, int currentLevel, int cash) {
+    public UserStatistics(int currentEnemiesKilled, String currentTime, int playedGames, String currentWeapon, String currentShield, int currentLife, int currentLevel, int cash) {
         this.currentEnemiesKilled = currentEnemiesKilled;
         this.currentTime = currentTime;
         this.playedGames = playedGames;
@@ -83,11 +83,11 @@ public class UserStatistics {
         this.playedGames = playedGames;
     }
 
-    public String getCurrentLife() {
+    public int getCurrentLife() {
         return currentLife;
     }
 
-    public void setCurrentLife(String currentLife) {
+    public void setCurrentLife(int currentLife) {
         this.currentLife = currentLife;
     }
 }
