@@ -170,7 +170,7 @@ public class SessionImpl implements Session {
         if(user!=null) {
             this.deleteAllInventarioFromOneUser(user.getId());
             for (ObjetoInventario objetoInventario : inventario.getLista()) {
-            this.buy(objetoInventario.getId(),user.getId(),objetoInventario.getAmount());
+            this.insertObjectInInventory(objetoInventario.getId(),user.getId(),objetoInventario.getAmount());
             }
         }
     }
@@ -220,6 +220,15 @@ public class SessionImpl implements Session {
             this.deleteInventario(objetoId, userId);
         }
         query = "INSERT INTO Inventario (userId, objetoId, amount) VALUES ('" + userId + "','" + objetoId +"','" + amountBueno + "')";
+        PreparedStatement prep = this.connection.prepareStatement(query);
+
+        prep.execute();
+        prep.close();
+    }
+    @Override
+    public void insertObjectInInventory( int objetoId, int userId, int amount) throws Exception {
+        String query;
+        query = "INSERT INTO Inventario (userId, objetoId, amount) VALUES ('" + userId + "','" + objetoId +"','" + amount + "')";
         PreparedStatement prep = this.connection.prepareStatement(query);
 
         prep.execute();
