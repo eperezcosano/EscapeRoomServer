@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 import sun.rmi.runtime.Log;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.ArrayList;
@@ -36,7 +37,7 @@ public class AndroidService {
     @GET
     @ApiOperation(value = "profile", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = Map.class),
+            @ApiResponse(code = 201, message = "Successful", response = Map.class, responseContainer ="List"),
             @ApiResponse(code = 404, message = "Map not found"),
             @ApiResponse(code = 600, message = "Exception")
     })
@@ -55,7 +56,8 @@ public class AndroidService {
                 listaMapas.add(map);
                 i++;
             }
-            return Response.status(201).entity(listaMapas).build();
+            GenericEntity<List<Map>> entity = new GenericEntity<>(listaMapas);
+            return Response.status(201).entity(entity).build();
         } catch (MapNotFoundException e10) {
             return Response.status(404).build();
         } catch (Exception e10) {
