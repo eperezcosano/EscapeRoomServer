@@ -52,7 +52,6 @@ public class AndroidService {
             return Response.status(600).build();
         }
     }
-
     @POST
     @ApiOperation(value = "Set inventory", notes = "asdasd")
     @ApiResponses(value = {
@@ -69,7 +68,6 @@ public class AndroidService {
             return Response.status(500).build();
         }
     }
-
     @POST
     @ApiOperation(value="updateUser", notes = "asdad")
     @ApiResponses(value = {
@@ -80,12 +78,12 @@ public class AndroidService {
             @ApiResponse(code = 600, message = "Not function for ADMIN"),
             @ApiResponse(code = 700, message = "Exception")
     })
-    @PathParam("/updateUser")
+    @Path("/update")
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateUser(User user) {
         try {
             this.android.updateUser(user);
-            return Response.status(201).entity(updateUser(user)).build();
+            return Response.status(201).build();
         } catch (ObjectNotExistException e2) {
             return Response.status(500).build();
         } catch (UserNotFoundException e3) {

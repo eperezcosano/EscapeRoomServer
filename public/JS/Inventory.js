@@ -16,6 +16,10 @@ function volver(id)
 { console.log("id",id);
     window.location="http://147.83.7.205:8080/Home.html?username="+ username;
 }
+function titulo(){
+    var container = document.getElementById("titul");
+    container.innerHTML='<h1>EscapeRoom</h1>'+'<p>Escapa si puedes</p>' + username ;
+}
 $(document).ready(function() {
     // Add smooth scrolling to all links in navbar + footer link
     $(".navbar a, footer a[href='#myPage']").on('click', function (event) {
@@ -62,6 +66,7 @@ $(document).ready(function() {
     } else {
         console.log('No se envió el parámetro variable');
     }
+    titulo();
     console.log("EEEEEEEE");
     var i=0;
     $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+username, function (data) {

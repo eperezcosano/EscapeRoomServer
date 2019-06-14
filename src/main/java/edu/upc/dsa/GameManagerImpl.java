@@ -320,14 +320,14 @@ public class GameManagerImpl implements GameManager {
         Session session = null;
         try {
             session = Factory.getSession();
-            session.update(user, user.getId());
+            session.update(user,user.getId());
+            //   session.updateUser(user);
         }catch (Exception e) {
             e.printStackTrace();
             throw e;
         }finally{
             if(session != null) session.close();
         }
-
     }
     @Override
     public void setShield(String shield, String username) throws Exception {
