@@ -8,18 +8,20 @@ public class UserStatistics {
     private int playedGames;
     private String currentWeapon;
     private String currentShield;
+    private String currentLife;
     private int currentLevel=0;
     private int cash;
 
     public UserStatistics() {
     }
 
-    public UserStatistics(int currentEnemiesKilled, String currentTime, int playedGames, String currentWeapon, String currentShield, int currentLevel, int cash) {
+    public UserStatistics(int currentEnemiesKilled, String currentTime, int playedGames, String currentWeapon, String currentShield, String currentLife, int currentLevel, int cash) {
         this.currentEnemiesKilled = currentEnemiesKilled;
         this.currentTime = currentTime;
         this.playedGames = playedGames;
         this.currentWeapon = currentWeapon;
         this.currentShield = currentShield;
+        this.currentLife = currentLife;
         this.currentLevel = currentLevel;
         this.cash = cash;
     }
@@ -78,5 +80,13 @@ public class UserStatistics {
 
     public void setPlayedGames(int playedGames) {
         this.playedGames = playedGames;
+    }
+
+    public String getCurrentLife() {
+        return currentLife;
+    }
+
+    public void setCurrentLife(String currentLife) {
+        this.currentLife = currentLife;
     }
 }
