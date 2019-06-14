@@ -56,7 +56,7 @@ public class AndroidService {
                 listaMapas.add(map);
                 i++;
             }
-            GenericEntity<List<Map>> entity = new GenericEntity<>(listaMapas);
+            GenericEntity<List<Map>> entity = new GenericEntity<List<Map>>(listaMapas){};
             return Response.status(201).entity(entity).build();
         } catch (MapNotFoundException e10) {
             return Response.status(404).build();
