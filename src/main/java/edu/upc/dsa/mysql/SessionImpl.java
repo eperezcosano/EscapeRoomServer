@@ -110,6 +110,7 @@ public class SessionImpl implements Session {
     public List<Object> findAll(Class theClass) throws Exception {
         return find(theClass, 0, null);
     }
+
     public List<UserRanking> getRanking() throws Exception {
         List<UserRanking> res = new ArrayList<>();
         String query ="SELECT User.name, User.currentTime, User.currentEnemiesKilled, User.currentLife FROM User ORDER BY currentTime ASC LIMIT 10;";
@@ -177,6 +178,7 @@ public class SessionImpl implements Session {
     @Override
     public void updateUser (UserStatistics user, int id) throws Exception {
         String query ="UPDATE User SET cash='"+user.getCash()+"', playedGames='"+user.getPlayedGames()+"',currentTime='"+user.getCurrentTime()+"', currentLife='"+user.getCurrentLife()+"', currentEnemiesKilled='"+user.getCurrentEnemiesKilled()+"', currentLevel='"+ user.getCurrentLevel()+"', currentWeapon='"+user.getCurrentWeapon()+"', currentShield='"+user.getCurrentShield()+"' WHERE id='"+id+"'";
+        log.info(query);
         PreparedStatement prep = this.connection.prepareStatement(query);
         prep.execute();
         prep.close();
