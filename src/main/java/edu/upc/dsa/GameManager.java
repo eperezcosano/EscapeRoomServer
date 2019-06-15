@@ -4,6 +4,7 @@ import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
 import edu.upc.dsa.to.User.UserLogin;
 import edu.upc.dsa.to.User.UserProfile;
+import edu.upc.dsa.to.User.UserRanking;
 import edu.upc.dsa.to.User.UserStatistics;
 
 import java.util.List;
@@ -27,6 +28,7 @@ public interface GameManager{
     void setWeapon(String weapon, String username) throws Exception;
     void setShield(String shield, String username) throws Exception;
     void updateUser (UserStatistics user, String username) throws Exception;
+    List<UserRanking> getRanking () throws Exception;
     UserLogin passUserToUserLogin (User user);
     UserProfile passUserToUserProfile (User user);
     UserStatistics passUserToUserStatistics (User user);
