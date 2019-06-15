@@ -5,6 +5,7 @@ import edu.upc.dsa.models.*;
 import edu.upc.dsa.mysql.*;
 import edu.upc.dsa.to.User.UserLogin;
 import edu.upc.dsa.to.User.UserProfile;
+import edu.upc.dsa.to.User.UserRanking;
 import edu.upc.dsa.to.User.UserStatistics;
 import org.apache.log4j.Logger;
 
@@ -13,6 +14,7 @@ import java.util.*;
 
 public class GameManagerImpl implements GameManager {
     private static GameManager instance;
+
 
     HashMap<String, User> userHashMap;
     HashMap<String, Objeto> objectoHashMap;
@@ -115,6 +117,25 @@ public class GameManagerImpl implements GameManager {
         if(user==null) throw new UserNotFoundException();
         UserProfile userProfile = this.passUserToUserProfile(user);
         return userProfile;
+    }
+    @Override
+    public List<UserRanking> getRanking() throws Exception {
+        Session session = null;
+        List<UserRanking> ranking = new LinkedList<>();
+        try {
+            session = Factory.getSession();
+            ranking = session.getRanking();
+
+
+            log.info("LISTA:"+ranking.size());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (session != null) session.close();
+        }
+        return ranking;
+
     }
     @Override
     public Inventario getInventary(String username) throws Exception {
@@ -330,6 +351,9 @@ public class GameManagerImpl implements GameManager {
             if(session != null) session.close();
         }
     }
+
+
+
     @Override
     public void setShield(String shield, String username) throws Exception {
         User user = this.userHashMap.get(username);
