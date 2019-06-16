@@ -6,8 +6,11 @@ $(document).ready(function() {
         console.log("Data:"+data);
         while (i < 10) {
             var name = data[i].ranking;
+            console.log("1:"+data[i].ranking);
             var currentTime = data[i].currentTime;
-            var currentEnemiesKilled = data.rankings.currentEnemiesKilled;
+            console.log("2:"+data[i].currentTime);
+            var currentEnemiesKilled = data[i].rankings.currentEnemiesKilled;
+            console.log("3:"+data[i].rankings.currentEnemiesKilled);
             var currentLife = data.rankings.currentLife;
             console.log("Ranking:", data.rankings);
             var insertion = "<tr><td>" + name + "</td>><td>" + currentTime + "</td></tr><tr><td>" + currentEnemiesKilled + "</td><td>" + currentLife + "</td></tr>";
