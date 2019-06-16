@@ -5,10 +5,10 @@ $(document).ready(function() {
         var i=1;
         console.log("Data:"+data);
         while (i < 10) {
-            var name = data.rankings[i].name;
-            var currentTime = data.rankings[i].currentTime;
-            var currentEnemiesKilled = data.rankings[i].currentEnemiesKilled;
-            var currentLife = data.rankings[i].currentLife;
+            var name = data.Object.rankings[i].name;
+            var currentTime = data.Object.rankings[i].currentTime;
+            var currentEnemiesKilled = data.Object.rankings[i].currentEnemiesKilled;
+            var currentLife = data.Object.rankings[i].currentLife;
             console.log("Ranking:", data);
             var insertion = "<tr><td>" + name + "</td>><td>" + currentTime + "</td></tr><tr><td>" + currentEnemiesKilled + "</td><td>" + currentLife + "</td></tr>";
             $("#mytablaranking body").append(insertion);
