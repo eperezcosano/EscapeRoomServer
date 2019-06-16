@@ -351,9 +351,6 @@ public class GameManagerImpl implements GameManager {
             if(session != null) session.close();
         }
     }
-
-
-
     @Override
     public void setShield(String shield, String username) throws Exception {
         User user = this.userHashMap.get(username);

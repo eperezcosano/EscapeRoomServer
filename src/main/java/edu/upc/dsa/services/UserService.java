@@ -17,6 +17,7 @@ import io.swagger.annotations.ApiResponses;
 import org.apache.log4j.Logger;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -115,9 +116,11 @@ public class UserService {
     public Response ranking () {
         try {
             List<UserRanking> ranking = this.ma.getRanking();
+            logger.info("Que paxa:"+ranking.size());
+            GenericEntity<List<UserRanking>> entity = new GenericEntity<List<UserRanking>>(ranking){};
             if (ranking.size()==0) {
                 return Response.status(500).build();
-            } else return Response.status(201).entity(ranking).build();
+            } else return Response.status(201).entity(entity).build();
         } catch (UserNotFoundException e1) {
             return Response.status(404).build();
         } catch (NotFunctionForAdminExcepction e10) {
