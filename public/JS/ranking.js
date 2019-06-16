@@ -4,7 +4,7 @@ $(document).ready(function() {
     $.get("http://147.83.7.205:8080/dsaApp/user/ranking", function (data) {
         var i=0;
         console.log("Data:"+data);
-        while (i < data.lista.length) {
+        while (i < data.length) {
             var name = data.name;
             var currentTime = data.currentTime;
             var currentEnemiesKilled = data.currentEnemiesKilled;
