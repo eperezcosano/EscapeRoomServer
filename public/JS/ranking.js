@@ -8,6 +8,6 @@ $(document).ready(function() {
         var currentLife = data.currentLife;
         console.log("Ranking:", data);
      var insertion = "<tr><td>" + name + "</td>><td>" + currentTime + "</td></tr><tr><td>" + currentEnemiesKilled + "</td><td>" + currentLife + "</td></tr>";
-    $("#mytabla tbody").append(insertion);
+    $("#mytablaranking body").append(insertion);
 }
-}
+})
