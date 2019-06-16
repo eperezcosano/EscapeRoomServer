@@ -13,7 +13,7 @@ $(document).ready(function() {
             console.log("3:"+data[i].currentEnemiesKilled);
             var currentLife = data[i].currentLife;
             console.log("Ranking:", data[i].currentLife);
-            var insertion = "<tr><td>" + name + "</td>><td>" + currentTime + "</td><td>" + currentEnemiesKilled + "</td><td>" + currentLife + "</td></tr>";
+            var insertion = "<tr><td>" + name + "</td><td>" + currentTime + "</td><td>" + currentEnemiesKilled + "</td><td>" + currentLife + "</td></tr>";
             $("#mytablarankingid body").append(insertion);
             i++;
         }
