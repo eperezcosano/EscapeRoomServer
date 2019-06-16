@@ -136,4 +136,7 @@ $(document).ready(function(){
     }, "json").fail(function (error) {
         inventario_nulo=1;
     });
+    $("#ranking_buttonn").click(function () {
+        location.href="147.83.7.205:8080/ranking.html"
+    })
 })
