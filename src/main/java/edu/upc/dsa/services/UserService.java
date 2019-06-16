@@ -103,7 +103,7 @@ public class UserService {
     @GET
     @ApiOperation(value = "ranking", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = UserRanking.class),
+            @ApiResponse(code = 201, message = "Successful", response = UserRanking.class, responseContainer ="List"),
             @ApiResponse(code = 404, message = "First login or register"),
             @ApiResponse(code = 500, message = "You not have any object"),
             @ApiResponse(code = 600, message = "Not function for ADMIN"),
