@@ -12,9 +12,9 @@ $(document).ready(function() {
             var currentEnemiesKilled = data[i].currentEnemiesKilled;
             console.log("3:"+data[i].currentEnemiesKilled);
             var currentLife = data[i].currentLife;
-            console.log("Ranking:", data.rankings);
-            var insertion = "<tr><td>" + name + "</td>><td>" + currentTime + "</td></tr><tr><td>" + currentEnemiesKilled + "</td><td>" + currentLife + "</td></tr>";
-            $("#mytablaranking body").append(insertion);
+            console.log("Ranking:", data[i].currentLife);
+            var insertion = "<tr><td>" + name + "</td>><td>" + currentTime + "</td><td>" + currentEnemiesKilled + "</td><td>" + currentLife + "</td></tr>";
+            $("#mytablarankingid body").append(insertion);
             i++;
         }
     })
