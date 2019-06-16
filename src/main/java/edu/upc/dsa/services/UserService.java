@@ -115,7 +115,7 @@ public class UserService {
     public Response ranking () {
         try {
             List<UserRanking> ranking = this.ma.getRanking();
-            if (ranking == null) {
+            if (ranking.size()==0) {
                 return Response.status(500).build();
             } else return Response.status(201).entity(ranking).build();
         } catch (UserNotFoundException e1) {
