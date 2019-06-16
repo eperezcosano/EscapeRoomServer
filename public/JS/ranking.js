@@ -3,7 +3,7 @@ $(document).ready(function() {
 
     $.get("http://147.83.7.205:8080/dsaApp/user/ranking", function (data) {
         var i=1;
-        console.log("Data:"+data.Object);
+        console.log("Data:"+data[i]);
         while (i < 10) {
             var name = data[i].name;
             var currentTime = data[i].currentTime;
