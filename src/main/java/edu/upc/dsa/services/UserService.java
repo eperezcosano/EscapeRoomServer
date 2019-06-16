@@ -8,6 +8,7 @@ import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
 import edu.upc.dsa.to.ObjTO;
 import edu.upc.dsa.to.User.UserProfile;
+import edu.upc.dsa.to.User.UserRanking;
 import edu.upc.dsa.to.User.UserStatistics;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -18,6 +19,7 @@ import org.apache.log4j.Logger;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Api(value = "/user", description = "Endpoint to User Service")
 @Path("/user")
@@ -82,6 +84,7 @@ public class UserService {
             @ApiResponse(code = 700, message = "Exception")
 
     })
+
     @Path("/inventory/{username}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response inventory(@PathParam("username") String username){
@@ -96,6 +99,32 @@ public class UserService {
             return Response.status(600).build();
         }catch (Exception e)
         { return Response.status(700).build(); }
+    }
+    @GET
+    @ApiOperation(value = "ranking", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = UserRanking.class),
+            @ApiResponse(code = 404, message = "First login or register"),
+            @ApiResponse(code = 500, message = "You not have any object"),
+            @ApiResponse(code = 600, message = "Not function for ADMIN"),
+            @ApiResponse(code = 700, message = "Exception")
+
+    })
+    @Path("/ranking")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ranking () {
+        try {
+            List<UserRanking> ranking = this.ma.getRanking();
+            if (ranking == null) {
+                return Response.status(500).build();
+            } else return Response.status(201).entity(ranking).build();
+        } catch (UserNotFoundException e1) {
+            return Response.status(404).build();
+        } catch (NotFunctionForAdminExcepction e10) {
+            return Response.status(600).build();
+        } catch (Exception e) {
+            return Response.status(700).build();
+        }
     }
     @POST
     @ApiOperation(value = "Buy", notes = "asdasd")
