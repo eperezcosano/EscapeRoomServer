@@ -2,12 +2,15 @@ package edu.upc.dsa.services;
 
 import edu.upc.dsa.GameManager;
 import edu.upc.dsa.GameManagerImpl;
+import edu.upc.dsa.exceptions.NotFunctionForAdminExcepction;
 import edu.upc.dsa.exceptions.PasswordNotMatchException;
 import edu.upc.dsa.exceptions.UserAlreadyExistsException;
 import edu.upc.dsa.exceptions.UserNotFoundException;
+import edu.upc.dsa.models.Inventario;
 import edu.upc.dsa.to.*;
 
 import edu.upc.dsa.to.User.UserLogin;
+import edu.upc.dsa.to.User.UserRanking;
 import edu.upc.dsa.to.User.UserRegister;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -19,6 +22,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.GenericEntity;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.List;
 
 @Api(value = "/auth")
 @Path("/auth")
@@ -85,6 +89,31 @@ public class AuthService {
             e6.printStackTrace();
             return Response.status(700).build();
         }
+    }
+    @GET
+    @ApiOperation(value = "ranking", notes = "asdasd")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "Successful", response = UserRanking.class),
+            @ApiResponse(code = 404, message = "First login or register"),
+            @ApiResponse(code = 500, message = "You not have any object"),
+            @ApiResponse(code = 600, message = "Not function for ADMIN"),
+            @ApiResponse(code = 700, message = "Exception")
+
+    })
+    @Path("/ranking")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response ranking (){
+        try {
+            List<UserRanking> ranking = this.auth.getRanking();
+            if(ranking==null)
+            { return Response.status(500).build();}
+            else return Response.status(201).entity(ranking).build();
+        }catch (UserNotFoundException e1){
+            return Response.status(404).build();
+        }catch(NotFunctionForAdminExcepction e10){
+            return Response.status(600).build();
+        }catch (Exception e)
+        { return Response.status(700).build(); }
     }
 
 }
