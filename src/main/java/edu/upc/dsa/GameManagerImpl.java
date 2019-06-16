@@ -339,11 +339,11 @@ public class GameManagerImpl implements GameManager {
         Session session = null;
         User usera;
         try {
-
             session = Factory.getSession();
             usera=session.getByUsername(username);
+            log.info(usera);
             session.updateUser(user,usera.getId());
-            //   session.updateUser(user);
+            log.info(user);
         }catch (Exception e) {
             e.printStackTrace();
             throw e;

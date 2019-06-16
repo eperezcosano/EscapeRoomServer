@@ -119,7 +119,7 @@ $(document).ready(function() {
             conte.style.display = "none";
         } else {
             console.log("Hola",2);
-            document.getElementById('woodSword').src = "https://3.bp.blogspot.com/-_7onQnAUhjk/W0Zgdxl1YTI/AAAAAAAADHk/-DUkca9CbAguymTgJ64cY-uen7JTZ88ngCLcBGAs/s1600/THOMPSON.png";
+            document.getElementById('woodSword').src = "https://www.sccpre.cat/mypng/detail/70-705224_espada-de-madera-cross.png";
             var conte = document.getElementById('contenedor_woodSword');
             conte.style.display = "block";
             contWoodSword=0;
@@ -131,7 +131,7 @@ $(document).ready(function() {
             conte.style.display = "none";
         } else {
             console.log("Hola",4);
-            document.getElementById('ironSword').src = "https://fortniteestadisticas.com/assets/img//weapons/double-barrel-shotgun.png";
+            document.getElementById('ironSword').src = "https://i.pinimg.com/originals/55/40/4a/55404a52fb3359bdeaff4394d7cb81d0.png";
             var conte = document.getElementById('contenedor_ironSword');
             conte.style.display = "block";
             contIronSword=0;
@@ -144,7 +144,7 @@ $(document).ready(function() {
         }
         else{
             console.log("Hola",6);
-            document.getElementById('goldSword').src ="https://puregaming.es/wp-content/uploads/2019/01/Dw8klLOWkAEhrTX.png";
+            document.getElementById('goldSword').src ="https://vignette.wikia.nocookie.net/horadeaventura/images/7/7f/Espadador.png/revision/latest?cb=20121124030750&path-prefix=es";
             var conte = document.getElementById('contenedor_goldSword');
             conte.style.display = "block";
             contGoldSword=0;
@@ -156,7 +156,7 @@ $(document).ready(function() {
             conte.style.display = "none";
         } else {
             console.log("Hola",21);
-            document.getElementById('woodShield').src = "https://3.bp.blogspot.com/-_7onQnAUhjk/W0Zgdxl1YTI/AAAAAAAADHk/-DUkca9CbAguymTgJ64cY-uen7JTZ88ngCLcBGAs/s1600/THOMPSON.png";
+            document.getElementById('woodShield').src = "https://previews.123rf.com/images/andreykuzmin/andreykuzmin1204/andreykuzmin120400030/13103962-lat%C3%B3n-envejecido-o-un-escudo-de-metal-de-bronce-aislado-en-blanco.jpg";
             var conte = document.getElementById('contenedor_woodShield');
             conte.style.display = "block";
             contWoodSword=0;
@@ -168,7 +168,7 @@ $(document).ready(function() {
             conte.style.display = "none";
         } else {
             console.log("Hola",4);
-            document.getElementById('ironShield').src = "https://fortniteestadisticas.com/assets/img//weapons/double-barrel-shotgun.png";
+            document.getElementById('ironShield').src = "https://i0.pngocean.com/files/201/17/292/metal-shield-stock-photography-stock-illustration-icon-silver-shield.jpg";
             var conte = document.getElementById('contenedor_ironShield');
             conte.style.display = "block";
             contIronSword=0;
@@ -181,7 +181,7 @@ $(document).ready(function() {
         }
         else{
             console.log("Hola",6);
-            document.getElementById('goldShield').src ="https://puregaming.es/wp-content/uploads/2019/01/Dw8klLOWkAEhrTX.png";
+            document.getElementById('goldShield').src ="https://st2.depositphotos.com/1011833/5645/i/950/depositphotos_56451727-stock-photo-gold-or-bronze-metal-medieval.jpg";
             var conte = document.getElementById('contenedor_goldShield');
             conte.style.display = "block";
             contGoldSword=0;
