@@ -7,6 +7,7 @@ import edu.upc.dsa.GameManagerImpl;
 import edu.upc.dsa.exceptions.*;
 import edu.upc.dsa.models.*;
 import edu.upc.dsa.to.ObjTO;
+import edu.upc.dsa.to.User.UserListaRanking;
 import edu.upc.dsa.to.User.UserProfile;
 import edu.upc.dsa.to.User.UserRanking;
 import edu.upc.dsa.to.User.UserStatistics;
@@ -104,7 +105,7 @@ public class UserService {
     @GET
     @ApiOperation(value = "ranking", notes = "asdasd")
     @ApiResponses(value = {
-            @ApiResponse(code = 201, message = "Successful", response = UserRanking.class, responseContainer ="List"),
+            @ApiResponse(code = 201, message = "Successful", response = UserListaRanking.class),
             @ApiResponse(code = 404, message = "First login or register"),
             @ApiResponse(code = 500, message = "You not have any object"),
             @ApiResponse(code = 600, message = "Not function for ADMIN"),
@@ -117,7 +118,8 @@ public class UserService {
         try {
             List<UserRanking> ranking = this.ma.getRanking();
             logger.info("Que paxa:"+ranking.size());
-            GenericEntity<List<UserRanking>> entity = new GenericEntity<List<UserRanking>>(ranking){};
+            UserListaRanking userListaRanking = new UserListaRanking(ranking);
+            GenericEntity<UserListaRanking> entity = new GenericEntity<UserListaRanking>(userListaRanking){};
             if (ranking.size()==0) {
                 return Response.status(500).build();
             } else return Response.status(201).entity(entity).build();
