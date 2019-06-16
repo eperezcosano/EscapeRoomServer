@@ -2,7 +2,7 @@
 $(document).ready(function() {
 
     $.get("http://147.83.7.205:8080/dsaApp/user/ranking", function (data) {
-        var i=0;
+        var i=1;
         console.log("Data:"+data);
         while (i < 10) {
             var name = data.ranking[i].name;
