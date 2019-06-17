@@ -2,7 +2,7 @@ package edu.upc.dsa.to.User;
 
 public class UserRanking {
     private String name;
-    private String currentTime;
+    private String currentLife;
     private int currentEnemiesKilled;
     private int recordTime;
 
@@ -11,7 +11,7 @@ public class UserRanking {
     }
     public UserRanking(String name, String currentTime, int currentEnemiesKilled, int recordTime) {
         this.name = name;
-        this.currentTime = currentTime;
+        this.currentLife = currentTime;
         this.currentEnemiesKilled = currentEnemiesKilled;
         this.recordTime = recordTime;
     }
@@ -25,11 +25,11 @@ public class UserRanking {
     }
 
     public String getCurrentTime() {
-        return currentTime;
+        return currentLife;
     }
 
     public void setCurrentTime(String currentTime) {
-        this.currentTime = currentTime;
+        this.currentLife = currentTime;
     }
 
     public int getCurrentEnemiesKilled() {
@@ -52,7 +52,7 @@ public class UserRanking {
     public String toString() {
         return "UserRanking{" +
                 "name='" + name + '\'' +
-                ", currentTime='" + currentTime + '\'' +
+                ", currentTime='" + currentLife + '\'' +
                 ", currentEnemiesKilled=" + currentEnemiesKilled +
                 ", recordTime=" + recordTime +
                 '}';

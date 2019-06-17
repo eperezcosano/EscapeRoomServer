@@ -126,7 +126,7 @@ public class SessionImpl implements Session {
         }
         while (rs.next()) {
 
-            log.info("Creating user...");
+            log.info("PEPEPE");
             log.info("User created");
             res.add(new UserRanking(rs.getString(1),rs.getString(2),rs.getInt(3),rs.getInt(4)));
 
