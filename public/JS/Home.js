@@ -113,7 +113,7 @@ $(document).ready(function(){
         var currentTime = data.currentTime;
         var playedGames = data.playedGames;
         var currentShield = data.currentShield;
-        var currentSword = data.currentSword;
+        var currentWeapon = data.currentSword;
         var cash = data.cash;
         var partidasjugadas_text = "playedGames";
         var enemigosmatados_text = "currentEnemiesKilled";
@@ -122,7 +122,7 @@ $(document).ready(function(){
         var currentSwordtext = "currentSword";
         var cashtext = "cash"
         console.log("Profile:",data);
-        var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + playedGames + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + currentTime + "</td></tr><tr><td>" + enemigosmatados_text +"</td><td>" + currentEnemiesKilled + "</td></tr><tr><td>" + currentShieldtext + "</td><td>" + currentShield + "</td></tr><tr><td>" + currentSwordtext + "</td><td>" + currentSword + "</td></tr><tr><td>" + cashtext + "</td><td>" + cash + "</td></tr>";
+        var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + playedGames + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + currentTime + "</td></tr><tr><td>" + enemigosmatados_text +"</td><td>" + currentEnemiesKilled + "</td></tr><tr><td>" + currentShieldtext + "</td><td>" + currentShield + "</td></tr><tr><td>" + currentSwordtext + "</td><td>" + currentWeapon + "</td></tr><tr><td>" + cashtext + "</td><td>" + cash + "</td></tr>";
         $("#statistics_tabla tbody").append(insertion);
     }, "json");
     $.get("http://147.83.7.205:8080/dsaApp/user/inventory/"+params['username'], function (data) {
