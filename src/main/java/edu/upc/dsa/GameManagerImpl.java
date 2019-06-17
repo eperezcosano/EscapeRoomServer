@@ -193,7 +193,7 @@ public class GameManagerImpl implements GameManager {
        User u = new User(username, password, name, surname, mail, age);
         try {
             session = Factory.getSession();
-            User insertUser = new User(username,password,50,"0",0,0,1,0,name,surname,mail,age,"0","0");
+            User insertUser = new User(username,password,50,"0",0,0,1,0,name,surname,mail,age,"0","0","0");
             session.save(insertUser);
 
             log.info("User insert: " + insertUser);
@@ -442,7 +442,7 @@ public class GameManagerImpl implements GameManager {
     }
     @Override
     public UserStatistics passUserToUserStatistics(User user) {
-        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames(),user.getCurrentWeapon(),user.getCurrentShield(),user.getCurrentLife(),user.getCurrentLevel(),user.getCash());
+        UserStatistics userStatistics = new UserStatistics(user.getCurrentEnemiesKilled(),user.getCurrentTime(),user.getPlayedGames(),user.getCurrentWeapon(),user.getCurrentShield(),user.getCurrentLife(),user.getCurrentLevel(),user.getCash(), user.getRecordTime());
         return userStatistics;
     }
 

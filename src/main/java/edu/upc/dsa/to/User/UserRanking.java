@@ -4,16 +4,16 @@ public class UserRanking {
     private String name;
     private String currentTime;
     private int currentEnemiesKilled;
-    private int currentLife;
+    private int recordTime;
 
     public UserRanking(){
 
     }
-    public UserRanking(String name, String currentTime, int currentEnemiesKilled, int currentLife) {
+    public UserRanking(String name, String currentTime, int currentEnemiesKilled, int recordTime) {
         this.name = name;
         this.currentTime = currentTime;
         this.currentEnemiesKilled = currentEnemiesKilled;
-        this.currentLife = currentLife;
+        this.recordTime = recordTime;
     }
 
     public String getName() {
@@ -40,12 +40,12 @@ public class UserRanking {
         this.currentEnemiesKilled = currentEnemiesKilled;
     }
 
-    public int getCurrentLife() {
-        return currentLife;
+    public int getRecordTime() {
+        return recordTime;
     }
 
-    public void setCurrentLife(int currentLife) {
-        this.currentLife = currentLife;
+    public void setRecordTime(int recordTime) {
+        this.recordTime = recordTime;
     }
 
     @Override
@@ -54,7 +54,7 @@ public class UserRanking {
                 "name='" + name + '\'' +
                 ", currentTime='" + currentTime + '\'' +
                 ", currentEnemiesKilled=" + currentEnemiesKilled +
-                ", currentLife=" + currentLife +
+                ", recordTime=" + recordTime +
                 '}';
     }
 }

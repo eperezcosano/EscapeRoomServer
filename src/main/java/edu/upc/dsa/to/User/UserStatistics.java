@@ -11,11 +11,12 @@ public class UserStatistics {
     private int currentLife;
     private int currentLevel=0;
     private int cash;
+    private String recordTime;
 
     public UserStatistics() {
     }
 
-    public UserStatistics(int currentEnemiesKilled, String currentTime, int playedGames, String currentWeapon, String currentShield, int currentLife, int currentLevel, int cash) {
+    public UserStatistics(int currentEnemiesKilled, String currentTime, int playedGames, String currentWeapon, String currentShield, int currentLife, int currentLevel, int cash, String recordTime) {
         this.currentEnemiesKilled = currentEnemiesKilled;
         this.currentTime = currentTime;
         this.playedGames = playedGames;
@@ -24,6 +25,7 @@ public class UserStatistics {
         this.currentLife = currentLife;
         this.currentLevel = currentLevel;
         this.cash = cash;
+        this.recordTime = recordTime;
     }
 
 
@@ -89,5 +91,13 @@ public class UserStatistics {
 
     public void setCurrentLife(int currentLife) {
         this.currentLife = currentLife;
+    }
+
+    public String getRecordTime() {
+        return recordTime;
+    }
+
+    public void setRecordTime(String recordTime) {
+        this.recordTime = recordTime;
     }
 }
