@@ -113,7 +113,7 @@ $(document).ready(function(){
         var currentTime = data.currentTime;
         var playedGames = data.playedGames;
         var currentShield = data.currentShield;
-        var currentWeapon = data.currentSword;
+        var currentWeapon = data.currentWeapon;
         var cash = data.cash;
         var partidasjugadas_text = "Partidas jugadas";
         var enemigosmatados_text = "Enemigos matados";
