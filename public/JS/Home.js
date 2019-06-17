@@ -98,12 +98,12 @@ $(document).ready(function(){
         var surname = data.surname;
         var mail = data.mail;
         var age = data.age;
-        var username_text = 'username';
-        var password_text = "password";
-        var name_text = "name";
-        var surname_text = "surname";
-        var mail_text ="mail";
-        var age_text ="age";
+        var username_text = 'Username';
+        var password_text = "Contraseña";
+        var name_text = "Nombre";
+        var surname_text = "Apellido";
+        var mail_text ="Mail";
+        var age_text ="Edad";
     console.log("Profile:",data);
         var insertion = "<tr><td>" + username_text + "</td><td>" + username + "</td></tr><tr><td>" + password_text + "</td><td>" + password + "</td></tr><tr><td>" + name_text+"</td>><td>" + name + "</td></tr><tr><td>" + surname_text + "</td><td>" + surname + "</td></tr><tr><td>" + mail_text + "</td><td>" + mail + "</td></tr><tr><td>" + age_text + "</td><td>" + age + "</td></tr>";
         $("#mytabla tbody").append(insertion);
@@ -115,11 +115,11 @@ $(document).ready(function(){
         var currentShield = data.currentShield;
         var currentWeapon = data.currentSword;
         var cash = data.cash;
-        var partidasjugadas_text = "playedGames";
-        var enemigosmatados_text = "currentEnemiesKilled";
-        var tiempototal_text = "currentTime";
-        var currentShieldtext = "currentShield";
-        var currentSwordtext = "currentSword";
+        var partidasjugadas_text = "Partidas jugadas";
+        var enemigosmatados_text = "Enemigos matados";
+        var tiempototal_text = "Tiempo jugado";
+        var currentShieldtext = "Escudo puesto";
+        var currentSwordtext = "Espada puesta";
         var cashtext = "cash"
         console.log("Profile:",data);
         var insertion = "<tr><td>" + partidasjugadas_text + "</td><td>" + playedGames + "</td></tr><tr><td>" + tiempototal_text + "</td><td>" + currentTime + "</td></tr><tr><td>" + enemigosmatados_text +"</td><td>" + currentEnemiesKilled + "</td></tr><tr><td>" + currentShieldtext + "</td><td>" + currentShield + "</td></tr><tr><td>" + currentSwordtext + "</td><td>" + currentWeapon + "</td></tr><tr><td>" + cashtext + "</td><td>" + cash + "</td></tr>";
