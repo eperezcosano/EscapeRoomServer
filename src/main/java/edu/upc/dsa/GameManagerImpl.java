@@ -293,8 +293,9 @@ public class GameManagerImpl implements GameManager {
             session2.buy(objectohash.getId(), user.getId(), amountMock);
             Objeto objeto = (Objeto) session2.get(Objeto.class,objectohash.getId());
             session2.updateCash(objeto,user);
+           User useria = (User) session2.getByUsername(user.getUsername());
             userHashMap.remove(user.getUsername());
-            userHashMap.put(user.getUsername(),user);
+            userHashMap.put(useria.getUsername(),useria);
             log.info("objetohash:" + user.getCash());
             log.info("Object buy.");
 
