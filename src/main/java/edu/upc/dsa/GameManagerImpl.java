@@ -400,6 +400,12 @@ public class GameManagerImpl implements GameManager {
             }
             if (cont == 1) {
                 id = "mapa2";
+            }
+            if(cont == 2){
+                id = "mapa3";
+            }
+            if(cont == 3){
+                id = "mapa4";
                 a=true;
             }
             ResourceBundle rs = data.get(id);
