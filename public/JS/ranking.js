@@ -7,13 +7,13 @@ $(document).ready(function() {
         while (i < 10) {
             var name = data[i].name;
             console.log("1:" + name);
-            var currentTime = data[i].currentTime;
-            console.log("2:" + currentTime);
+            var recordTime = data[i].recordTime;
+            console.log("2:" + recordTime);
             var currentEnemiesKilled = data[i].currentEnemiesKilled;
             console.log("3:" + currentEnemiesKilled);
             var currentLife = data[i].currentLife;
             console.log("Ranking:", currentLife);
-            var insertion = "<tr><td>" + name + "</td><td>" + currentTime + "</td><td>" + currentEnemiesKilled + "</td><td>" + currentLife + "</td></tr>";
+            var insertion = "<tr><td>" + name + "</td><td>" + recordTime + "</td><td>" + currentEnemiesKilled + "</td><td>" + currentLife + "</td></tr>";
            console.log("Insertion:"+insertion);
             $("#rankingid tbody").append(insertion);
             i++;
