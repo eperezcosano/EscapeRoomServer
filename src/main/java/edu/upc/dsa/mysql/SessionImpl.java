@@ -113,7 +113,7 @@ public class SessionImpl implements Session {
 
     public List<UserRanking> getRanking() throws Exception {
         List<UserRanking> res = new ArrayList<>();
-        String query ="SELECT User.name, User.recordTime, User.currentEnemiesKilled, User.currentLife FROM User ORDER BY recordTime ASC LIMIT 10;";
+        String query ="SELECT User.name, User.recordTime, User.currentEnemiesKilled, User.currentLife FROM User WHERE User.recordTime IS NOT NULL ORDER BY recordTime ASC LIMIT 10;";
         ResultSet rs;
 
         PreparedStatement prep = this.connection.prepareStatement(query);
