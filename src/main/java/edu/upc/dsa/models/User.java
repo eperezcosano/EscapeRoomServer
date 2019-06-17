@@ -25,6 +25,7 @@ public class User {
     private int age;
     private String currentWeapon;
     private String currentShield;
+    private String recordTime;
 
 
     //Constructors
@@ -62,7 +63,7 @@ public class User {
         this.playedGames = partidasjugadas;
     }
 
-    public User(int id, String username, String password, int cash, String currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int playedGames, String name, String surname, String mail, int age, String currentWeapon, String currentShield) {
+    public User(int id, String username, String password, int cash, String currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int playedGames, String name, String surname, String mail, int age, String currentWeapon, String currentShield, String recordTime) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -78,9 +79,10 @@ public class User {
         this.age = age;
         this.currentWeapon = currentWeapon;
         this.currentShield = currentShield;
+        this.recordTime = recordTime;
     }
 
-    public User(String username, String password, int cash, String currentWeapon, String currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age, String currentShield) {
+    public User(String username, String password, int cash, String currentWeapon, String currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int partidasjugadas, String name, String surname, String mail, int age, String currentShield, String recordTime) {
         this.username = username;
         this.password = password;
         this.cash = cash;
@@ -95,9 +97,10 @@ public class User {
         this.mail = mail;
         this.age = age;
         this.currentShield=currentShield;
+        this.recordTime = recordTime;
     }
 
-    public User( String username, String password, int cash, String currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int playedGames, String name, String surname, String mail, int age, String currentWeapon, String currentShield) {
+    public User( String username, String password, int cash, String currentTime, int currentLife, int currentEnemiesKilled, int currentLevel, int playedGames, String name, String surname, String mail, int age, String currentWeapon, String currentShield, String recordTime) {
         this.username = username;
         this.password = password;
         this.cash = cash;
@@ -112,6 +115,15 @@ public class User {
         this.age = age;
         this.currentWeapon = currentWeapon;
         this.currentShield = currentShield;
+        this.recordTime = recordTime;
+    }
+
+    public String getRecordTime() {
+        return recordTime;
+    }
+
+    public void setRecordTime(String recordTime) {
+        this.recordTime = recordTime;
     }
 
     public String getCurrentShield() {
@@ -241,7 +253,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", cash=" + cash +
-                ", currentTime=" + currentTime +
+                ", currentTime='" + currentTime + '\'' +
                 ", currentLife=" + currentLife +
                 ", currentEnemiesKilled=" + currentEnemiesKilled +
                 ", currentLevel=" + currentLevel +
@@ -251,6 +263,8 @@ public class User {
                 ", mail='" + mail + '\'' +
                 ", age=" + age +
                 ", currentWeapon='" + currentWeapon + '\'' +
+                ", currentShield='" + currentShield + '\'' +
+                ", recordTime='" + recordTime + '\'' +
                 '}';
     }
 }
