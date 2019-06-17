@@ -254,6 +254,16 @@ public class SessionImpl implements Session {
         prep.close();
     }
 
+    @Override
+    public void updateCash(Objeto objeto, User user) throws Exception {
+        int cashe = user.getCash()-objeto.getCoste();
+        String query ="UPDATE User SET cash='"+ cashe+"' WHERE id='"+user.getId()+"'";
+        log.info(query);
+        PreparedStatement prep = this.connection.prepareStatement(query);
+        prep.execute();
+        prep.close();
+    }
+
     public void close() throws Exception {
         this.connection.close();
         log.info("Connection closed");

@@ -291,7 +291,8 @@ public class GameManagerImpl implements GameManager {
         try {
             session2 = Factory.getSession();
             session2.buy(objectohash.getId(), user.getId(), amountMock);
-
+            Objeto objeto = (Objeto) session2.get(Objeto.class,objectohash.getId());
+            session2.updateCash(objeto,user);
             log.info("Object buy.");
 
         } catch (UserAlreadyExistsException e) {

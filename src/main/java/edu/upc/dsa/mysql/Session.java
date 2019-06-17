@@ -27,5 +27,6 @@ public interface Session {
     void buy(int objetoId, int userId , int amount) throws Exception;
     void setWeapon(String nombre, int userId) throws Exception;
     void setShield(String shield, int userId) throws Exception;
+    void updateCash(Objeto objeto, User idUsuario) throws Exception;
     void close() throws Exception;
 }
