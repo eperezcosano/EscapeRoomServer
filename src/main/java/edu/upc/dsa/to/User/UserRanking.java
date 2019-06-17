@@ -24,11 +24,11 @@ public class UserRanking {
         this.name = name;
     }
 
-    public String getCurrentTime() {
+    public String getCurrentLife() {
         return currentLife;
     }
 
-    public void setCurrentTime(String currentTime) {
+    public void setCurrentLife(String currentTime) {
         this.currentLife = currentTime;
     }
 
