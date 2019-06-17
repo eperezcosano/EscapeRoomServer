@@ -39,4 +39,7 @@ $(document).ready(function() {
         });
     });
     console.log("Me cago en todo")
+    $("#contactbutton").click(function () {
+    alert("Mensaje enviado, pronto te mandaremos la respuesta!")
+    })
 });
